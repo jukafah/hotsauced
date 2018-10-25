@@ -1,0 +1,18 @@
+<div class="comment">
+  <div class="user_layout">
+    <p>
+      <strong>Commenter:</strong>
+      <%= comment.commenter %>
+    </p>
+  </div>
+  <div class="body_layout">
+    <div class="body_text">
+      <p><%= comment.body %></p>
+    </div>
+  </div>
+  <div class="comment_controls">
+    <%= link_to 'Delete', [ comment.sauce, comment ],
+    method: :delete,
+    data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>

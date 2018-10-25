@@ -1,0 +1,19 @@
+<% @sauces.each do | sauce | %>
+  <div class="card">
+    <div class="row no-gutters">
+      <div class="col-sm-2">
+        <%= image_tag "hotsauce_stock.png", class: "img-fluid" %>
+      </div>
+      <div class="col-lg">
+        <div class="card-body">
+          <h5><%= link_to sauce.name, sauce_path(sauce), class: 'card-title' %></h5>
+          <p class="card-text"><%= sauce.summary %></p>
+          <p class="card-text">Heat: <%= sauce.heat %></p>
+          <p class="card-text">Flavor: <%= sauce.flavor %></p>
+          <p class="card-text">Rating: <%= sauce.rating %></p>
+          <p class="card-text">Comments: <%= sauce.comments.count %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

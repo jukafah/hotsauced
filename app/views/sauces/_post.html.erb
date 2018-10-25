@@ -1,0 +1,28 @@
+<div class="post container">
+  <div class="post_body">
+    <div class="sauce_title">
+      <h2><%= @sauce.name %></h2>
+    </div>
+    <div class="sauce_body">
+      <p><%= @sauce.summary %></p>
+    </div>
+    <div class="sauce_heat">
+      <p>HEAT:</p>
+      <%= @sauce.heat %>
+    </div>
+    <div class="sauce_flavor">
+      <p>FLAVOR:</p>
+      <%= @sauce.flavor %>
+    <div class="sauce_rating">
+      <p>RATING:</p>
+      <p><%= @sauce.rating %></p>
+    </div>
+    <div class="edit_article">
+      <%= link_to 'Edit Article', edit_article_path(@sauce) %>
+    </div>
+  </div>
+  <div class="comment_section">
+    <%= render @sauce.comments %>
+    <%= render 'comments/form' %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="comment_form">
+  <h3>Thoughts?</h3>
+  <%= form_with(model: [ @sauce, @sauce.comments.build ], local: true) do |form| %>
+    <div class="commenter">
+      <%= form.label :commenter %><br>
+      <%= form.text_field :commenter %>
+    </div>
+    <div class="comment_body">
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </div>
+    <div class="submit_button">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
