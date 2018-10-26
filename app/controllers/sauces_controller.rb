@@ -3,6 +3,7 @@ class SaucesController < ApplicationController
 
   def index
     @sauces = Sauce.all
+    @search = Sauce.search(params[:q])
   end
 
   def show

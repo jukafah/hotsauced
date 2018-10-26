@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="search-bar">
+    <%= search_form_for @search do | form | %>
+      <%= form.label :name %>
+      <%= form.search_field :name %>
+      <%= form.submit %>
+    <% end %>
+  </div>
+</div>
