@@ -1,9 +1,7 @@
-<div class="container">
-  <div class="search-bar">
-    <%= search_form_for @search do | form | %>
-      <%= form.label :name %>
-      <%= form.search_field :name %>
-      <%= form.submit %>
+<div class="search-bar">
+    <%= search_form_for @q do | form | %>
+      <%= form.label :name_cont %>
+      <%= form.search_field :name_cont %>
+      <%= form.submit class: 'btn btn-outline-success my-2 my-sm-0' %>
     <% end %>
-  </div>
 </div>
