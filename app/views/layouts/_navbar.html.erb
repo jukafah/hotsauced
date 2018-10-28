@@ -6,14 +6,14 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <%= link_to "HOME", welcome_path, class: 'nav-link active' %>
+      <li class="nav-item">
+        <%= link_to "HOME", welcome_path, class: is_active?(welcome_path) %>
       </li>
       <li class="nav-item">
-        <%= link_to "SAUCES", sauces_path, class: 'nav-link' %>
+        <%= link_to "SAUCES", sauces_path, class: is_active?(sauces_path) %>
       </li>
       <li class="nav-item">
-        <%= link_to "CONTACT", contact_path, class: 'nav-link' %>
+        <%= link_to "CONTACT", contact_path, class: is_active?(contact_path) %>
       </li>
     </ul>
       <%= search_form_for @q do | form | %>
