@@ -1,7 +1,8 @@
 <div class="sauce-page-content" id="sauce-page">
   <div class="container">
     <div class="sauce-container">
-      <%= render 'sauces' %>
+      <%= render 'sauces' if !@sauces.empty? %>
+      <%= render 'no_results' if @sauces.empty? %>
     </div>
   </div>
 </div>
