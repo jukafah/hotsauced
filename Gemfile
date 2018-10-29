@@ -10,11 +10,14 @@ gem 'rails', '~> 5.2.1'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem "factory_bot_rails"
 end
 
 group :production do
   gem 'pg'
 end
+
 
 
 gem 'ransack'
