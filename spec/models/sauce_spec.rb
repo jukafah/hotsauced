@@ -14,6 +14,13 @@ RSpec.describe Sauce, type: :model do
     expect(result).to be false
   end
 
+  it "name cannot be duplicate value" do
+    FactoryBot.create(:sauce)
+    sauce = FactoryBot.build(:sauce)
+    result = sauce.save
+    expect(result).to be false
+  end
+
   it "name cannot be less than 3 characters" do
     sauce = FactoryBot.build(:sauce, name: "Ab")
     result = sauce.save
