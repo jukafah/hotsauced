@@ -14,7 +14,7 @@ RSpec.describe Sauce, type: :model do
     expect(result).to be false
   end
 
-  it "name cannot be duplicate value" do
+  it "name must be unique" do
     FactoryBot.create(:sauce)
     sauce = FactoryBot.build(:sauce)
     result = sauce.save
@@ -178,8 +178,8 @@ RSpec.describe Sauce, type: :model do
   end
 
   it "comments can exist" do
-    comment = Comment.create [ commenter: 'test', body: 'test' ]
-    sauce = FactoryBot.build(:sauce, comments: comment)
+    comment = FactoryBot.build(:comment)
+    sauce = FactoryBot.build(:sauce, comments: [comment])
     result = sauce.save
     expect(result).to be true
   end
