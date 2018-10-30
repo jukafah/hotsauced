@@ -8,7 +8,7 @@ RSpec.describe Sauce, type: :model do
     expect(result).to be true
   end
 
-  it "is invalid without a name" do
+  it "name must exist" do
     sauce = FactoryBot.build(:sauce, name: nil)
     result = sauce.save
     expect(result).to be false
