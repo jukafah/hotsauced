@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Sauce, type: :model do
 
+  # test should be 'greater than n' characters
+  # test should be 'less than n' characters
+  # change name minimum to 1 character
+
   it "can be saved" do
     sauce = FactoryBot.build(:sauce)
     result = sauce.save
@@ -169,6 +173,12 @@ RSpec.describe Sauce, type: :model do
     sauce = FactoryBot.build(:sauce, rating: 5)
     result = sauce.save
     expect(result).to be true
+  end
+
+  it "image must exist" do
+    sauce = FactoryBot.build(:sauce, image: nil)
+    result = sauce.save
+    expect(result).to be false
   end
 
   it "comments do not need to exist" do

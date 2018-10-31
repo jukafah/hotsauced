@@ -12,6 +12,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem "factory_bot_rails"
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 end
 
 group :production do

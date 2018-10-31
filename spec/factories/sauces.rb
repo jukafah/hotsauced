@@ -5,5 +5,6 @@ FactoryBot.define do
     heat { 1 }
     flavor { 1 }
     rating { 1 }
+    image { "some/image/" }
   end
 end
