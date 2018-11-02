@@ -175,12 +175,6 @@ RSpec.describe Sauce, type: :model do
     expect(result).to be true
   end
 
-  it "image must exist" do
-    sauce = FactoryBot.build(:sauce, image: nil)
-    result = sauce.save
-    expect(result).to be false
-  end
-
   it "comments do not need to exist" do
     sauce = FactoryBot.build(:sauce, comments: [])
     result = sauce.save
