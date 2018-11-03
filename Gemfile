@@ -11,7 +11,8 @@ gem 'rails', '~> 5.2.1'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
-  gem "factory_bot_rails"
+  gem 'factory_bot_rails'
+  gem 'simplecov', require: false
 end
 
 group :production do
