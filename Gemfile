@@ -13,6 +13,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem "factory_bot_rails"
   gem 'capybara'
+  gem 'simplecov', require: false
 end
 
 group :production do
