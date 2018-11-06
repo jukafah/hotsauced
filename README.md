@@ -2,4 +2,4 @@
 
 Source code for the hot sauce catalog hotsauced.net
 
-Built on rails, deploys to heroku
+Built on rails, currently accessible: https://hotsauced.herokuapp.com/
