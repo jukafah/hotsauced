@@ -3,19 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe 'layouts/_navbar', type: :view do
-  it 'renders' do
-      @q = Sauce.ransack(params[:q])
-      render
-      expect(rendered).to have_selector('.navbar.sticky-top')
+  it 'renders navbar' do
+    assign(:q, Sauce.ransack(params[:q]))
+    render
+    expect(rendered).to have_selector('.navbar.sticky-top')
   end
 
   it 'renders logo' do
-      @q = Sauce.ransack(params[:q])
-      render
-      expect(rendered).to have_selector('.navbar-brand')
+    assign(:q, Sauce.ransack(params[:q]))
+    render
+    expect(rendered).to have_selector('.navbar-brand')
   end
 
-  it 'renders active HOME link' do
+  it 'renders active HOME link when on /welcome path' do
     assign(:q, Sauce.ransack(params[:q]))
     allow(view).to receive(:current_page?) { false }
     allow(view).to receive(:current_page?).with('/welcome').and_return(true)
@@ -60,4 +60,10 @@ RSpec.describe 'layouts/_navbar', type: :view do
     expect(rendered).to have_selector('.nav-link', text: 'CONTACT')
   end
 
+  it 'renders search' do
+    assign(:q, Sauce.ransack(params[:q]))
+    allow(view).to receive(:current_page?) { false }
+    render
+    expect(rendered).to have_selector('.sauce-search')
+  end
 end
