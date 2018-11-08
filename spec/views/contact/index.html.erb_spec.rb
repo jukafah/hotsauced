@@ -2,10 +2,24 @@ require 'rails_helper'
 
 RSpec.describe 'contact/index', type: :view do
 
-  it 'renders avatar'
-  it 'renders contact section'
-  it 'renders about section'
-  it 'renders contact information'
-  it 'renders page content'
+  it 'renders page content' do
+    render
+    expect('.about-page-content')
+  end
+  
+  it 'renders avatar' do
+    render
+    expect(rendered).to have_selector('.avatar')
+  end
+
+  it 'renders contact section' do
+    render
+    expect(rendered).to have_selector('.contact-section')
+  end
+
+  it 'renders about section' do
+    render
+    expect(rendered).to have_selector('.about-section')
+  end
 
 end
