@@ -12,6 +12,7 @@ steps:
     versionSpec: '>= 2.5'
 
 - script: |
+    brew install sqlite3
     gem install bundler
     bundle install --without=production --retry=3 --jobs=4
   displayName: 'bundle install'
