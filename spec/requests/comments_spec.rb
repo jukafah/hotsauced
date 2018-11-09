@@ -25,12 +25,12 @@ RSpec.describe "Comments", type: :request do
 
   it 'can be duplicates' do
     comments = FactoryBot.build_list(:comment, 20)
-    sauce = FactoryBot.create(:sauce, comments: [comments])
+    sauce = FactoryBot.create(:sauce, comments: comments)
     get "/sauces/#{sauce.id}"
     expect(response).to have_selector('.comment', count: 20)
   end
 
-  it 'can not exist' 
+  it 'can not exist'
 
   it 'can be created' do
     sauce = FactoryBot.create(:sauce)
