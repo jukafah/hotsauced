@@ -10,7 +10,7 @@ RSpec.describe Comment, type: :model do
   end
 
   it "can be a list" do
-    comments = FactoryBot.build_list(:comment)
+    comments = FactoryBot.build_list(:comment, 5)
     sauce = FactoryBot.create(:sauce, comments: [comments])
     result = comments.save
     expect(result).to be true
