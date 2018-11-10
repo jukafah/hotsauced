@@ -1,3 +1,7 @@
+variables:
+  CI: true
+  CODECOV_TOKEN: $(CODECOV_TOKEN)
+
 resources:
 - repo: self
 queue:
