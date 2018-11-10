@@ -5,6 +5,8 @@ SimpleCov.start 'rails' do
   minimum_coverage 85
 end
 
+puts "CI ENV: #{ENV['CI']}"
+
 if ENV['CI'] == 'true'
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
