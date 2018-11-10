@@ -1,3 +1,6 @@
+ARG CI
+ARG CODECOV_TOKEN
+
 FROM ruby:2.5.1 AS base
 
 # needs node for execjs

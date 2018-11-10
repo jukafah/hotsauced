@@ -1,16 +1,14 @@
-variables:
-  CI: true
-  CODECOV_TOKEN: $(CODECOV_TOKEN)
-
 resources:
 - repo: self
 queue:
   name: Hosted Ubuntu 1604
 steps:
-- task: Docker@1
+- task: Docker@0
   displayName: 'Build image'
   inputs:
-    dockerFile: Dockerfile
+    action: 'Run a Docker command'
+
+    customCommand: 'build -t $(Build.Repository.Name):$(Build.BuildId) --build-arg CI=true --build-arg CODECOV_TOKEN=$(CODECOV_TOKEN)'
 
   continueOnError: true
 
