@@ -1,21 +1,46 @@
-# Ruby
-# Package your Ruby project.
-# Add steps that install rails, analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/ruby
+variables:
+  CODECOV_TOKEN: $(CODECOV_TOKEN)
 
-pool:
-  vmImage: 'Ubuntu 16.04'
-
+resources:
+- repo: self
+queue:
+  name: Hosted Ubuntu 1604
 steps:
-- task: UseRubyVersion@0
+- task: Docker@1
+  displayName: 'Build image'
   inputs:
-    versionSpec: '>= 2.5'
+    dockerFile: Dockerfile
 
-- script: |
-    brew install sqlite3
-    gem install bundler
-    bundle install --without=production --retry=3 --jobs=4
-  displayName: 'bundle install'
+  continueOnError: true
 
-- script: RAILS_ENV=test bundle exec rake
-  displayName: 'bundle exec rake'
+- task: Docker@0
+  displayName: 'Create temp container'
+  inputs:
+    action: 'Run a Docker command'
+
+    customCommand: 'create --name hotsauced $(Build.Repository.Name):$(Build.BuildId)'
+
+
+- task: Docker@0
+  displayName: 'Copy test results to workspace'
+  inputs:
+    action: 'Run a Docker command'
+
+    customCommand: 'cp hotsauced:usr/src/app/results .'
+
+
+- task: Docker@0
+  displayName: 'Run a Docker command'
+  inputs:
+    action: 'Run a Docker command'
+
+    customCommand: 'rm hotsauced'
+
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results results/*.xml'
+  inputs:
+    testResultsFiles: 'results/*.xml'
+
+
+
