@@ -14,7 +14,6 @@ COPY . ./
 
 FROM dependencies AS test
 WORKDIR /usr/src/app
-RUN rspec
-# RUN bundle exec rspec
+RUN bundle exec rspec ; exit 0
 
 CMD ["rails"]

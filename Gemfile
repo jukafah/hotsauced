@@ -14,7 +14,10 @@ group :development, :test do
   gem "factory_bot_rails"
   gem 'capybara'
   gem 'simplecov', require: false
+  gem 'rspec_junit_formatter', '~> 0.4.1'
 end
+
+gem 'codecov', :require => false, :group => :test
 
 group :production do
   gem 'pg'
