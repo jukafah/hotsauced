@@ -3,18 +3,19 @@
 require 'rails_helper'
 
 RSpec.describe 'home/index', type: :view do
-  it 'renders' do
+  it 'renders page content' do
     render
-    expect(rendered).to have_selector('.welcome-page-content', count: 1)
+    expect(rendered).to have_selector('.home-page-content', count: 1)
   end
 
-  it 'renders with correct title' do
+  it 'renders banner' do
     render
-    expect(rendered).to have_selector('title', text: 'Welcome')
+    expect(rendered).to have_selector('.site-banner', count: 1)
   end
 
-  it 'renders the banner' do
+  it 'renders featured sauce' do
+    FactoryBot.create(:sauce)
     render
-    expect(rendered).to have_selector('.page-banner', count: 1)
+    expect(rendered).to have_selector('.featured-sauce')
   end
 end
