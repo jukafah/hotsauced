@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root 'welcome#index'
+  root 'home#index'
 
   get 'contact', to: 'contact#index'
-  get 'welcome', to: 'welcome#index'
+  get 'home', to: 'home#index'
+  get '/', to: 'home#index'
 
   resources :sauces do
     resources :comments
