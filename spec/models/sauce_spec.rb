@@ -8,9 +8,6 @@ RSpec.describe Sauce, type: :model do
     result = sauce.save
     expect(result).to be true
   end
-  # test should be 'greater than n' characters
-  # test should be 'less than n' characters
-  # change name minimum to 1 character
 
   context 'Name' do
     it 'must exist' do
