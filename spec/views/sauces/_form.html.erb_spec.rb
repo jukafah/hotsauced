@@ -7,7 +7,7 @@ RSpec.describe 'sauces/_form', type: :view do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.form')
+    expect(rendered).to have_selector('.new-sauce-form')
   end
 
   it 'renders error container' do
@@ -22,21 +22,21 @@ RSpec.describe 'sauces/_form', type: :view do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.name')
+    expect(rendered).to have_selector('#sauce_title')
   end
 
   it 'renders summary' do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.summary')
+    expect(rendered).to have_selector('#sauce_text')
   end
 
   it 'renders submit button' do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.submit')
+    expect(rendered).to have_selector('[type="submit"]')
   end
 
   it 'renders name error description' do
@@ -44,7 +44,7 @@ RSpec.describe 'sauces/_form', type: :view do
     sauce.errors.add(:name, 'must be a minimum of 5 characters')
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.name .error-description', text: 'must be a minimum of 5 characters')
+    expect(rendered).to have_selector('.error-explanation', text: 'must be a minimum of 5 characters')
   end
 
   it 'renders summary messages' do
@@ -52,6 +52,6 @@ RSpec.describe 'sauces/_form', type: :view do
     sauce.errors.add(:summary, 'must be a minimum of 12 characters')
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.summary .error-description', text: 'must be a minimum of 12 characters')
+    expect(rendered).to have_selector('.error-explanation', text: 'must be a minimum of 12 characters')
   end
 end

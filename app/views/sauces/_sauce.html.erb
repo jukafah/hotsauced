@@ -1,9 +1,10 @@
+<div class="sauce-display-page-content">
 <div class="post container">
   <div class="post_body">
-    <div class="sauce-title">
+    <div class="sauce-name">
       <h2><%= @sauce.name %></h2>
     </div>
-    <div class="sauce-body">
+    <div class="sauce-summary">
       <p><%= @sauce.summary %></p>
     </div>
     <div class="sauce-heat">
@@ -17,13 +18,14 @@
       <p>RATING:</p>
       <p><%= @sauce.rating %></p>
     </div>
-    <div class="edit_article">
+    <div class="edit-sauce">
       <%= link_to 'Edit Sauce', edit_sauce_path(@sauce) %>
     </div>
   </div>
-  <div class="comment_section">
+  <div class="comments">
     <%= render 'comments/comment' %>
     <%= render 'comments/form' %>
   </div>
+</div>
 </div>
 </div>

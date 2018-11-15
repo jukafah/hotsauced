@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'GET /about', type: :request do
-  it 'returns successfully' do
+RSpec.describe 'about page', type: :request do
+  it 'responds successfully' do
     get '/about'
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(:ok)
   end
 
-  it 'about link active' do
+  it 'responds with ABOUT active on navbar' do
     get '/about'
-    expect(response.body).to have_selector('.nav-link.active', text: 'ABOUT')
+    expect(response.body).to have_selector('.nav-link.active', count: 1, text: 'ABOUT')
   end
 end

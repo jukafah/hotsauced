@@ -15,10 +15,10 @@ RSpec.describe 'layouts/_navbar', type: :view do
     expect(rendered).to have_selector('.navbar-brand')
   end
 
-  it 'renders active HOME link when on /welcome path' do
+  it 'renders active HOME link when on /home path' do
     assign(:q, Sauce.ransack(params[:q]))
     allow(view).to receive(:current_page?) { false }
-    allow(view).to receive(:current_page?).with('/welcome').and_return(true)
+    allow(view).to receive(:current_page?).with('/home').and_return(true)
     render
     expect(rendered).to have_selector('.nav-link.active', text: 'HOME')
   end
@@ -45,25 +45,25 @@ RSpec.describe 'layouts/_navbar', type: :view do
     expect(rendered).to have_selector('.nav-link', text: 'SAUCES')
   end
 
-  it 'renders active CONTACT link when on /contact path' do
+  it 'renders active ABOUT link when on /about path' do
     assign(:q, Sauce.ransack(params[:q]))
     allow(view).to receive(:current_page?) { false }
-    allow(view).to receive(:current_page?).with('/contact').and_return(true)
+    allow(view).to receive(:current_page?).with('/about').and_return(true)
     render
-    expect(rendered).to have_selector('.nav-link.active', text: 'CONTACT')
+    expect(rendered).to have_selector('.nav-link.active', text: 'ABOUT')
   end
 
-  it 'renders non active CONTACT link' do
+  it 'renders non active ABOUT link' do
     assign(:q, Sauce.ransack(params[:q]))
     allow(view).to receive(:current_page?) { false }
     render
-    expect(rendered).to have_selector('.nav-link', text: 'CONTACT')
+    expect(rendered).to have_selector('.nav-link', text: 'ABOUT')
   end
 
   it 'renders search' do
     assign(:q, Sauce.ransack(params[:q]))
     allow(view).to receive(:current_page?) { false }
     render
-    expect(rendered).to have_selector('.sauce-search')
+    expect(rendered).to have_selector('.sauce_search')
   end
 end
