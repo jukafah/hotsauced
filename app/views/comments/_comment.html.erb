@@ -6,7 +6,7 @@
     <div class="body-layout">
       <p><%= comment.body %></p>
     </div>
-    <div class="comment_controls">
+    <div class="controls">
       <%= link_to 'Delete', [ comment.sauce, comment ],
       method: :delete,
       data: { confirm: 'Are you sure?' } %>

@@ -1,7 +1,7 @@
-<div class="form">
+<div class="new-sauce-form">
 <%= form_with model: @sauce, local: true do |form| %>
   <% if @sauce.errors.any? %>
-    <div id="error_explanation">
+    <div class="error-explanation" id="error-explanation">
       <h2>
         <%= pluralize(@sauce.errors.count, "error") %>
         prohibited this article from being saved:

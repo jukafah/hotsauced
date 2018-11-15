@@ -1,8 +1,9 @@
-class ApplicationController < ActionController::Base
-    
-    before_action :set_search
+# frozen_string_literal: true
 
-    def set_search
-        @q = Sauce.ransack(params[:q])
-    end
+class ApplicationController < ActionController::Base
+  before_action :set_search
+
+  def set_search
+    @q = Sauce.ransack(params[:q])
+  end
 end
