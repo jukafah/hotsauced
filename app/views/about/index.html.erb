@@ -2,11 +2,16 @@
   <div class="container">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <%= link_to "ABOUT", about_path, :remote => true %>
+        <%= link_to "ABOUT", about_show_path, class: active?(about_path), :remote => true %>
       </li>
       <li class="nav-item">
-        <%= link_to "CONTACT", contact_path, class: active?(about_contact_path) %>
+        <%= link_to "CONTACT", about_contact_path, class: active?(about_contact_path), :remote => true %>
       </li>
     </ul>
+  </div>
+  <div class="container">
+    <div id="content">
+      <%= render 'about' %>
+    </div>
   </div>
 </div>

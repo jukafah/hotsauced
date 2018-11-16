@@ -3,9 +3,17 @@
 class AboutController < ApplicationController
   def index; end
 
+  def show
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def contact
     @message = Message.new
-    render '_contact'
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -18,6 +26,9 @@ class AboutController < ApplicationController
       flash[:notice] = 'There was an error sending your message. Please try again.'
       render '_contact'
     end
+  end
+
+  def contact_path
   end
 
   private
