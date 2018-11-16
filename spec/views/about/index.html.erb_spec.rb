@@ -8,18 +8,19 @@ RSpec.describe 'about/index', type: :view do
     expect('.about-page-content')
   end
 
-  it 'renders avatar' do
+  it 'renders mini nav bar' do
     render
-    expect(rendered).to have_selector('.avatar')
+    expect(rendered).to have_selector('.nav')
   end
 
-  it 'renders about section' do
+  it 'renders about link' do
     render
     expect(rendered).to have_selector('.about-section')
   end
 
-  it 'renders contact section' do
+  it 'renders contact link' do
     render
     expect(rendered).to have_selector('.contact-section')
   end
+
 end
