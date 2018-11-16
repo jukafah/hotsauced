@@ -5,22 +5,22 @@ require 'rails_helper'
 RSpec.describe 'about/index', type: :view do
   it 'renders page content' do
     render
-    expect('.about-page-content')
+    expect(rendered).to have_selector('.about-page-content')
   end
 
-  it 'renders mini nav bar' do
+  it 'renders ABOUT header' do
     render
-    expect(rendered).to have_selector('.nav')
+    expect(rendered).to have_selector('.about-description h2', text: 'ABOUT')
   end
 
-  it 'renders about link' do
+  it 'renders avatar' do
     render
-    expect(rendered).to have_selector('.about-section')
+    expect(rendered).to have_selector('.avatar')
   end
 
-  it 'renders contact link' do
+  it 'renders about description' do
     render
-    expect(rendered).to have_selector('.contact-section')
+    expect(rendered).to have_selector('.about-description')
   end
 
 end

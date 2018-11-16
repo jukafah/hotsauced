@@ -1,12 +1,24 @@
 <div class="about-page-content" id="about-page">
-  <div class="container">
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-        <%= link_to "ABOUT", about_path, :remote => true %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "CONTACT", contact_path, class: active?(about_contact_path) %>
-      </li>
-    </ul>
+  <div class="about container">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <div class="avatar">
+          <%= image_tag 'avatar-me.png', class: 'img-fluid' %>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="about-description">
+          <h2>
+            ABOUT
+          </h2>
+          <p>
+          Hi! I am Steve Momcilovic, and this website is about hot sauce. This site originiated
+          as a blog about hot sauces that I enjoy while learning about ruby on rails, and I have
+          since decided to turn it into a type of catalog! I plan on adding new features and making this
+          site something that any hot sauce connoisseur will appreciate.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
