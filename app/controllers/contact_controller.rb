@@ -5,11 +5,6 @@ class ContactController < ApplicationController
     @message = Message.new
   end
 
-  # def contact
-  #   @message = Message.new
-  #   # render '_contact'
-  # end
-
   def create
     @message = Message.new(message_params)
     if @message.valid?
