@@ -7,6 +7,8 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.1'
 
 
+
+
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'sqlite3'
@@ -21,6 +23,7 @@ group :production do
 end
 
 
+gem 'mail'
 
 gem 'ransack'
 
@@ -58,6 +61,7 @@ gem 'htmlbeautifier', '~> 1.3', '>= 1.3.1'
 
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
