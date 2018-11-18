@@ -9,11 +9,11 @@ class ContactController < ApplicationController
     @message = Message.new(message_params)
     if @message.valid?
       MessageMailer.contact(@message).deliver_now
-      redirect_to about_contact
+      redirect_to contact_path
       flash[:notice] = 'Thank you for your message!'
     else
       flash[:notice] = 'There was an error sending your message. Please try again.'
-      render '_contact'
+      render 'index'
     end
   end
 

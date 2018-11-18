@@ -35,6 +35,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: '96c8f262aef081fcf4941fec2cf8249d-9525e19d-32935fc4',
+    domain: 'mg.hotsauced.herokuapp.com'
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
