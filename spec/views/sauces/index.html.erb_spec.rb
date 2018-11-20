@@ -44,4 +44,11 @@ RSpec.describe 'sauces/index', type: :view do
     render
     expect(rendered).to have_link('Add New Sauce')
   end
+
+  it 'renders top sauces' do
+    sauce = FactoryBot.create(:sauce)
+    assign(:sauces, [sauce])
+    render
+    expect(rendered).to have_selector('.top-sauces')
+  end
 end
