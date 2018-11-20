@@ -1,7 +1,5 @@
 <div class="sauce-form" id="sauce-form">
-  <div class="container">
-    <%= form_with model: @sauce, local: true do |sauce| %>
-    <h2>ADD NEW SAUCE</h2>
+  <%= form_with model: @sauce, local: true do |sauce| %>
     <div class="form-group">
       <%= sauce.label :name %>
       <%= sauce.text_field :name, class: 'form-control', id: 'name' %>
@@ -20,7 +18,6 @@
         </div>
       <% end %>
     </div>
-
     <div class="form-group">
       <%= sauce.label :heat, 'Heat' %><br>
       <div class="form-check form-check-inline">
@@ -49,7 +46,6 @@
         </div>
       <% end %>
     </div>
-
     <div class="form-group">
       <%= sauce.label :flavor, 'Flavor' %><br>
       <div class="form-check form-check-inline">
@@ -73,7 +69,6 @@
         <%= sauce.label :flavor_5, '5', class: 'form-check-label' %>
       </div>
     </div>
-
     <div class="form-group">
       <%= sauce.label :rating, 'Rating' %><br>
       <div class="form-check form-check-inline">
@@ -97,10 +92,10 @@
         <%= sauce.label :rating_2, '5', class: 'form-check-label' %>
       </div>
     </div>
-
     <div class="form-group">
       <%= sauce.label :image %>
-      <input type="file" class="form-control-file" id="image">
+      <%= sauce.file_field :image, class: 'form-control-file', id: 'image' %>
+      <!-- <input type="file" class="form-control-file" id="image"> -->
     </div>
     <%= link_to 'Back', sauces_path, class: 'btn btn-primary', id: 'back' %>
     <%= sauce.submit 'Submit', class: 'btn btn-outline-success my-2 my-sm-0', id: 'submit' %>

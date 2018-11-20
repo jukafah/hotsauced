@@ -1,1 +1,26 @@
-<%= render 'sauce' %>
+<div class="sauce-display-page container">
+  <div class="sauce">
+    <div class="sauce-image">
+    <%= image_tag @sauce.image, size: "330x481", class: 'sauce-image' %>
+    </div>
+    <div class="sauce-name">
+      <h2><%= @sauce.name %></h2>
+    </div>
+    <div class="sauce-summary">
+      <p><%= @sauce.summary %></p>
+    </div>
+    <ul class="list-inline">
+      <li class="list-inline-item sauce-heat">HEAT: <%= @sauce.heat %></li>
+      <li class="list-inline-item sauce-flavor">FLAVOR: <%= @sauce.flavor %></li>
+      <li class="list-inline-item sauce-overall-rating">OVERALL: <%= @sauce.rating %></li>
+    </ul>
+      <div class="edit-sauce">
+        <%= link_to 'Edit Sauce', edit_sauce_path(@sauce) %>
+      </div>
+    </div>
+    <div class="comments">
+      <%= render 'comments/comment' %>
+      <%= render 'comments/form' %>
+    </div>
+  </div>
+</div>
