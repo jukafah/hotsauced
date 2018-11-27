@@ -9,7 +9,7 @@ RSpec.describe 'sauces/index', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce-page-content')
+    expect(rendered).to have_selector('.sauce-page.container')
   end
 
   it 'renders with list of sauces' do

@@ -34,7 +34,7 @@ RSpec.describe 'sauces/_sauces', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .img-fluid', count: 2)
+    expect(rendered).to have_selector('.sauce.card .image', count: 2)
   end
 
   it 'render heat' do
