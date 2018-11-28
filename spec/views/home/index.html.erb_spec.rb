@@ -3,44 +3,58 @@
 require 'rails_helper'
 
 RSpec.describe 'home/index', type: :view do
-  it 'renders page content' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    expect(rendered).to have_selector('.home-page-content', count: 1)
+  context 'page' do
+    it 'renders page content' do
+      latest_sauce = FactoryBot.create(:sauce)
+      assign(:latest_sauce, latest_sauce)
+      top_sauce = FactoryBot.create(:sauce, name: 'Different sauce')
+      assign(:top_sauces, [top_sauce])
+      render
+      expect(rendered).to have_selector('.home-page.container', count: 1)
+    end
+
+    it 'renders banner' do
+      latest_sauce = FactoryBot.create(:sauce)
+      assign(:latest_sauce, latest_sauce)
+      top_sauce = FactoryBot.create(:sauce, name: 'Different sauce')
+      assign(:top_sauces, [top_sauce])
+      render
+      expect(rendered).to have_selector('.site-banner', count: 1)
+    end
   end
 
-  it 'renders banner' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    expect(rendered).to have_selector('.site-banner', count: 1)
+  context 'latest sauce' do
+    it 'renders latest sauce' do
+      latest_sauce = FactoryBot.create(:sauce)
+      assign(:latest_sauce, latest_sauce)
+      top_sauce = FactoryBot.create(:sauce, name: 'Different sauce')
+      assign(:top_sauces, [top_sauce])
+      render
+      expect(rendered).to have_selector('.latest-sauce')
+    end
   end
 
-  it 'renders featured sauce' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    puts rendered
-    expect(rendered).to have_selector('.featured-sauce .sauce.card')
-  end
+  context 'top sauce sidebar' do
+    it 'renders top sauces' do
+      latest_sauce = FactoryBot.create(:sauce)
+      assign(:latest_sauce, latest_sauce)
+      top_sauce = FactoryBot.create(:sauce, name: 'Different sauce')
+      assign(:top_sauces, [top_sauce])
+      render
+      expect(rendered).to have_selector('.top-sauces')
+    end
 
-  it 'renders top sauces' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    expect(rendered).to have_selector('.top-sauces')
-  end
-
-  it 'renders top 5 sauces as links' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'Different Sauce')
-    sauce_three = FactoryBot.create(:sauce, name: 'Another One')
-    sauce_four = FactoryBot.create(:sauce, name: 'Still different')
-    sauce_five = FactoryBot.create(:sauce, name: 'Blah blah')
-    sauce_six = FactoryBot.create(:sauce, name: 'Blah blah blah')
-    assign(:sauces, [sauce_one, sauce_two, sauce_three, sauce_four, sauce_five, sauce_six])
-    render
-    expect(rendered).to have_selector('.sauce-name', count: 5)
+    it 'renders top 5 sauces as links' do
+      latest_sauce = FactoryBot.create(:sauce)
+      assign(:latest_sauce, latest_sauce)
+      sauce_one = FactoryBot.create(:sauce, name: 'Other Sauce')
+      sauce_two = FactoryBot.create(:sauce, name: 'Different Sauce')
+      sauce_three = FactoryBot.create(:sauce, name: 'Another One')
+      sauce_four = FactoryBot.create(:sauce, name: 'Still different')
+      sauce_five = FactoryBot.create(:sauce, name: 'Blah blah')
+      assign(:top_sauces, [sauce_one, sauce_two, sauce_three, sauce_four, sauce_five])
+      render
+      expect(rendered).to have_selector('.top-sauces .sauce-name', count: 5)
+    end
   end
 end

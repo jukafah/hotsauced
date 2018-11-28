@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'contact/index', type: :view do
+  it 'renders page content' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
+    render
+    expect(rendered).to have_selector('.contact-page.container')
+  end
+  
   it 'renders CONTACT header' do
     message = FactoryBot.build(:message)
     assign(:message, message)

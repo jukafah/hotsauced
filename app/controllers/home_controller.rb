@@ -2,7 +2,7 @@
 
 class HomeController < ApplicationController
   def index
-    # @todo: need to base featured sauce off of something
-    @sauces = [Sauce.first]
+    @top_sauces = Sauce.order(rating: :desc).limit(5)
+    @latest_sauce = Sauce.first
   end
 end

@@ -9,7 +9,7 @@ RSpec.describe 'sauces/index', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce-page-content')
+    expect(rendered).to have_selector('.sauce-page.container')
   end
 
   it 'renders with list of sauces' do
@@ -42,13 +42,6 @@ RSpec.describe 'sauces/index', type: :view do
     sauce = FactoryBot.create(:sauce)
     assign(:sauces, [sauce])
     render
-    expect(rendered).to have_link('Add New Sauce')
-  end
-
-  it 'renders top sauces' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    expect(rendered).to have_selector('.top-sauces')
+    expect(rendered).to have_selector(:link_or_button, 'ADD NEW SAUCE')
   end
 end

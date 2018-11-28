@@ -7,7 +7,7 @@ RSpec.describe 'sauces/new', type: :view do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.new-sauce-page-content')
+    expect(rendered).to have_selector('.new-sauce-page.container')
   end
 
   it 'renders ADD NEW SAUCE header' do
