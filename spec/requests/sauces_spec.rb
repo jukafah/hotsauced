@@ -53,14 +53,8 @@ RSpec.describe 'Sauces', type: :request do
     end
 
     context 'when sauce does not exist' do
-      it 'redirect to not found' do
-        get '/sauces/55'
-        expect(response).to redirect_to('error/404')
-      end
-
-      it 'suggests adding new sauce' do
-        get '/sauces/55'
-        expect(response.body).to have_selector('.add-new-sauce')
+      it 'handles error' do
+        expect { get '/sauces/1' }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -148,8 +142,7 @@ RSpec.describe 'Sauces', type: :request do
       end
 
       it 'displays not found when sauce not existing' do
-        get '/sauces/27/edit'
-        expect(response).to redirect_to('/error/404')
+        expect { get '/sauces/1/edit' }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -207,7 +200,6 @@ RSpec.describe 'Sauces', type: :request do
       it 'is not updated with invalid heat' do
         sauce = FactoryBot.create(:sauce)
         put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: nil, flavor: 1, rating: 1 } }
-        puts response.body
         expect(response.body).to have_selector('.is-invalid', text: 'Heat')
       end
 
@@ -233,8 +225,7 @@ RSpec.describe 'Sauces', type: :request do
     end
 
     it 'non existing sauces handles error gracefully' do
-      delete '/sauces/1'
-      expect(response).to have_http_status(:notfound)
+      expect { delete '/sauces/1' }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end
