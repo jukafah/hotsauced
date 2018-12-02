@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'about/index', type: :view do
   it 'renders page content' do
     render
-    expect(rendered).to have_selector('.about-page-content.container')
+    expect(rendered).to have_selector('.about-page.container')
   end
 
   it 'renders ABOUT header' do

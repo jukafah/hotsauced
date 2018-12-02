@@ -42,7 +42,7 @@ RSpec.describe 'sauces/show', type: :view do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-rating', count: 1, text: sauce.rating)
+    expect(rendered).to have_selector('.sauce-overall-rating', count: 1, text: sauce.rating)
   end
 
   it 'renders edit controls' do

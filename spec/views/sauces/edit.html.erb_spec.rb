@@ -14,7 +14,7 @@ RSpec.describe 'sauces/edit', type: :view do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.edit-sauce-page-content h2', count: 1, text: 'EDIT SAUCE')
+    expect(rendered).to have_selector('.edit-sauce-page.container h2', count: 1, text: 'EDIT SAUCE')
   end
 
   it 'renders form' do
