@@ -42,13 +42,13 @@ RSpec.describe 'Sauces', type: :request do
       it 'responds with page content' do
         sauce = FactoryBot.create(:sauce)
         get "/sauces/#{sauce.id}"
-        expect(response.body).to have_selector('.sauce-display-page-content')
+        expect(response.body).to have_selector('.sauce-display-page.container')
       end
 
       it 'responds with SAUCES active on navbar' do
         sauce = FactoryBot.create(:sauce)
         get "/sauces/#{sauce.id}"
-        expect(response.body).to have_selector('nav-link.active', count: 1, text: 'SAUCES')
+        expect(response.body).to have_selector('.nav-link.active', count: 1, text: 'SAUCES')
       end
     end
 
@@ -74,7 +74,7 @@ RSpec.describe 'Sauces', type: :request do
 
       it 'renders new sauce page content' do
         get '/sauces/new'
-        expect(response.body).to have_selector('.new-sauce-page-content')
+        expect(response.body).to have_selector('.new-sauce-page.container')
       end
 
       it 'SAUCE link is active in navbar' do
@@ -84,7 +84,7 @@ RSpec.describe 'Sauces', type: :request do
 
       it 'displays submit form' do
         get '/sauces/new'
-        expect(response.body).to have_selector('.new-sauce-form')
+        expect(response.body).to have_selector('.sauce-form')
       end
     end
 
@@ -98,37 +98,37 @@ RSpec.describe 'Sauces', type: :request do
     context 'with invalid submission' do
       it 'displays error message without name' do
         post '/sauces', params: { sauce: { name: nil, summary: 'test post summary', heat: 5, flavor: 5, rating: 5 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Name can't be blank")
+        expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
       it 'displays error message when name too short' do
         post '/sauces', params: { sauce: { name: nil, summary: 'test post summary', heat: 5, flavor: 5, rating: 5 } }
-        expect(response.body).to have_selector('.error-explanation', text: 'Name is too short (minimum is 1 character)')
+        expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 1 character)")
       end
 
       it 'displays error message without summary' do
         post '/sauces', params: { sauce: { name: 'Test Name', summary: nil, heat: 5, flavor: 5, rating: 5 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Summary can't be blank")
+        expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
       it 'displays error message when summary too short' do
         post '/sauces', params: { sauce: { name: 'Test Name', summary: 'A', heat: 5, flavor: 5, rating: 5 } }
-        expect(response.body).to have_selector('.error-explanation', text: 'Summary is too short (minimum is 12 characters)')
+        expect(response.body).to have_selector('.invalid-feedback', text: 'is too short (minimum is 12 characters)')
       end
 
       it 'displays error message without heat' do
         post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: nil, flavor: 5, rating: 5 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Heat can't be blank")
+        expect(response.body).to have_selector('.is-invalid')
       end
 
       it 'displays error message without flavor' do
         post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: nil, rating: 5 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Flavor can't be blank")
+        expect(response.body).to have_selector('.is-invalid')
       end
 
       it 'displays error message without rating' do
         post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: 5, rating: nil } }
-        expect(response.body).to have_selector('.error-explanation', text: "Rating can't be blank")
+        expect(response.body).to have_selector('.is-invalid')
       end
     end
   end
@@ -144,7 +144,7 @@ RSpec.describe 'Sauces', type: :request do
       it 'displays page content' do
         sauce = FactoryBot.create(:sauce)
         get "/sauces/#{sauce.id}/edit"
-        expect(response.body).to have_selector('.edit-sauce-page-content')
+        expect(response.body).to have_selector('.edit-sauce-page.container')
       end
 
       it 'displays not found when sauce not existing' do
@@ -195,31 +195,32 @@ RSpec.describe 'Sauces', type: :request do
       it 'not updated with invalid name' do
         sauce = FactoryBot.create(:sauce)
         put "/sauces/#{sauce.id}", params: { sauce: { name: nil, summary: 'A great tasting sauce!', heat: 1, flavor: 1, rating: 1 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Name can't be blank")
+        expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
       it 'not updated with invalid summary' do
         sauce = FactoryBot.create(:sauce)
         put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: nil, heat: 1, flavor: 1, rating: 1 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Summary can't be blank")
+        expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
       it 'is not updated with invalid heat' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'Different', heat: nil, flavor: 1, rating: 1 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Heat can't be blank")
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: nil, flavor: 1, rating: 1 } }
+        puts response.body
+        expect(response.body).to have_selector('.is-invalid', text: 'Heat')
       end
 
       it 'is not updated with invalid flavor' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'Different', heat: 1, flavor: nil, rating: 1 } }
-        expect(response.body).to have_selector('.error-explanation', text: "Flavor can't be blank")
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: 1, flavor: nil, rating: 1 } }
+        expect(response.body).to have_selector('.is-invalid', text: 'Flavor')
       end
 
       it 'is not updated with invalid rating' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'Different', heat: 1, flavor: 1, rating: nil } }
-        expect(response.body).to have_selector('.error-explanation', text: "Rating can't be blank")
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: 1, flavor: 1, rating: nil } }
+        expect(response.body).to have_selector('.is-invalid', text: 'Rating')
       end
     end
   end

@@ -49,7 +49,8 @@ RSpec.describe 'Comments', type: :request do
     sauce = FactoryBot.create(:sauce)
     comment = FactoryBot.create(:comment, sauce: sauce)
     put "/sauces/#{sauce.id}/comments/#{comment.id}", params: { comment: { body: 'A Different Body' } }
-    expect(response.body).to have_selector('.comment-body', text: 'A Different Body')
+    get "/sauces/#{sauce.id}"
+    expect(response.body).to have_selector('.body-layout', text: 'A Different Body')
   end
 
   it 'name can not be edited' do

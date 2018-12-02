@@ -6,7 +6,7 @@
     <div class="col-md-8">
       <h3 class="font-italic border-bottom">Latest Sauce</h3>
       <div class="latest-sauce">
-        <h2 class="sauce-name"><%= link_to @latest_sauce.name %></h2>
+        <h2 class="sauce-name"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce) %></h2>
         <p><%= @latest_sauce.summary %></p>
       </div>
     </div>
