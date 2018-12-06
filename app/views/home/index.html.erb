@@ -1,0 +1,25 @@
+<div class="home-page container" id="home-page">
+  <div class="jumbotron jumbotron-fluid">
+    <%= image_tag "site-banner-stock.png", class: 'img-fluid rounded site-banner' %>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="font-italic border-bottom">Latest Sauce</h3>
+      <div class="latest-sauce">
+        <h2 class="sauce-name"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce) %></h2>
+        <p><%= @latest_sauce.summary %></p>
+      </div>
+    </div>
+    <aside class="col-md-4 top-sauces sidebar">
+      <h4 class="font-italic">Top Rated</h4>
+      <ul class="list-group">
+      <% @top_sauces.each do |sauce| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= link_to sauce.name, sauce_path(sauce), class:'sauce-name' %>
+        <span class="badge badge-primary badge-pill"><%= sauce.rating %></span>
+      </li>
+      <% end %>
+    </ul>
+    </aside>
+  </div>
+</div>

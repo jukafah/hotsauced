@@ -8,6 +8,9 @@ ruby '2.5.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 
+
+
+
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'capybara'
@@ -23,6 +26,9 @@ gem 'codecov', require: false, group: :test
 group :production do
   gem 'pg'
 end
+
+
+gem 'mail'
 
 gem 'ransack'
 
@@ -60,6 +66,7 @@ gem 'htmlbeautifier', '~> 1.3', '>= 1.3.1'
 
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

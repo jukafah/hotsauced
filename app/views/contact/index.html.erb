@@ -1,7 +1,27 @@
-<div class="contact_page_content" id="contact_page">
-  <div class="container">
-    <div class="avatar">
-      <%= image_tag 'avatar.png', class: 'img-fluid' %>
+<div class="contact-page container" id="contact-page">
+  <%= form_for :message, html: { class: 'contact-form' } do |msg| %>
+    <% if @message.errors.any? %>
+      <div class="error-explanation" id="errors">
+        <ul>
+          <% @message.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <h2>CONTACT</h2>
+    <div class="form-group">
+      <%= msg.label :name %>
+      <%= msg.text_field :name, class: 'form-control', id: 'name' %>
     </div>
-  </div>
+    <div class="form-group">
+      <%= msg.label :email %>
+      <%= msg.text_field :email, class: 'form-control', id: 'email' %>
+    </div>
+    <div class="form-group">
+      <%= msg.label :body %>
+      <%= msg.text_area :body, class: 'form-control', id: 'body', rows: '3' %>
+    </div>
+    <%= msg.submit 'Submit', class: 'btn btn-outline-success my-2 my-sm-0', id: 'submit' %>
+  <% end %>
 </div>

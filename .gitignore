@@ -33,4 +33,5 @@
 # Code coverage
 coverage/
 
+# Test results
 results/

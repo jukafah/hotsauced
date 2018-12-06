@@ -1,25 +1,62 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'contact/index', type: :view do
-
   it 'renders page content' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
     render
-    expect('.about-page-content')
+    expect(rendered).to have_selector('.contact-page.container')
   end
   
-  it 'renders avatar' do
+  it 'renders CONTACT header' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
     render
-    expect(rendered).to have_selector('.avatar')
+    expect(rendered).to have_selector('.contact-form h2', text: 'CONTACT')
   end
 
-  it 'renders contact section' do
+  it 'renders contact form' do
+    message = FactoryBot.build(:message, name: nil, email: nil, body: nil)
+    assign(:message, message)
     render
-    expect(rendered).to have_selector('.contact-section')
+    expect(rendered).to have_selector('.contact-form')
   end
 
-  it 'renders about section' do
+  it 'renders name' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
     render
-    expect(rendered).to have_selector('.about-section')
+    expect(rendered).to have_selector('.contact-form #name')
   end
 
+  it 'renders email' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
+    render
+    expect(rendered).to have_selector('.contact-form #email')
+  end
+
+  it 'renders body' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
+    render
+    expect(rendered).to have_selector('.contact-form #body')
+  end
+
+  it 'renders submit button' do
+    message = FactoryBot.build(:message)
+    assign(:message, message)
+    render
+    expect(rendered).to have_selector('.contact-form #submit')
+  end
+
+  it 'renders errors correctly' do
+    message = FactoryBot.build(:message, name: nil)
+    message.errors.add(:name, "can't be blank")
+    assign(:message, message)
+    render
+    expect(rendered).to have_selector('.error-explanation', text: "Name can't be blank")
+  end
 end

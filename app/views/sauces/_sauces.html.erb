@@ -1,17 +1,17 @@
 <% @sauces.each do | sauce | %>
-  <div class="card">
+  <div class="sauce card">
     <div class="row no-gutters">
       <div class="col-sm-2">
-        <%= image_tag "hotsauce_stock.png", class: "img-fluid" %>
+        <%= image_tag sauce.image, class: "image", size: '120x175' %>
       </div>
       <div class="col-lg">
         <div class="card-body">
-          <h5><%= link_to sauce.name, sauce_path(sauce), class: 'card-title' %></h5>
-          <p class="card-text"><%= sauce.summary %></p>
-          <p class="card-text">Heat: <%= sauce.heat %></p>
-          <p class="card-text">Flavor: <%= sauce.flavor %></p>
-          <p class="card-text">Rating: <%= sauce.rating %></p>
-          <p class="card-text">Comments: <%= sauce.comments.count %></p>
+          <h5><%= link_to sauce.name, sauce_path(sauce), class: 'card-title name' %></h5>
+          <p class="card-text summary"><%= sauce.summary %></p>
+          <p class="card-text heat">Heat: <%= sauce.heat %></p>
+          <p class="card-text flavor">Flavor: <%= sauce.flavor %></p>
+          <p class="card-text rating">Rating: <%= sauce.rating %></p>
+          <p class="card-text comments">Comments: <%= sauce.comments.count %></p>
         </div>
       </div>
     </div>

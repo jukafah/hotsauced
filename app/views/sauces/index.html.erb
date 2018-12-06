@@ -1,8 +1,7 @@
-<div class="sauce-page-content" id="sauce-page">
-  <div class="container">
-    <div class="sauce-container">
-      <%= render 'sauces' if !@sauces.empty? %>
-      <%= render 'no_results' if @sauces.empty? %>
-    </div>
+<div class="sauce-page container" id="sauce-page">
+  <%= link_to "ADD NEW SAUCE", new_sauce_path(@sauce), class: 'btn btn-outline-success my-2 my-sm-0', id: 'add-new-sauce' %>
+  <div class="sauce-list">
+    <%= render 'sauces' if !@sauces.empty? %>
+    <%= render 'no_results' if @sauces.empty? %>
   </div>
 </div>

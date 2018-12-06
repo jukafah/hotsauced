@@ -43,6 +43,7 @@ class SaucesController < ApplicationController
 
   def destroy
     @sauce = Sauce.find(params[:id])
+
     @sauce.destroy
 
     redirect_to sauces_path
@@ -51,6 +52,6 @@ class SaucesController < ApplicationController
   private
 
   def sauce_params
-    params.require(:sauce).permit(:name, :summary, :heat, :flavor, :rating)
+    params.require(:sauce).permit(:name, :summary, :heat, :flavor, :rating, :image)
   end
 end
