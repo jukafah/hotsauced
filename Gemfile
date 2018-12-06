@@ -49,6 +49,7 @@ group :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'factory_bot_rails'
   gem 'capybara'
+  gem 'rspec_junit_formatter'
   gem 'simplecov', require: false
 end
 
