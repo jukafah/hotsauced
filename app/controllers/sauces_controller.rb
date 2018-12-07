@@ -1,11 +1,12 @@
-class SaucesController < ApplicationController
+# frozen_string_literal: true
 
+class SaucesController < ApplicationController
   def index
-    if params[:q]
-      @sauces = @q.result
-    else
-      @sauces = Sauce.all
-    end
+    @sauces = if params[:q]
+                @q.result
+              else
+                Sauce.all
+              end
   end
 
   def show

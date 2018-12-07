@@ -1,0 +1,37 @@
+resources:
+- repo: self
+queue:
+  name: Hosted Ubuntu 1604
+steps:
+- task: UseRubyVersion@0
+  displayName: 'Use Ruby >= 2.5'
+  inputs:
+    versionSpec: '>= 2.5'
+
+
+- bash: |
+   sudo apt-get install libsqlite3-dev \
+   && gem install bundler \
+   && bundle install --without production \
+   && bundle exec rspec
+  displayName: 'Bash Script'
+
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFiles: results/rspec.xml
+
+  condition: succeededOrFailed()
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage/coverage.xml'
+
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
+    failIfCoverageEmpty: true
+
+  condition: succeededOrFailed()
