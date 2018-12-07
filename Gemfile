@@ -8,7 +8,7 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.1'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'mail'
+gem 'mailgun-ruby', '~> 1.1.6'
 gem 'ransack'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
