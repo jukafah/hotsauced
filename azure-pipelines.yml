@@ -3,43 +3,35 @@ resources:
 queue:
   name: Hosted Ubuntu 1604
 steps:
-- task: Docker@0
-  displayName: 'Build image'
+- task: UseRubyVersion@0
+  displayName: 'Use Ruby >= 2.5'
   inputs:
-    action: 'Run a Docker command'
-
-    customCommand: 'build -t $(Build.Repository.Name):$(Build.BuildId) --build-arg CI=true --build-arg CODECOV_TOKEN=$(CODECOV_TOKEN) .'
-
-  continueOnError: true
-
-- task: Docker@0
-  displayName: 'Create temp container'
-  inputs:
-    action: 'Run a Docker command'
-
-    customCommand: 'create --name hotsauced $(Build.Repository.Name):$(Build.BuildId)'
+    versionSpec: '>= 2.5'
 
 
-- task: Docker@0
-  displayName: 'Copy test results to workspace'
-  inputs:
-    action: 'Run a Docker command'
-
-    customCommand: 'cp hotsauced:usr/src/app/results .'
-
-
-- task: Docker@0
-  displayName: 'Run a Docker command'
-  inputs:
-    action: 'Run a Docker command'
-
-    customCommand: 'rm hotsauced'
-
+- bash: |
+   sudo apt-get install libsqlite3-dev \
+   && gem install bundler \
+   && bundle install --without production \
+   && bundle exec rspec
+  displayName: 'Bash Script'
 
 - task: PublishTestResults@2
-  displayName: 'Publish Test Results results/*.xml'
+  displayName: 'Publish Test Results'
   inputs:
-    testResultsFiles: 'results/*.xml'
+    testResultsFiles: results/rspec.xml
 
+  condition: succeededOrFailed()
 
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
 
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage/coverage.xml'
+
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
+    failIfCoverageEmpty: true
+
+  condition: succeededOrFailed()
