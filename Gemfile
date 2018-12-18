@@ -26,6 +26,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem "google-cloud-storage", require: false
 
 group :development do
   gem 'web-console', '>= 3.3.0'

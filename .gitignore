@@ -35,3 +35,6 @@ coverage/
 
 # Test results
 results/
+
+# Secrets
+secrets/
