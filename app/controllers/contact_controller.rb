@@ -7,14 +7,8 @@ class ContactController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    if @message.valid?
-      MessageMailer.contact(@message).deliver_now
-      redirect_to contact_path
-      flash[:notice] = 'Thank you for your message!'
-    else
-      flash[:notice] = 'There was an error sending your message. Please try again.'
-      render '_contact'
-    end
+    MessageMailer.contact(@message).deliver_now
+    redirect_to contact_path
   end
 
   private

@@ -4,6 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'home/index', type: :view do
   context 'page' do
+    it 'render page without sauce' do
+      assign(:latest_sauce, nil)
+      assign(:top_sauces, nil)
+      render
+      expect(rendered).to have_selector('.home-page.container')
+    end
     it 'renders page content' do
       latest_sauce = FactoryBot.create(:sauce)
       assign(:latest_sauce, latest_sauce)
