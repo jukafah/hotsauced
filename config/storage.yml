@@ -1,5 +1,11 @@
 google:
   service: GCS
+  project: <%= ENV['GOOGLE_CLOUD_PROJECT'] %>
+  credentials: <%= ENV['GOOGLE_CLOUD_CREDENTIALS'] %>
+  bucket: hotsauced-pics
+
+google_local:
+  service: GCS
   project: hotsauced
   credentials: <%= Rails.root.join("config/secrets/hotsauced-gcs.json") %>
   bucket: hotsauced-pics
