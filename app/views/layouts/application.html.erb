@@ -6,16 +6,16 @@
     <title><%= page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <!-- <div id="main"> -->
+    <wrapper class="d-flex flex-column">
       <%= render 'layouts/navbar' %>
-      <%= yield %>
+      <main class="container-fluid py-3 flex-fill">
+        <%= yield %>
+      </main>
       <%= render 'layouts/footer' %>
-    <!-- </div> -->
+    </wrapper>
   </body>
 </html>

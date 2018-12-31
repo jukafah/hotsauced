@@ -15,15 +15,15 @@
     <aside class="col-md-4 top-sauces sidebar">
       <h4 class="font-italic">Top Rated</h4>
       <ul class="list-group">
-      <% if !@top_sauces.nil? %>
-        <% @top_sauces.each do |sauce| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= link_to sauce.name, sauce_path(sauce), class:'sauce-name' %>
-          <span class="badge badge-primary badge-pill"><%= sauce.rating %></span>
-        </li>
+        <% if !@top_sauces.nil? %>
+          <% @top_sauces.each do |sauce| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <%= link_to sauce.name, sauce_path(sauce), class:'sauce-name' %>
+              <span class="badge badge-primary badge-pill"><%= sauce.rating %></span>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
+      </ul>
     </aside>
   </div>
 </div>
