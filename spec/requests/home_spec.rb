@@ -37,4 +37,11 @@ RSpec.describe 'home page', type: :request do
     get '/home'
     expect(response.body).to have_selector('.top-sauces .sauce-name', count: 5)
   end
+
+  it 'latest sauce is last sauce submit' do
+    sauce_one = FactoryBot.create(:sauce)
+    sauce_two = FactoryBot.create(:sauce, name: 'Another sauce!')
+    get '/home'
+    expect(response.body).to have_selector('.latest-sauce .sauce-name', text: sauce_two.name)
+  end
 end
