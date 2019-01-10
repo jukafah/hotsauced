@@ -11,7 +11,7 @@ steps:
 
 - bash: |
    sudo apt-get install libsqlite3-dev \
-   && gem install bundler \
+   && gem install bundler --version '1.16.2' \
    && bundle install --without production \
    && bundle exec rspec
   displayName: 'Bash Script'
