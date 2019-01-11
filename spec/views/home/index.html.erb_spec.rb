@@ -25,7 +25,7 @@ RSpec.describe 'home/index', type: :view do
       top_sauce = FactoryBot.create(:sauce, name: 'Different sauce')
       assign(:top_sauces, [top_sauce])
       render
-      expect(rendered).to have_selector('.site-banner', count: 1)
+      expect(rendered).to have_selector('#banner', count: 1)
     end
   end
 
