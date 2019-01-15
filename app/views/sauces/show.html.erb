@@ -1,7 +1,7 @@
 <div class="sauce-display-page container">
   <div class="sauce">
     <div class="sauce-image">
-      <%= image_tag @sauce.image, size: "330x481", class: 'sauce-image' %>
+      <%= image_tag default_image?(@sauce), size: "330x481", class: 'sauce-image' %>
     </div>
     <div class="sauce-name">
       <h2><%= @sauce.name %></h2>

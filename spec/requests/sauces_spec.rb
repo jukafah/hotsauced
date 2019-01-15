@@ -228,4 +228,10 @@ RSpec.describe 'Sauces', type: :request do
       expect { delete '/sauces/1' }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe 'Sauce images' do
+    it 'default image is loaded from google storage when not attached'
+
+    it 'images can be attached'
+  end
 end

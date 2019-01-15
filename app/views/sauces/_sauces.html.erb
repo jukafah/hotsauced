@@ -1,17 +1,19 @@
 <% @sauces.each do | sauce | %>
-  <div class="sauce card">
+  <div class="sauce card border-secondary mb-3" id="card">
     <div class="row no-gutters">
-      <div class="col-sm-2">
-        <%= image_tag sauce.image, class: "image", size: '120x175' %>
+      <div class="col-sm-2 d-flex align-items-center">
+        <%= image_tag default_image?(sauce), class: "mx-auto d-block", size: '120x175' %>
       </div>
       <div class="col-lg">
-        <div class="card-body">
-          <h5><%= link_to sauce.name, sauce_path(sauce), class: 'card-title name' %></h5>
-          <p class="card-text summary"><%= sauce.summary %></p>
-          <p class="card-text heat">Heat: <%= sauce.heat %></p>
-          <p class="card-text flavor">Flavor: <%= sauce.flavor %></p>
-          <p class="card-text rating">Rating: <%= sauce.rating %></p>
-          <p class="card-text comments">Comments: <%= sauce.comments.count %></p>
+        <div class="card-body text-dark">
+          <h5 class="card-title" id="name"><%= link_to sauce.name, sauce_path(sauce), class: 'text-dark' %></h5>
+          <p class="card-text" id="summary"><%= sauce.summary.truncate(250) %></p>
+          <ul class="list-inline">
+            <li class="list-inline-item heat">Heat: <%= sauce.heat %></li>
+            <li class="list-inline-item flavor">Flavor: <%= sauce.flavor %></li>
+            <li class="list-inline-item rating">Rating: <%= sauce.rating %></li>
+          </ul>
+          <p class="card-text comments">Added <%= sauce.created_at.strftime("%m/%d/%Y") %></p>
         </div>
       </div>
     </div>
