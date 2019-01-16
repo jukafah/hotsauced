@@ -1,8 +1,8 @@
 <% @sauces.each do | sauce | %>
-  <div class="sauce card border-secondary mb-3" id="card">
+  <div class="sauce card border-secondary my-3" id="card">
     <div class="row no-gutters">
       <div class="col-sm-2 d-flex align-items-center">
-        <%= image_tag default_image?(sauce), class: "mx-auto d-block", size: '120x175' %>
+        <%= link_to image_tag(default_image?(sauce), class: "mx-auto d-block", size: '120x175'), sauce_path(sauce) %>
       </div>
       <div class="col-lg">
         <div class="card-body text-dark">

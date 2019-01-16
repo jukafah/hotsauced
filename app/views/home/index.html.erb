@@ -6,7 +6,7 @@
       <h3 class="font-italic border-bottom">Latest Sauce</h3>
       <div class="latest-sauce">
         <% if !@latest_sauce.nil? %>
-          <h2 class="sauce-name"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce) %></h2>
+          <h2 class="sauce-name"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce), class: 'text-dark' %></h2>
           <p><%= @latest_sauce.summary %></p>
         <% end %>
       </div>
@@ -17,7 +17,7 @@
         <% if !@top_sauces.nil? %>
           <% @top_sauces.each do |sauce| %>
             <li class="list-group-item d-flex justify-content-between align-items-center">
-              <%= link_to sauce.name, sauce_path(sauce), class:'sauce-name' %>
+              <%= link_to sauce.name, sauce_path(sauce), class:'sauce-name text-dark' %>
               <span class="badge badge-primary badge-pill"><%= sauce.rating %></span>
             </li>
           <% end %>

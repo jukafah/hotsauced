@@ -37,6 +37,9 @@ RSpec.describe 'sauces/_sauces', type: :view do
     expect(rendered).to have_selector('.sauce.card .image', count: 2)
   end
 
+  it 'images render centered'
+  it 'summary truncates at 250 characters'
+
   it 'render heat' do
     sauce_one = FactoryBot.create(:sauce)
     sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
