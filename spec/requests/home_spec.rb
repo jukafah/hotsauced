@@ -28,18 +28,18 @@ RSpec.describe 'home page', type: :request do
   end
 
   it 'renders 5 top sauces as links' do
-    sauce_one = FactoryBot.create(:sauce, name: 'Other Sauce')
-    sauce_two = FactoryBot.create(:sauce, name: 'Different Sauce')
-    sauce_three = FactoryBot.create(:sauce, name: 'Another One')
-    sauce_four = FactoryBot.create(:sauce, name: 'Still different')
-    sauce_five = FactoryBot.create(:sauce, name: 'Blah blah')
-    sauce_six = FactoryBot.create(:sauce, name: 'Sixth Sauce')
+    FactoryBot.create(:sauce, name: 'Other Sauce')
+    FactoryBot.create(:sauce, name: 'Different Sauce')
+    FactoryBot.create(:sauce, name: 'Another One')
+    FactoryBot.create(:sauce, name: 'Still different')
+    FactoryBot.create(:sauce, name: 'Blah blah')
+    FactoryBot.create(:sauce, name: 'Sixth Sauce')
     get '/home'
-    expect(response.body).to have_selector('.top-sauces .sauce-name', count: 5)
+    expect(response.body).to have_selector('#top-sauce #name', count: 5)
   end
 
   it 'latest sauce is last sauce submit' do
-    sauce_one = FactoryBot.create(:sauce)
+    FactoryBot.create(:sauce)
     sauce_two = FactoryBot.create(:sauce, name: 'Another sauce!')
     get '/home'
     expect(response.body).to have_selector('.latest-sauce .sauce-name', text: sauce_two.name)
