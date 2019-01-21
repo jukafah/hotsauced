@@ -7,6 +7,6 @@ FactoryBot.define do
     heat { 1 }
     flavor { 1 }
     rating { 1 }
-    image { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'hotsauce_stock.jpg'), 'image/jpg') }
+    image { fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'placeholder_bottle.svg'), 'image/svg+xml') }
   end
 end

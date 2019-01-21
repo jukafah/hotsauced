@@ -16,7 +16,7 @@ RSpec.describe 'sauces/_sauces', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .name', text: sauce_one.name)
+    expect(rendered).to have_selector('.sauce.card #name', text: sauce_one.name)
   end
 
   it 'renders summary' do
@@ -25,7 +25,7 @@ RSpec.describe 'sauces/_sauces', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .summary', text: sauce_one.summary)
+    expect(rendered).to have_selector('.sauce.card #summary', text: sauce_one.summary)
   end
 
   it 'renders image' do
@@ -34,25 +34,33 @@ RSpec.describe 'sauces/_sauces', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .image', count: 2)
+    expect(rendered).to have_selector('.sauce.card #image', count: 2)
   end
 
-  it 'render heat' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
+  it 'images render centered' do
+    sauce = FactoryBot.create(:sauce)
+    sauces = [sauce]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .heat', text: sauce_one.heat)
+    expect(rendered).to have_selector('.col-sm-2.d-flex.align-items-center.my-3.mx-auto.d-block.justify-content-center')
   end
 
-  it 'renders flavor' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
+  it 'summary truncates at 250 characters' do
+    summary = 'a' * 251
+    sauce = FactoryBot.create(:sauce, summary: summary)
+    sauces = [sauce]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .flavor', text: sauce_one.flavor)
+    expect(rendered).to have_selector('.sauce.card #summary', text: 'a' * 247 + '...')
+  end
+
+  it 'name truncates at 64 characters' do
+    name = 'a' * 65
+    sauce = FactoryBot.create(:sauce, name: name)
+    sauces = [sauce]
+    assign(:sauces, sauces)
+    render
+    expect(rendered).to have_selector('.sauce.card #name', text: 'a' * 61 + '...' )
   end
 
   it 'renders rating' do
@@ -61,16 +69,6 @@ RSpec.describe 'sauces/_sauces', type: :view do
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card .rating', text: sauce_one.rating)
-  end
-
-  it 'renders comments' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    FactoryBot.create(:comment, sauce: sauce_one)
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card .comments', text: 1)
+    expect(rendered).to have_selector('.sauce.card #rating')
   end
 end
