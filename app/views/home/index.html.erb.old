@@ -1,0 +1,30 @@
+<div class="home-page container" id="home-page">
+  <div class="jumbotron" id="banner" style="background-image: url('https://storage.googleapis.com/hotsauced-pics/banner_stock.png'); background-size: cover; padding-bottom: 15%;">
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="pb-1 font-italic border-bottom">Latest Sauce</h3>
+      <div class="latest-sauce">
+        <% if !@latest_sauce.nil? %>
+          <h2 class="sauce-name wrap"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce), class: 'text-dark' %></h2>
+          <p class="wrap"><%= @latest_sauce.summary %></p>
+        <% end %>
+      </div>
+    </div>
+    <aside class="col-md-4 top-sauces sidebar">
+      <h4 class="font-italic">Top Rated</h4>
+      <ul class="list-group">
+        <% if !@top_sauces.nil? %>
+          <% @top_sauces.each do |sauce| %>
+            <li class="list-group-item list-group-item-secondary d-flex justify-content-between align-items-center">
+              <%= link_to sauce.name, sauce_path(sauce), class:'sauce-name text-dark' %>
+              <div class="sauce-rating align-self-end mt-auto", id="rating">
+                <%= image_tag('rating_0.svg', width: '75', class: 'img-fluid') %>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </aside>
+  </div>
+</div>
