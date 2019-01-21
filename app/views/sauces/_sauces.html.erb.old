@@ -2,15 +2,17 @@
   <div class="sauce card border-secondary my-3 bg-light" id="card">
     <div class="row no-gutters">
       <div class="col-sm-2 d-flex align-items-center my-3 mx-auto d-block justify-content-center">
-        <%= link_to image_tag(default_image?(sauce),  size: '120x175', id:'image'), sauce_path(sauce) %>
+        <%= link_to image_tag(default_image?(sauce),  size: '120x175'), sauce_path(sauce) %>
       </div>
       <div class="col-lg">
         <div class="card-body text-dark d-flex flex-column h-100">
           <h5 class="card-title" id="name"><%= link_to sauce.name.truncate(64), sauce_path(sauce), class: 'text-dark' %></h5>
           <p class="card-text" id="summary"><%= sauce.summary.truncate(250) %></p>
-          <div class="sauce-rating align-self-end mt-auto", id="rating">
-            <%= image_tag('rating_0.svg', size: '120x75', class: 'img-fluid') %>
-          </div>
+          <ul class="list-inline mt-auto" id="ratings">
+            <li class="list-inline-item" id="heat">Heat: <%= sauce.heat %></li>
+            <li class="list-inline-item" id="flavor">Flavor: <%= sauce.flavor %></li>
+            <li class="list-inline-item" id="rating">Rating: <%= sauce.rating %></li>
+          </ul>
         </div>
       </div>
     </div>
