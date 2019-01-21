@@ -230,8 +230,11 @@ RSpec.describe 'Sauces', type: :request do
   end
 
   describe 'Sauce images' do
-    it 'default image is loaded from google storage when not attached'
-
-    it 'images can be attached'
+    it 'default image is loaded from google storage when not attached' do
+      post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: 5, rating: 5 } }
+      get '/sauces/1'
+      puts response.body
+      expect(response.body).to have_selector("img[src='https://storage.googleapis.com/hotsauced-pics/placeholder_bottle.svg']")
+    end
   end
 end
