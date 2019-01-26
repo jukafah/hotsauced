@@ -95,9 +95,8 @@
     <div class="form-group">
       <%= sauce.label :image %>
       <%= sauce.file_field :image, class: 'form-control-file', id: 'image' %>
-      <!-- <input type="file" class="form-control-file" id="image"> -->
     </div>
-    <%= link_to 'Back', sauces_path, class: 'btn btn-primary', id: 'back' %>
-    <%= sauce.submit 'Submit', class: 'btn btn-outline-success my-2 my-sm-0', id: 'submit' %>
+    <%= link_to 'Back', sauces_path, class: 'btn btn-dark', id: 'back' %>
+    <%= sauce.submit 'Submit', class: 'btn btn-secondary', id: 'submit' %>
   <% end %>
 </div>
