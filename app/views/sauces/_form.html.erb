@@ -5,7 +5,7 @@
       <%= sauce.text_field :name, class: 'form-control', id: 'name' %>
       <% if @sauce.errors.key?("name") %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:name].join(' and ') %>
+          <%= @sauce.errors[:name].join(' and ').prepend("Name ").concat('.') %>
         </div>
       <% end %>
     </div>
@@ -14,89 +14,14 @@
       <%= sauce.text_area :summary, class: 'form-control', id: 'summary', rows: '6' %>
       <% if @sauce.errors.key?("summary") %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:summary].join(' and ') %>
+          <%= @sauce.errors[:summary].join(' and ').prepend("Summary ").concat('.') %>
         </div>
       <% end %>
-    </div>
-    <div class="form-group">
-      <%= sauce.label :heat, 'Heat' %><br>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '1', class: 'form-check-input' %>
-        <%= sauce.label :heat_1, '1', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '2', class: 'form-check-input' %>
-        <%= sauce.label :heat_2, '2', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '3', class: 'form-check-input' %>
-        <%= sauce.label :heat_3, '3', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '4', class: 'form-check-input' %>
-        <%= sauce.label :heat_4, '4', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '5', class: 'form-check-input' %>
-        <%= sauce.label :heat_5, '5', class: 'form-check-label' %>
-      </div>
-      <% if @sauce.errors.key?("heat") %>
-        <div class="invalid-feedback">
-          <%= @sauce.errors[:heat].join(' and ') %>
-        </div>
-      <% end %>
-    </div>
-    <div class="form-group">
-      <%= sauce.label :flavor, 'Flavor' %><br>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '1', class: 'form-check-input' %>
-        <%= sauce.label :flavor_1, '1', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '2', class: 'form-check-input' %>
-        <%= sauce.label :flavor_2, '2', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '3', class: 'form-check-input' %>
-        <%= sauce.label :flavor_3, '3', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '4', class: 'form-check-input' %>
-        <%= sauce.label :flavor_4, '4', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '5', class: 'form-check-input' %>
-        <%= sauce.label :flavor_5, '5', class: 'form-check-label' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= sauce.label :rating, 'Rating' %><br>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '1', class: 'form-check-input' %>
-        <%= sauce.label :rating_1, '1', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '2', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '2', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '3', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '3', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '4', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '4', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '5', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '5', class: 'form-check-label' %>
-      </div>
     </div>
     <div class="form-group">
       <%= sauce.label :image %>
-      <%= sauce.file_field :image, class: 'form-control-file', id: 'image' %>
+      <%= sauce.file_field :image, class: 'form-control-file', id: 'image_upload' %>
     </div>
-    <%= link_to 'Back', sauces_path, class: 'btn btn-dark', id: 'back' %>
     <%= sauce.submit 'Submit', class: 'btn btn-secondary', id: 'submit' %>
   <% end %>
 </div>
