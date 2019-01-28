@@ -52,6 +52,6 @@ class SaucesController < ApplicationController
   private
 
   def sauce_params
-    params.require(:sauce).permit(:name, :summary, :heat, :flavor, :rating, :image)
+    params.require(:sauce).permit(:name, :description, :pepper, :ingredients, :brand, :origin, :image)
   end
 end

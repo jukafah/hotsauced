@@ -6,8 +6,8 @@
       <div class="latest-sauce" id="latest-sauce">
       <h3 class="pb-1 font-italic border-bottom">Latest Sauce</h3>
         <% if !@latest_sauce.nil? %>
-          <h2 class="sauce-name"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce), class: 'text-dark', id: 'name' %></h2>
-          <%= simple_format @latest_sauce.description %>
+          <h2 class="sauce-name wrap"><%= link_to @latest_sauce.name, sauce_path(@latest_sauce), class: 'text-dark', id: 'name' %></h2>
+          <p class="wrap" id="summary"><%= @latest_sauce.description %></p>
         <% end %>
       </div>
     </div>

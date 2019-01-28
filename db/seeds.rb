@@ -8,56 +8,35 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-sauces = Sauce.create([{
-                       name: 'Donec ultricies odio quis vehicula',
-                       summary: 'Integer nibh lorem, cursus quis consectetur congue, pretium at enim. Vestibulum interdum arcu vel sapien consectetur, et rhoncus felis gravida. Pellentesque suscipit vehicula tortor. Proin eget varius massa, at faucibus tellus. Aenean lobortis libero vitae diam eleifend, vestibulum molestie nisl ullamcorper. Nam sit amet consequat odio. Quisque eu urna tincidunt, molestie justo a, tempor odio. Sed mattis ex venenatis, cursus sem sit amet, hendrerit lorem. Donec enim lorem, elementum vitae consectetur quis, varius ac magna. Vivamus faucibus consectetur faucibus. Maecenas venenatis dui sit amet congue dignissim. Phasellus nibh elit, ultricies id hendrerit sit amet, scelerisque sit amet augue. Nam pulvinar posuere finibus. Sed rhoncus vitae enim at efficitur. Pellentesque neque eros, feugiat vel quam eget, tincidunt tempor leo. Integer quis neque sem.',
-                       heat: 0,
-                       flavor: 5,
-                       rating: 2,
-                       comments: Comment.create(
-                         [
-                           {
-                             commenter: 'John',
-                             body: 'cursus quis consectetur congue'
-                           },
-                           {
-                             commenter: 'Bill',
-                             body: 'Vestibulum molestie tempus mauris tincidunt eleifend'
-                           },
-                           {
-                             commenter: 'SuperguyXX',
-                             body: 'Nam vitae maximus sem.'
-                           }
-                         ]
-                       )
-                     },
-                      {
-                        name: 'Aliquam vel sapien',
-                        summary: 'Vestibulum enim turpis, posuere non sagittis in, sodales vel nibh. Curabitur euismod, nibh a fringilla tincidunt, elit velit facilisis ligula, quis fermentum tortor neque vitae eros. Nullam molestie pellentesque urna, ut lobortis sem pretium eget. Vivamus at dolor lobortis, fringilla nibh ac, ullamcorper odio. Cras non sem et tortor tempus sagittis. Nunc ut libero scelerisque, sodales dolor nec, dignissim orci. Etiam id aliquam ligula, et laoreet ex. Praesent porttitor metus non lacinia blandit. Ut eu sapien tincidunt, accumsan magna dapibus, congue velit. Phasellus porttitor nulla enim, non fermentum tortor lobortis nec.',
-                        heat: 2,
-                        flavor: 3,
-                        rating: 4,
-                        comments: Comment.create(
-                          [
-                            {
-                              commenter: 'Dude',
-                              body: 'So good'
-                            }
-                          ]
-                        )
-                      },
-                      {
-                        name: 'Nunc lacus sem, lacinia rutrum faucibus',
-                        summary: 'Vestibulum imperdiet elit felis, non mollis orci dignissim eget. Nullam euismod augue.',
-                        heat: 5,
-                        flavor: 1,
-                        rating: 3
-                      }])
+sauces = Sauce.create!([{
+                       name: 'Mr Fuzz’s Nuclear Nectar - Nero BBQ',
+                       description: "Extracted from the depths of the earth's core,
+                       Mr. Fuzz's Nuclear nectar is sure to enflame the senses.
+                       Fusing an irresistible hybrid of pleasure and pain, the nectar ignites the tongue,
+                       the flames engulf the brain and, for the moment, nothing else matters..
+                       in the midst of an endorphin flood and the elevated sensory experience that it fosters,
+                       the subject can now mediate on the burn fully embracing the moment while becoming the
+                       one with his/her environment. This isn't just a condiment; it's a way of life.
 
-sauces.each do | sauce |
-  sauce.image.attach(
-    io: File.open("#{Rails.root}/app/assets/images/placeholder_bottle.svg"),
-    filename: 'file.jpg',
-    content_type: 'image/svg+xml'
-  )
-end
+                       This is Twin Cities style BBQ sauce; despite the continued prominence of the bland Protestant palate,
+                       we've got a melting pot coming to a beautiful boil here in the Twin Cities and things are only getting HOTTER.
+                       Whether you're smoking brisket or spare ribs, slow-cooking jerk chicken, or spinnin'
+                       shwarma or el pastor over the spit, this sauce is sure to breathe some fire and fun into your
+                       outside get-together with family and friends! Take the meat out altogether and use it to
+                       deglaze a veggie stir fry or light up a veggie patty sandwhich. Just remember: it's the moment that counts,
+                       so make it a HOT one.",
+                       pepper: 'Habanero',
+                       ingredients: 'vinegar brine (vinegar, water), select habaneros, onions, tomate puree/paste, brown sugar,
+                       honey, pineapple juice, bourbon whiskey, worcestershire sauce, carrots, garlic, spices, salt,
+                       fresh-squeezed lime juice, canola oil, xanathan gum.',
+                       brand: 'Fuzzology, Inc',
+                       origin: 'Minneapolis, Minnesota'
+}])
+
+# sauces.each do | sauce |
+#   sauce.image.attach(
+#     io: File.open("#{Rails.root}/app/assets/images/placeholder_bottle.svg"),
+#     filename: 'file.jpg',
+#     content_type: 'image/svg+xml'
+#   )
+# end
