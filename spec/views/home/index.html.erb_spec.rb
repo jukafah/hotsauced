@@ -47,13 +47,13 @@ RSpec.describe 'home/index', type: :view do
       expect(rendered).to have_selector('#latest-sauce #name')
     end
 
-    it 'renders latest sauce summary' do
+    it 'renders latest sauce description' do
       latest_sauce = FactoryBot.create(:sauce)
       assign(:latest_sauce, latest_sauce)
       top_sauce = FactoryBot.create(:sauce, name: 'Different sauce')
       assign(:top_sauces, [top_sauce])
       render
-      expect(rendered).to have_selector('#latest-sauce #summary')
+      expect(rendered).to have_selector('#latest-sauce #description')
     end
   end
 

@@ -23,8 +23,8 @@ RSpec.describe 'home page', type: :request do
   it 'renders latest sauce' do
     sauce = FactoryBot.create(:sauce)
     get '/home'
-    expect(response.body).to have_selector('.latest-sauce .sauce-name', text: sauce.name)
-    expect(response.body).to have_selector('.latest-sauce p', text: sauce.summary)
+    expect(response.body).to have_selector('#latest-sauce #name', text: sauce.name)
+    expect(response.body).to have_selector('#latest-sauce #description', text: sauce.description)
   end
 
   it 'renders 5 top sauces as links' do

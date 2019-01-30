@@ -3,36 +3,56 @@
     <div class="form-group mt-3">
       <%= sauce.label :name %>
       <%= sauce.text_field :name, class: 'form-control', id: 'name' %>
-      <% if @sauce.errors.key?("name") %>
+      <% if @sauce.errors.key?('name') %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:name].join(' and ').prepend("Name ").concat('.') %>
+          <%= @sauce.errors[:name].join(' and ').prepend('Name ').concat('.') %>
         </div>
       <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :description %>
       <%= sauce.text_area :description, class: 'form-control', id: 'description', rows: '12' %>
-      <% if @sauce.errors.key?("description") %>
+      <% if @sauce.errors.key?('description') %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:summary].join(' and ').prepend("Description ").concat('.') %>
+          <%= @sauce.errors[:description].join(' and ').prepend('Description ').concat('.') %>
         </div>
       <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :pepper %>
       <%= sauce.text_field :pepper, class: 'form-control', id: 'pepper' %>
+      <% if @sauce.errors.key?('pepper') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:pepper].join(' and ').prepend('Pepper ').concat('.') %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :ingredients %>
       <%= sauce.text_area :ingredients, class: 'form-control', id: 'ingredients' %>
+      <% if @sauce.errors.key?('ingredients') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:ingredients].join(' and ').prepend('Ingredients ').concat('.') %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :brand %>
       <%= sauce.text_field :brand, class: 'form-control', id: 'brand' %>
+      <% if @sauce.errors.key?('brand') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:brand].join(' and ').prepend('Brand ').concat('.') %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :origin %>
       <%= sauce.text_field :origin, class: 'form-control', id: 'origin' %>
+      <% if @sauce.errors.key?('origin') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:origin].join(' and ').prepend('Origin ').concat('.') %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :image %>

@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :review do
-    user { "MyString" }
-    body { "MyText" }
+    user { "Test user" }
+    body { "Test body" }
     rating { 1 }
     sauce { nil }
   end
