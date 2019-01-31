@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2019_01_29_045037) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "commenter"
-    t.text "body"
-    t.integer "sauce_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sauce_id"], name: "index_comments_on_sauce_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.string "user"
     t.text "body"
