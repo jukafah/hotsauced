@@ -1,26 +1,45 @@
 <div class="sauce-display-page container">
-  <div class="sauce">
-    <div class="sauce-image">
-      <%= image_tag default_image?(@sauce), size: "330x481", class: 'sauce-image' %>
+  <div class="row my-2">
+    <div class="col-sm-4 d-flex flex-column">
+      <div class="sauce-image align-self-center">
+        <%= image_tag default_image?(@sauce), width: "200", class: "img-fluid", id: "image" %>
+      </div>
+      <div class="sauce-rating align-self-center", id="rating">
+        <%= image_tag('rating_0.svg', size: '120x75', class: 'img-fluid') %>
+      </div>
     </div>
-    <div class="sauce-name">
-      <h2><%= @sauce.name %></h2>
-    </div>
-    <div class="sauce-summary">
-      <p><%= @sauce.summary %></p>
-    </div>
-    <ul class="list-inline">
-      <li class="list-inline-item sauce-heat">HEAT: <%= @sauce.heat %></li>
-      <li class="list-inline-item sauce-flavor">FLAVOR: <%= @sauce.flavor %></li>
-      <li class="list-inline-item sauce-overall-rating">OVERALL: <%= @sauce.rating %></li>
-    </ul>
-    <div class="edit-sauce">
-      <%= link_to 'Edit Sauce', edit_sauce_path(@sauce) %>
+    <div class="col-sm-8">
+      <div class="sauce-name border-bottom" id="name">
+        <h2><%= @sauce.name %></h2>
+      </div>
+      <div class="sauce-description my-2" id="description">
+        <%= simple_format @sauce.description %>
+      </div>
+      <div class="sauce-pepper my-2" id="pepper">
+        <h4>Pepper</h4>
+        <%= simple_format @sauce.pepper %>
+      </div>
+      <div class="sauce-brand my-2" id="brand">
+        <h4>Brand</h4>
+        <%= simple_format @sauce.brand %>
+      </div>
+      <div class="sauce-ingredients my-2" id="ingredients">
+        <h4>Ingredients</h4>
+        <%= simple_format @sauce.ingredients %>
+      </div>
+      <div class="sauce-origin my-2", id="origin">
+        <h4>Origin</h4>
+        <%= @sauce.origin %>
+      </div>
+      <div class="edit-sauce">
+        <%= link_to 'Edit Sauce', edit_sauce_path(@sauce), class: 'btn btn-secondary my-2' %>
+      </div>
     </div>
   </div>
-  <div class="comments">
-    <%= render 'comments/comment' %>
-    <%= render 'comments/form' %>
+  <!-- reviews section -->
+  <div class="reviews pb-2">
+    <h3 class="border-bottom">Reviews</h3>
+    <%= render 'reviews/form' %>
+    <%= render 'reviews/review' %>
   </div>
-</div>
 </div>

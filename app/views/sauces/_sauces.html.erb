@@ -7,7 +7,7 @@
       <div class="col-lg">
         <div class="card-body text-dark d-flex flex-column h-100">
           <h5 class="card-title" id="name"><%= link_to sauce.name.truncate(64), sauce_path(sauce), class: 'text-dark' %></h5>
-          <p class="card-text" id="summary"><%= sauce.summary.truncate(250) %></p>
+          <p class="card-text" id="description"><%= sauce.description.truncate(250) %></p>
           <div class="sauce-rating align-self-end mt-auto", id="rating">
             <%= image_tag('rating_0.svg', size: '120x75', class: 'img-fluid') %>
           </div>

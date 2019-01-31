@@ -84,44 +84,49 @@ RSpec.describe 'Sauces', type: :request do
 
     context 'with valid submission' do
       it 'redirects to new sauce page' do
-        post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: 5, rating: 5 } }
+        post '/sauces', params: { sauce: { name: 'Test Name', description: 'Test Summary', pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response).to redirect_to('/sauces/1')
       end
     end
 
     context 'with invalid submission' do
       it 'displays error message without name' do
-        post '/sauces', params: { sauce: { name: nil, summary: 'test post summary', heat: 5, flavor: 5, rating: 5 } }
+        post '/sauces', params: { sauce: { name: nil, description: 'test post description', pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
       it 'displays error message when name too short' do
-        post '/sauces', params: { sauce: { name: nil, summary: 'test post summary', heat: 5, flavor: 5, rating: 5 } }
+        post '/sauces', params: { sauce: { name: nil, description: 'test post description', pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 1 character)")
       end
 
-      it 'displays error message without summary' do
-        post '/sauces', params: { sauce: { name: 'Test Name', summary: nil, heat: 5, flavor: 5, rating: 5 } }
+      it 'displays error message without description' do
+        post '/sauces', params: { sauce: { name: 'Test Name', description: nil, pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
-      it 'displays error message when summary too short' do
-        post '/sauces', params: { sauce: { name: 'Test Name', summary: 'A', heat: 5, flavor: 5, rating: 5 } }
+      it 'displays error message when description too short' do
+        post '/sauces', params: { sauce: { name: 'Test Name', description: 'A', pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response.body).to have_selector('.invalid-feedback', text: 'is too short (minimum is 12 characters)')
       end
 
-      it 'displays error message without heat' do
-        post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: nil, flavor: 5, rating: 5 } }
+      it 'displays error message without pepper' do
+        post '/sauces', params: { sauce: { name: 'Test Name', description: 'Test Summary', pepper: nil, brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response.body).to have_selector('.is-invalid')
       end
 
-      it 'displays error message without flavor' do
-        post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: nil, rating: 5 } }
+      it 'displays error message without brand' do
+        post '/sauces', params: { sauce: { name: 'Test Name', description: 'Test Summary', pepper: 'Pepper', brand: nil, origin: 'Origin', ingredients: 'Some ingredients' } }
         expect(response.body).to have_selector('.is-invalid')
       end
 
-      it 'displays error message without rating' do
-        post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: 5, rating: nil } }
+      it 'displays error message without origin' do
+        post '/sauces', params: { sauce: { name: 'Test Name', description: 'Test Summary', pepper: 'Pepper', brand: 'Brand', origin: nil, ingredients: 'Some ingredients' } }
+        expect(response.body).to have_selector('.is-invalid')
+      end
+
+      it 'displays error message without ingredients' do
+        post '/sauces', params: { sauce: { name: 'Test Name', description: 'Test Summary', pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: nil } }
         expect(response.body).to have_selector('.is-invalid')
       end
     end
@@ -149,7 +154,7 @@ RSpec.describe 'Sauces', type: :request do
     context 'when valid' do
       it 'redirects to sauce display page' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: 1, flavor: 1, rating: 1 } }
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', description: 'A great tasting sauce!', heat: 1, flavor: 1, rating: 1 } }
         expect(response).to redirect_to("/sauces/#{sauce.id}")
       end
 
@@ -159,9 +164,9 @@ RSpec.describe 'Sauces', type: :request do
         expect(response).to redirect_to("/sauces/#{sauce.id}")
       end
 
-      it 'summary can be updated' do
+      it 'description can be updated' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { summary: 'A great tasing sauce!' } }
+        put "/sauces/#{sauce.id}", params: { sauce: { description: 'A great tasing sauce!' } }
         expect(response).to redirect_to("/sauces/#{sauce.id}")
       end
 
@@ -187,32 +192,38 @@ RSpec.describe 'Sauces', type: :request do
     context 'when invalid' do
       it 'not updated with invalid name' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: nil, summary: 'A great tasting sauce!', heat: 1, flavor: 1, rating: 1 } }
+        put "/sauces/#{sauce.id}", params: { sauce: { name: nil, description: 'A great tasting sauce!', heat: 1, flavor: 1, rating: 1 } }
         expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
-      it 'not updated with invalid summary' do
+      it 'not updated with invalid description' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: nil, heat: 1, flavor: 1, rating: 1 } }
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', description: nil, heat: 1, flavor: 1, rating: 1 } }
         expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank")
       end
 
-      it 'is not updated with invalid heat' do
+      it 'is not updated with invalid pepper' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: nil, flavor: 1, rating: 1 } }
-        expect(response.body).to have_selector('.is-invalid', text: 'Heat')
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', description: 'A great tasting sauce!', pepper: nil, ingredients: nil, brand: 'Brand', origin: 'Origin' } }
+        expect(response.body).to have_selector('.is-invalid')
       end
 
-      it 'is not updated with invalid flavor' do
+      it 'is not updated with invalid ingredients' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: 1, flavor: nil, rating: 1 } }
-        expect(response.body).to have_selector('.is-invalid', text: 'Flavor')
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', description: 'A great tasting sauce!', pepper: 'Pepper', ingredients: nil, brand: 'Brand', origin: 'Origin' } }
+        expect(response.body).to have_selector('.is-invalid')
       end
 
-      it 'is not updated with invalid rating' do
+      it 'is not updated with invalid brand' do
         sauce = FactoryBot.create(:sauce)
-        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', summary: 'A great tasting sauce!', heat: 1, flavor: 1, rating: nil } }
-        expect(response.body).to have_selector('.is-invalid', text: 'Rating')
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', description: 'A great tasting sauce!', pepper: 'Pepper', ingredients: 'Some ingredients', brand: nil, origin: 'Origin' } }
+        expect(response.body).to have_selector('.is-invalid')
+      end
+
+      it 'is not updated with invalid origin' do
+        sauce = FactoryBot.create(:sauce)
+        put "/sauces/#{sauce.id}", params: { sauce: { name: 'Different', description: 'A great tasting sauce!', pepper: 'Pepper', ingredients: 'Some ingredients', brand: 'Brand', origin: nil } }
+        expect(response.body).to have_selector('.is-invalid')
       end
     end
   end
@@ -231,9 +242,8 @@ RSpec.describe 'Sauces', type: :request do
 
   describe 'Sauce images' do
     it 'default image is loaded from google storage when not attached' do
-      post '/sauces', params: { sauce: { name: 'Test Name', summary: 'Test Summary', heat: 5, flavor: 5, rating: 5 } }
+      post '/sauces', params: { sauce: { name: 'Test Name', description: 'Test Summary', pepper: 'Pepper', brand: 'Brand', origin: 'Origin', ingredients: 'Some ingredients' } }
       get '/sauces/1'
-      puts response.body
       expect(response.body).to have_selector("img[src='https://storage.googleapis.com/hotsauced-pics/placeholder_bottle.svg']")
     end
   end

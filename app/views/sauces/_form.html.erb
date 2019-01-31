@@ -1,103 +1,63 @@
 <div class="sauce-form" id="sauce-form">
   <%= form_with model: @sauce, local: true do |sauce| %>
-    <div class="form-group">
+    <div class="form-group mt-3">
       <%= sauce.label :name %>
       <%= sauce.text_field :name, class: 'form-control', id: 'name' %>
-      <% if @sauce.errors.key?("name") %>
+      <% if @sauce.errors.key?('name') %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:name].join(' and ') %>
+          <%= @sauce.errors[:name].join(' and ').prepend('Name ').concat('.') %>
         </div>
       <% end %>
     </div>
     <div class="form-group">
-      <%= sauce.label :summary %>
-      <%= sauce.text_area :summary, class: 'form-control', id: 'summary', rows: '6' %>
-      <% if @sauce.errors.key?("summary") %>
+      <%= sauce.label :description %>
+      <%= sauce.text_area :description, class: 'form-control', id: 'description', rows: '12' %>
+      <% if @sauce.errors.key?('description') %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:summary].join(' and ') %>
+          <%= @sauce.errors[:description].join(' and ').prepend('Description ').concat('.') %>
         </div>
       <% end %>
     </div>
     <div class="form-group">
-      <%= sauce.label :heat, 'Heat' %><br>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '1', class: 'form-check-input' %>
-        <%= sauce.label :heat_1, '1', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '2', class: 'form-check-input' %>
-        <%= sauce.label :heat_2, '2', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '3', class: 'form-check-input' %>
-        <%= sauce.label :heat_3, '3', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '4', class: 'form-check-input' %>
-        <%= sauce.label :heat_4, '4', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :heat, '5', class: 'form-check-input' %>
-        <%= sauce.label :heat_5, '5', class: 'form-check-label' %>
-      </div>
-      <% if @sauce.errors.key?("heat") %>
+      <%= sauce.label :pepper %>
+      <%= sauce.text_field :pepper, class: 'form-control', id: 'pepper' %>
+      <% if @sauce.errors.key?('pepper') %>
         <div class="invalid-feedback">
-          <%= @sauce.errors[:heat].join(' and ') %>
+          <%= @sauce.errors[:pepper].join(' and ').prepend('Pepper ').concat('.') %>
         </div>
       <% end %>
     </div>
     <div class="form-group">
-      <%= sauce.label :flavor, 'Flavor' %><br>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '1', class: 'form-check-input' %>
-        <%= sauce.label :flavor_1, '1', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '2', class: 'form-check-input' %>
-        <%= sauce.label :flavor_2, '2', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '3', class: 'form-check-input' %>
-        <%= sauce.label :flavor_3, '3', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '4', class: 'form-check-input' %>
-        <%= sauce.label :flavor_4, '4', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :flavor, '5', class: 'form-check-input' %>
-        <%= sauce.label :flavor_5, '5', class: 'form-check-label' %>
-      </div>
+      <%= sauce.label :ingredients %>
+      <%= sauce.text_area :ingredients, class: 'form-control', id: 'ingredients' %>
+      <% if @sauce.errors.key?('ingredients') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:ingredients].join(' and ').prepend('Ingredients ').concat('.') %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
-      <%= sauce.label :rating, 'Rating' %><br>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '1', class: 'form-check-input' %>
-        <%= sauce.label :rating_1, '1', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '2', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '2', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '3', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '3', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '4', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '4', class: 'form-check-label' %>
-      </div>
-      <div class="form-check form-check-inline">
-        <%= sauce.radio_button :rating, '5', class: 'form-check-input' %>
-        <%= sauce.label :rating_2, '5', class: 'form-check-label' %>
-      </div>
+      <%= sauce.label :brand %>
+      <%= sauce.text_field :brand, class: 'form-control', id: 'brand' %>
+      <% if @sauce.errors.key?('brand') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:brand].join(' and ').prepend('Brand ').concat('.') %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= sauce.label :origin %>
+      <%= sauce.text_field :origin, class: 'form-control', id: 'origin' %>
+      <% if @sauce.errors.key?('origin') %>
+        <div class="invalid-feedback">
+          <%= @sauce.errors[:origin].join(' and ').prepend('Origin ').concat('.') %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group">
       <%= sauce.label :image %>
-      <%= sauce.file_field :image, class: 'form-control-file', id: 'image' %>
-      <!-- <input type="file" class="form-control-file" id="image"> -->
+      <%= sauce.file_field :image, class: 'form-control-file', id: 'image-upload' %>
     </div>
-    <%= link_to 'Back', sauces_path, class: 'btn btn-primary', id: 'back' %>
-    <%= sauce.submit 'Submit', class: 'btn btn-outline-success my-2 my-sm-0', id: 'submit' %>
+    <%= sauce.submit 'Submit', class: 'btn btn-secondary my-2', id: 'submit' %>
   <% end %>
 </div>

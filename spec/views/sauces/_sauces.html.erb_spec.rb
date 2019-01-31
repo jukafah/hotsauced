@@ -19,13 +19,13 @@ RSpec.describe 'sauces/_sauces', type: :view do
     expect(rendered).to have_selector('.sauce.card #name', text: sauce_one.name)
   end
 
-  it 'renders summary' do
+  it 'renders description' do
     sauce_one = FactoryBot.create(:sauce)
     sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
     sauces = [sauce_one, sauce_two]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card #summary', text: sauce_one.summary)
+    expect(rendered).to have_selector('.sauce.card #description', text: sauce_one.description)
   end
 
   it 'renders image' do
@@ -46,12 +46,12 @@ RSpec.describe 'sauces/_sauces', type: :view do
   end
 
   it 'summary truncates at 250 characters' do
-    summary = 'a' * 251
-    sauce = FactoryBot.create(:sauce, summary: summary)
+    description = 'a' * 251
+    sauce = FactoryBot.create(:sauce, description: description)
     sauces = [sauce]
     assign(:sauces, sauces)
     render
-    expect(rendered).to have_selector('.sauce.card #summary', text: 'a' * 247 + '...')
+    expect(rendered).to have_selector('.sauce.card #description', text: 'a' * 247 + '...')
   end
 
   it 'name truncates at 64 characters' do

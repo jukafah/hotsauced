@@ -50,148 +50,196 @@ RSpec.describe Sauce, type: :model do
     end
   end
 
-  context 'Summary' do
+  context 'Description' do
     it 'must exist' do
-      sauce = FactoryBot.build(:sauce, summary: nil)
+      sauce = FactoryBot.build(:sauce, description: nil)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'must not be less than 12 characters' do
-      summary = 'a' * 11
-      sauce = FactoryBot.build(:sauce, summary: summary)
+      description = 'a' * 11
+      sauce = FactoryBot.build(:sauce, description: description)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'must be a minimum of 12 characters' do
-      summary = 'a' * 12
-      sauce = FactoryBot.build(:sauce, summary: summary)
+      description = 'a' * 12
+      sauce = FactoryBot.build(:sauce, description: description)
       result = sauce.save
       expect(result).to be true
     end
 
-    it 'must not be greater than 1000 characters' do
-      summary = 'a' * 1001
-      sauce = FactoryBot.build(:sauce, summary: summary)
+    it 'must not be greater than 2500 characters' do
+      description = 'a' * 2501
+      sauce = FactoryBot.build(:sauce, description: description)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must be a maximum of 1000 characters' do
-      summary = 'a' * 1000
-      sauce = FactoryBot.build(:sauce, summary: summary)
+    it 'must be a maximum of 2500 characters' do
+      description = 'a' * 2500
+      sauce = FactoryBot.build(:sauce, description: description)
       result = sauce.save
       expect(result).to be true
     end
   end
 
-  context 'Heat' do
+  context 'Pepper' do
     it 'must exist' do
-      sauce = FactoryBot.build(:sauce, heat: nil)
+      sauce = FactoryBot.build(:sauce, pepper: nil)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must not be less than 0' do
-      sauce = FactoryBot.build(:sauce, heat: -1)
+    it 'must not be less than 2 characters' do
+      pepper = 'a'*1
+      sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must be minimum of 0' do
-      sauce = FactoryBot.build(:sauce, heat: 0)
+    it 'can be a minimum of 2 characters' do
+      pepper = 'a'*2
+      sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be true
     end
 
-    it 'must not be greater than 5' do
-      sauce = FactoryBot.build(:sauce, heat: 6)
+    it 'must not be greater than 64 characters' do
+      pepper = 'a'*65
+      sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must be maximum of 5' do
-      sauce = FactoryBot.build(:sauce, heat: 5)
+    it 'can be a maximum of 64 characters' do
+      pepper = 'a'*64
+      sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be true
     end
   end
 
-  context 'Flavor' do
+  context 'Ingredients' do
     it 'must exist' do
-      sauce = FactoryBot.build(:sauce, flavor: nil)
+      sauce = FactoryBot.build(:sauce, ingredients: nil)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must not be less than 0' do
-      sauce = FactoryBot.build(:sauce, flavor: -1)
+    it 'must not be less than 4 characters' do
+      ingredients = 'a'*3
+      sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must be a minimum of 0' do
-      sauce = FactoryBot.build(:sauce, flavor: 0)
+    it 'can be a minimum of 4 characters' do
+      ingredients = 'a'*4
+      sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be true
     end
 
-    it 'must not be greater than 5' do
-      sauce = FactoryBot.build(:sauce, flavor: 6)
+    it 'must not be greater than 500 characters' do
+      ingredients = 'a'*501
+      sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must be a maximum of 5' do
-      sauce = FactoryBot.build(:sauce, flavor: 5)
+    it 'can be a maximum of 500 characters' do
+      ingredients = 'a'*500
+      sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be true
     end
   end
 
-  context 'Rating' do
+  context 'Brand' do
     it 'must exist' do
-      sauce = FactoryBot.build(:sauce, rating: nil)
+      sauce = FactoryBot.build(:sauce, brand: nil)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must be minimum of 0' do
-      sauce = FactoryBot.build(:sauce, rating: 0)
+    it 'must not be less than 2 characters' do
+      brand = 'a'*1
+      sauce = FactoryBot.build(:sauce, brand: brand)
+      result = sauce.save
+      expect(result).to be false
+    end
+
+    it 'can be a minimum of 2 characters' do
+      brand = 'a'*2
+      sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be true
     end
 
-    it 'must not be lower than 0' do
-      sauce = FactoryBot.build(:sauce, rating: -1)
+    it 'must not be greater than 64 characters' do
+      brand = 'a'*65
+      sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be false
     end
 
-    it 'must not be greater than 5' do
-      sauce = FactoryBot.build(:sauce, rating: 6)
-      result = sauce.save
-      expect(result).to be false
-    end
-
-    it 'must be maximum of 5' do
-      sauce = FactoryBot.build(:sauce, rating: 5)
+    it 'can be a maximum of 64 characters' do
+      brand = 'a'*64
+      sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be true
     end
   end
 
-  context 'Comments' do
-    it 'comments must not need to exist' do
-      sauce = FactoryBot.build(:sauce, comments: [])
+  context 'Origin' do
+    it 'must exist' do
+      sauce = FactoryBot.build(:sauce, origin: nil)
+      result = sauce.save
+      expect(result).to be false
+    end
+
+    it 'must not be less than 2 characters' do
+      origin = 'a'*1
+      sauce = FactoryBot.build(:sauce, origin: origin)
+      result = sauce.save
+      expect(result).to be false
+    end
+
+    it 'can be a minimum of 2 characters' do
+      origin = 'a'*2
+      sauce = FactoryBot.build(:sauce, origin: origin)
       result = sauce.save
       expect(result).to be true
     end
 
-    it 'comments can be submit' do
-      comment = FactoryBot.build(:comment)
-      sauce = FactoryBot.build(:sauce, comments: [comment])
+    it 'must not be greater than 64 characters' do
+      origin = 'a'*65
+      sauce = FactoryBot.build(:sauce, origin: origin)
+      result = sauce.save
+      expect(result).to be false
+    end
+
+    it 'can be a maximum of 64 characters' do
+      origin = 'a'*64
+      sauce = FactoryBot.build(:sauce, origin: origin)
+      result = sauce.save
+      expect(result).to be true
+    end
+  end
+
+  context 'Reviews' do
+    it 'reviews do not need to exist' do
+      sauce = FactoryBot.build(:sauce, reviews: [])
+      result = sauce.save
+      expect(result).to be true
+    end
+
+    it 'reviews can be submit' do
+      review = FactoryBot.build(:review)
+      sauce = FactoryBot.build(:sauce, reviews: [review])
       result = sauce.save
       expect(result).to be true
     end

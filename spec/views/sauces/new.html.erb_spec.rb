@@ -14,13 +14,13 @@ RSpec.describe 'sauces/new', type: :view do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.new-sauce-page.container h2', text: 'ADD NEW SAUCE', count: 1)
+    expect(rendered).to have_selector('.new-sauce-page.container h3', text: 'ADD NEW SAUCE', count: 1)
   end
 
   it 'renders form' do
     sauce = FactoryBot.build(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-form')
+    expect(rendered).to have_selector('#sauce-form')
   end
 end

@@ -14,35 +14,49 @@ RSpec.describe 'sauces/show', type: :view do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-name', count: 1, text: sauce.name)
+    expect(rendered).to have_selector('#name', count: 1, text: sauce.name)
   end
 
-  it 'renders summary' do
+  it 'renders description' do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-summary', count: 1, text: sauce.summary)
+    expect(rendered).to have_selector('#description', count: 1, text: sauce.description)
   end
 
-  it 'renders heat' do
+  it 'renders pepper' do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-heat', count: 1, text: sauce.heat)
+    expect(rendered).to have_selector('#pepper', count: 1, text: sauce.pepper)
   end
 
-  it 'renders flavor' do
+  it 'renders brand' do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-flavor', count: 1, text: sauce.flavor)
+    expect(rendered).to have_selector('#brand', count: 1, text: sauce.brand)
+  end
+
+  it 'renders ingredients' do
+    sauce = FactoryBot.create(:sauce)
+    assign(:sauce, sauce)
+    render
+    expect(rendered).to have_selector('#ingredients', count: 1, text: sauce.ingredients)
+  end
+
+  it 'renders origin' do
+    sauce = FactoryBot.create(:sauce)
+    assign(:sauce, sauce)
+    render
+    expect(rendered).to have_selector('#origin', count: 1, text: sauce.origin)
   end
 
   it 'renders rating' do
     sauce = FactoryBot.create(:sauce)
     assign(:sauce, sauce)
     render
-    expect(rendered).to have_selector('.sauce-overall-rating', count: 1, text: sauce.rating)
+    expect(rendered).to have_selector('#rating', count: 1)
   end
 
   it 'renders edit controls' do
@@ -52,26 +66,27 @@ RSpec.describe 'sauces/show', type: :view do
     expect(rendered).to have_selector('.edit-sauce')
   end
 
-  it 'renders comment section' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauce, sauce)
-    render
-    expect(rendered).to have_selector('.comments')
-  end
+# TODO: needs to be refactored with new review implementation
+  # it 'renders reviews section' do
+  #   sauce = FactoryBot.create(:sauce)
+  #   assign(:sauce, sauce)
+  #   render
+  #   expect(rendered).to have_selector('.reviews')
+  # end
 
-  it 'renders comments' do
-    sauce = FactoryBot.create(:sauce)
-    FactoryBot.create(:comment, sauce: sauce)
-    FactoryBot.create(:comment, sauce: sauce)
-    assign(:sauce, sauce)
-    render
-    expect(rendered).to have_selector('.comment', count: 2)
-  end
+  # it 'renders reviews section' do
+  #   sauce = FactoryBot.create(:sauce)
+  #   FactoryBot.create(:review, sauce: sauce)
+  #   assign(:sauce, sauce)
+  #   render
+  #   expect(rendered).to have_selector('#reviews')
+  # end
 
-  it 'renders comment form' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauce, sauce)
-    render
-    expect(rendered).to have_selector('.comment-form', count: 1)
-  end
+# TODO: needs to be refactored with new review implementation
+  # it 'renders review form' do
+  #   sauce = FactoryBot.create(:sauce)
+  #   assign(:sauce, sauce)
+  #   render
+  #   expect(rendered).to have_selector('#review-form', count: 1)
+  # end
 end
