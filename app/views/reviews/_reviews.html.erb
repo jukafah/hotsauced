@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-sm-4">
+    <div class="sauce-rating align-self-center text-muted", id="rating">
+      <%= image_tag('rating_0.svg', width: '100', class: 'img-fluid') %>
+      <%= average_of(@sauce.reviews) %>
+      out of 5
+      (<%= pluralize(@sauce.reviews.count, 'review')%>)
+    </div>
+    <table class="table-borderless table-hover table-sm w-100 my-2">
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td class="align-text-center"><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid') %></td>
+          <td class="text-right"><%= percent_of(@sauce.reviews, 5) %>%</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid') %></td>
+          <td class="text-right"><%= percent_of(@sauce.reviews, 4) %>%</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid') %></td>
+          <td class="text-right"><%= percent_of(@sauce.reviews, 3) %>%</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid') %></td>
+          <td class="text-right"><%= percent_of(@sauce.reviews, 2) %>%</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid') %></td>
+          <td class="text-right"><%= percent_of(@sauce.reviews, 1) %>%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="py-3">
+      <%= link_to 'Write a review', new_sauce_review_path(@sauce), class: 'btn btn-outline-dark btn-sm btn-block' %>
+    </div>
+  </div>
+  <div class="col-lg">
+    <% @sauce.reviews.each do | review | %>
+      <div class="card py-2 review", id="review">
+        <div class="my-2">
+          <%= review.user %>
+        </div>
+        <div class="sauce-rating align-self-center", id="rating">
+          <%= image_tag('rating_0.svg', width: '100', class: 'img-fluid') %>
+        </div>
+        <div class="text-muted", id="date">
+          <%= review.created_at.strftime("%B %d/%Y") %>
+        </div>
+        <div class="user-rating">
+          <p><%= review.rating %></p>
+        </div>
+        <div class="body-layout">
+          <%= simple_format review.body %>
+        </div>
+        <div class="controls">
+          <%= link_to 'Delete', [ review.sauce, review ],
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

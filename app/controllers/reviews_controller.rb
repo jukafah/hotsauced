@@ -1,4 +1,9 @@
 class ReviewsController < ApplicationController
+
+  # def new
+  #   @review = Review.new
+  # end
+
   def create
     @sauce = Sauce.find(params[:sauce_id])
     @review = @sauce.reviews.create(review_params)

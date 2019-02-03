@@ -1,5 +1,4 @@
 <div class="submit-review">
-  <h3>COMMENTS</h3>
   <%= form_with(model: [ @sauce, @sauce.reviews.build ], local: true) do |form| %>
     <div class="user">
       <%= form.label :user %><br>
