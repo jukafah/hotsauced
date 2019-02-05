@@ -16,6 +16,11 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @sauce = Sauce.find(params[:sauce_id])
+    @review = @sauce.reviews.find(params[:id])
+  end
+
   def update
     @sauce = Sauce.find(params[:sauce_id])
     @review = @sauce.reviews.find(params[:id])
