@@ -1,3 +1,31 @@
 <div class="review-display-page container">
-  <%= @review.headline %>
+  <h3>REVIEW</h3>
+  <div class="row my-2">
+    <div class="col-sm-8">
+      <div class="my-2 border-bottom font-weight-bold", id="headline">
+        <%= @review.headline %>
+      </div>
+      <div class="my-2" id="body">
+        <%= simple_format @review.body %>
+      </div>
+      <div class="sauce-rating align-self-center", id="user-rating">
+        <%= image_tag('rating_0.svg', size: '120x75', class: 'img-fluid') %>
+      </div>
+      <div class="my-2 text-right blockquote-footer" id="user">
+        <%= @review.user %>
+      </div>
+
+    </div>
+    <div class="col-sm-4 d-flex flex-column">
+      <div class="my-2 text-center font-weight-bold">
+        <%= @sauce.name %>
+      </div>
+      <div class="sauce-image align-self-center">
+        <%= image_tag default_image?(@sauce), width: "150", class: "img-fluid", id: "image" %>
+      </div>
+      <div class="sauce-rating align-self-center", id="overall-rating">
+        <%= image_tag('rating_0.svg', size: '120x75', class: 'img-fluid') %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -48,7 +48,7 @@
             <%= review.user %>
           </div>
           <h5>
-            <%= link_to review.headline, sauce_review_path(review), class: 'card-title text-dark' %>
+            <%= link_to review.headline, sauce_review_path(@sauce.id, review.id), class: 'card-title text-dark' %>
           </h5>
           <div class="sauce-rating align-self-center my-3", id="rating">
             <%= image_tag('rating_0.svg', width: '100', class: 'img-fluid') %>
