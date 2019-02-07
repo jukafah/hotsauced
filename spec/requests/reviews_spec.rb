@@ -3,13 +3,31 @@
 require 'rails_helper'
 
 RSpec.describe 'Reviews', type: :request do
-
   it 'can be duplicates' do
     sauce = FactoryBot.create(:sauce)
     FactoryBot.create(:review, sauce: sauce)
     FactoryBot.create(:review, sauce: sauce)
     get "/sauces/#{sauce.id}"
     expect(response).to have_http_status(:ok)
+  end
+
+  context 'new review page' do
+    it 'renders page' do
+      sauce = FactoryBot.create(:sauce)
+      get "/sauces/#{sauce.id}/reviews/new"
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to have_selector('#new-review-page')
+    end
+  end
+
+  context 'review display page' do
+    it 'renders page' do
+      sauce = FactoryBot.create(:sauce)
+      review = FactoryBot.create(:review, sauce: sauce)
+      get "/sauces/#{sauce.id}/reviews/#{review.id}"
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to have_selector('#review-display-page')
+    end
   end
 
   context 'when valid' do

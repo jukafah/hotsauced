@@ -17,9 +17,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    puts params[:sauce_id]
-    puts params[:id]
-    puts params
     @sauce = Sauce.find(params[:sauce_id])
     @review = @sauce.reviews.find(params[:id])
   end
