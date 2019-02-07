@@ -15,7 +15,7 @@ RSpec.describe 'Reviews', type: :request do
   context 'when valid' do
     it 'creates successfully' do
       sauce = FactoryBot.create(:sauce)
-      post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'Some Person', body: 'Some Comment', rating: 5 } }
+      post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'Some Person', headline: 'A headline!', body: 'Some Comment', rating: 5 } }
       expect(response).to redirect_to("/sauces/#{sauce.id}")
     end
 
@@ -30,14 +30,16 @@ RSpec.describe 'Reviews', type: :request do
 
   it 'are invalid without user' do
     sauce = FactoryBot.create(:sauce)
-    post "/sauces/#{sauce.id}/reviews", params: { review: { user: nil, body: 'Some Comment' } }
-    expect(response).to redirect_to("/sauces/#{sauce.id}")
+    post "/sauces/#{sauce.id}/reviews", params: { review: { user: nil, headline: 'A headline!', body: 'Some Comment', rating: 3 } }
+    puts response
+    puts response.body
+    expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 1 character)")
   end
 
   it 'are invalid without body' do
     sauce = FactoryBot.create(:sauce)
-    post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'A great tasting sauce!', body: nil, rating: 5 } }
-    expect(response).to redirect_to("/sauces/#{sauce.id}")
+    post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'A great tasting sauce!', headline: 'A headline!', body: nil, rating: 5 } }
+    expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 2 characters)")
   end
 
   # TODO: reimplement
