@@ -63,17 +63,11 @@ RSpec.describe Review, type: :model do
       result = review.save
       expect(result).to be false
     end
-    it 'rating cannot be less than 0' do
-      sauce = FactoryBot.create(:sauce)
-      review = FactoryBot.build(:review, rating: -1, sauce: sauce)
-      result = review.save
-      expect(result).to be false
-    end
-    it 'rating can be minimum of 0' do
+    it 'rating cannot be less than 1' do
       sauce = FactoryBot.create(:sauce)
       review = FactoryBot.build(:review, rating: 0, sauce: sauce)
       result = review.save
-      expect(result).to be true
+      expect(result).to be false
     end
     it 'rating can be maximum of 5' do
       sauce = FactoryBot.create(:sauce)
@@ -119,8 +113,8 @@ RSpec.describe Review, type: :model do
       expect(result).to be true
     end
 
-    it 'body cannot be greater than 1000 characters' do
-      body = 'A' * 1001
+    it 'body cannot be greater than 1250 characters' do
+      body = 'A' * 1251
       sauce = FactoryBot.create(:sauce)
       review = FactoryBot.build(:review, body: body, sauce: sauce)
       result = review.save

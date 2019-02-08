@@ -1,8 +1,24 @@
 class ReviewsController < ApplicationController
+
+  def new
+    @sauce = Sauce.find(params[:sauce_id])
+    @review = Review.new
+  end
+
   def create
     @sauce = Sauce.find(params[:sauce_id])
-    @review = @sauce.reviews.create(review_params)
-    redirect_to sauce_path(@sauce)
+    @review = @sauce.reviews.new(review_params)
+
+    if @review.save
+      redirect_to sauce_path(@sauce)
+    else
+      render 'new'
+    end
+  end
+
+  def show
+    @sauce = Sauce.find(params[:sauce_id])
+    @review = @sauce.reviews.find(params[:id])
   end
 
   def update
@@ -22,10 +38,10 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:user, :body, :rating)
+    params.require(:review).permit(:user, :headline, :body, :rating)
   end
 
   def review_update_params
-    params.require(:review).permit(:body)
+    params.require(:review).permit(:headline, :body, :rating)
   end
 end

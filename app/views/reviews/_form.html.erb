@@ -1,20 +1,41 @@
-<div class="submit-review">
-  <h3>COMMENTS</h3>
-  <%= form_with(model: [ @sauce, @sauce.reviews.build ], local: true) do |form| %>
-    <div class="user">
-      <%= form.label :user %><br>
-      <%= form.text_field :user %>
+<div class="review-form" id="review-form">
+  <%= form_with(model: [@sauce, @review], local: true) do |review| %>
+    <div class="form-group mt-3">
+      <%= review.label :user %>
+      <%= review.text_field :user, class: 'form-control', id: 'user' %>
+      <% if @review.errors.key?('user') %>
+        <div class="invalid-feedback">
+          <%= @review.errors[:user].join(' and ').prepend('User ').concat('.') %>
+        </div>
+      <% end %>
     </div>
-    <div class="body">
-      <%= form.label :body %><br>
-      <%= form.text_area :body %>
+    <div class="form-group">
+      <%= review.label :rating %>
+      <%= review.number_field :rating, class: 'form-control', id: 'rating' %>
+      <% if @review.errors.key?('rating') %>
+        <div class="invalid-feedback">
+          <%= @review.errors[:rating].join(' and ').prepend('Rating ').concat('.') %>
+        </div>
+      <% end %>
     </div>
-    <div class="rating">
-      <%= form.label :rating %>
-      <%= form.number_field :rating %>
+    <div class="form-group">
+      <%= review.label :headline %>
+      <%= review.text_field :headline, class: 'form-control', id: 'headline' %>
+      <% if @review.errors.key?('headline') %>
+        <div class="invalid-feedback">
+          <%= @review.errors[:headline].join(' and ').prepend('Headline ').concat('.') %>
+        </div>
+      <% end %>
     </div>
-    <div class="submit">
-      <%= form.submit %>
+    <div class="form-group">
+      <%= review.label :body %>
+      <%= review.text_area :body, rows: 6, class: 'form-control' %>
+      <% if @review.errors.key?('body') %>
+        <div class="invalid-feedback">
+          <%= @review.errors[:body].join(' and ').prepend('Body ').concat('.') %>
+        </div>
+      <% end %>
     </div>
+    <%= review.submit 'Submit', class: 'btn btn-secondary my-2', id: 'submit' %>
   <% end %>
 </div>
