@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# require
 
 class MessageMailer < ApplicationMailer
   require 'mailgun'

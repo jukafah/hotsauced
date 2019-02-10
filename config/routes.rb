@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   get '/' => redirect('/home')
   get 'about', to: 'about#index'
-  get 'contact', to: 'contact#index'
-  post 'contact', to: 'contact#create'
+  post 'about/contact', to: 'about#create'
   get 'home', to: 'home#index'
 
   resources :sauces do

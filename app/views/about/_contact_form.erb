@@ -1,5 +1,5 @@
 <div id="contact-section">
-<h4 class="border-bottom pb-2 w-50">CONTACT</h4>
+  <h4 class="border-bottom pb-2 w-50">CONTACT</h4>
   <div class="row">
     <div class="col-md pb-4">
       <p>If you have any feature requests, ideas, general thoughts, or are experiencing any issues, please contact me.</p>
@@ -8,7 +8,7 @@
       <%= link_to image_tag('icons8-github.svg', alt: 'GitHub', size: '64x64'), 'https://github.com/jukafah' %>
     </div>
     <div class="col-md pb-4">
-      <%= form_for :message do |msg| %>
+      <%= form_for :message, url: '/about/contact', html: { id: 'contact-form'} do |msg| %>
         <div class="form-group">
           <%= msg.text_field :name, placeholder: 'YOUR NAME', class: 'form-control', id: 'name' %>
         </div>

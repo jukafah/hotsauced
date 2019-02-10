@@ -8,7 +8,7 @@ class AboutController < ApplicationController
   def create
     @message = Message.new(message_params)
     MessageMailer.contact(@message).deliver_now
-    redirect_to contact_path
+    redirect_to about_path
   end
 
   private
