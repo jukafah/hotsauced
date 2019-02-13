@@ -12,19 +12,18 @@ class AboutController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     respond_to do |format|
-      format.html { puts "html" }
       format.js
-
-      @contact.errors.add(:name)
-      puts "@contact.errors: #{@contact.errors.key?('name')}"
-
-      if !@contact.valid?
-        # render inline: 'location.reload();'
-        render 'errors.js.erb'
-      else
+      if @contact.valid?
         @mailer = ContactMailer.new
         @response = @mailer.contact_email(@contact)
         render 'modal.js.erb'
+      else
+        puts "@contact.errors: #{@contact.errors.key?('name')}"
+
+        @contact.errors.each do |error|
+          puts "error: #{error}"
+        end
+        render 'errors.js.erb'
       end
     end
   end
