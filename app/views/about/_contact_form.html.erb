@@ -8,17 +8,18 @@
       <%= link_to image_tag('icons8-github.svg', alt: 'GitHub', size: '64x64'), 'https://github.com/jukafah' %>
     </div>
     <div class="col-md pb-4">
-      <%= form_for :message, url: '/about/contact', html: { id: 'contact-form'} do |msg| %>
+      <%= form_with model: @contact, url: '/about/contact', html: { id: 'contact-form'} do |contact| %>
         <div class="form-group">
-          <%= msg.text_field :name, placeholder: 'YOUR NAME', class: 'form-control', id: 'name' %>
+          <%= contact.text_field :name, placeholder: 'YOUR NAME', class: 'form-control', id: 'name' %>
         </div>
         <div class="form-group">
-          <%= msg.text_field :email, placeholder: 'YOUR E-MAIL ADDRESS', class: 'form-control', id: 'email' %>
+          <%= contact.text_field :email, placeholder: 'YOUR E-MAIL ADDRESS', class: 'form-control', id: 'email' %>
         </div>
         <div class="form-group">
-          <%= msg.text_area :body, placeholder: 'YOUR MESSAGE', class:'form-control', rows: '6', id: 'body' %>
+          <%= contact.text_area :body, placeholder: 'YOUR MESSAGE', class:'form-control', rows: '6', id: 'body' %>
         </div>
-        <%= msg.submit 'SUBMIT', class: 'btn btn-secondary', id: 'submit' %>
+        <%=contact.submit 'SUBMIT', class: 'btn btn-secondary', id: 'submit', data: { target: '#modal-window', toggle: 'modal' } %>
+        <div id="contact-modal"></div>
       <% end %>
     </div>
   </div>

@@ -2,18 +2,36 @@
 
 class AboutController < ApplicationController
   def index
-    @message = Message.new
+    @contact = Contact.new
+  end
+
+  def new
+    @contact = Contact.new
   end
 
   def create
-    @message = Message.new(message_params)
-    MessageMailer.contact(@message).deliver_now
-    redirect_to about_path
+    @contact = Contact.new(contact_params)
+    respond_to do |format|
+      format.html { puts "html" }
+      format.js
+
+      @contact.errors.add(:name)
+      puts "@contact.errors: #{@contact.errors.key?('name')}"
+
+      if !@contact.valid?
+        # render inline: 'location.reload();'
+        render 'errors.js.erb'
+      else
+        @mailer = ContactMailer.new
+        @response = @mailer.contact_email(@contact)
+        render 'modal.js.erb'
+      end
+    end
   end
 
   private
 
-  def message_params
-    params.require(:message).permit(:name, :email, :body)
+  def contact_params
+    params.require(:contact).permit(:name, :email, :body)
   end
 end
