@@ -66,6 +66,11 @@ RSpec.describe 'sauces/show', type: :view do
     expect(rendered).to have_selector('.edit-sauce')
   end
 
+  context 'reviews' do
+    it 'renders section without reviews'
+    it 'renders section with reviews'
+  end
+
 # TODO: needs to be refactored with new review implementation
   # it 'renders reviews section' do
   #   sauce = FactoryBot.create(:sauce)

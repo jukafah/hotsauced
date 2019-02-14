@@ -17,6 +17,14 @@ RSpec.describe Review, type: :model do
     expect(sauce.reviews.count).to eq(2)
   end
 
+  context 'Headline' do
+    it 'headline must exist'
+    it 'cannot be less than 2 characters'
+    it 'cannot be greater than 64 characters'
+    it 'can be a minimum of 2 characters'
+    it 'can be a maximum of 64 characters'
+  end
+
   context 'User' do
     it 'name must exist' do
       sauce = FactoryBot.create(:sauce)

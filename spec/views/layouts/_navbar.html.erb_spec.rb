@@ -63,22 +63,6 @@ RSpec.describe 'layouts/_navbar', type: :view do
     expect(rendered).to have_selector('.nav-link', text: 'ABOUT')
   end
 
-  it 'renders active CONTACT link when on /contact path' do
-    assign(:q, Sauce.ransack(params[:q]))
-    allow(view).to receive(:active?) { 'nav-link' }
-    allow(view).to receive(:active?).with('/contact').and_return('nav-link active')
-    render
-    expect(rendered).to have_selector('.nav-link.active', text: 'CONTACT')
-  end
-
-  it 'renders non active CONTACT link when not on path' do
-    assign(:q, Sauce.ransack(params[:q]))
-    allow(view).to receive(:active?) { 'nav-link' }
-    allow(view).to receive(:active?).with('/somewhere-else').and_return('nav-link active')
-    render
-    expect(rendered).to have_selector('.nav-link', text: 'CONTACT')
-  end
-
   it 'renders search' do
     assign(:q, Sauce.ransack(params[:q]))
     allow(view).to receive(:current_page?) { false }

@@ -3,7 +3,7 @@
 class ContactMailer < ApplicationMailer
   require 'mailgun'
 
-  def contact(message)
+  def contact_email(message)
     @body = message.body
     mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
     message_params = {

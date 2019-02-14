@@ -16,9 +16,8 @@ RSpec.describe 'about page', type: :request do
   describe 'Send contact email' do
     context 'when valid' do
       it 'sends successfully and shows modal' do
-        post '/contact', params: { message: { name: 'Name', email: 'someone@somewhere.com', body: 'This is a body!' } }
-        expect(response).to have_http_status(:redirect)
-        expect(response).to redirect_to('/contact')
+        post '/about/contact',  params: { format: 'js', contact: { name: 'Name', email: 'someone@somewhere.com', body: 'This is a body!' } }
+        expect(response).to have_http_status(:ok)
       end
     end
     context 'when invalid' do

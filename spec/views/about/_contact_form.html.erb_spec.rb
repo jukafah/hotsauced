@@ -10,6 +10,9 @@ RSpec.describe 'about/_contact_form', type: :view do
   it 'renders email input'
   it 'renders body input'
   it 'renders submit button'
+  it 'renders contact description'
+  it 'renders linkedin link'
+  it 'renders github link'
 
   context 'when invalid' do
     it 'renders error styling for name'
