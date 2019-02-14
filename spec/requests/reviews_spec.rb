@@ -37,20 +37,17 @@ RSpec.describe 'Reviews', type: :request do
       expect(response).to redirect_to("/sauces/#{sauce.id}")
     end
 
-    # TODO: reimplement
-    # it 'it displays on page after posting' do
-    #   sauce = FactoryBot.create(:sauce)
-    #   post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'Some Person', body: 'Some Comment', rating: 5 } }
-    #   get "/sauces/#{sauce.id}"
-    #   expect(response.body).to have_selector('#review')
-    # end
+    it 'it displays on page after posting' do
+      sauce = FactoryBot.create(:sauce)
+      post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'Some Person', headline: 'A headline!', body: 'Some Comment', rating: 5 } }
+      get "/sauces/#{sauce.id}"
+      expect(response.body).to have_selector('#review', count: 1)
+    end
   end
 
   it 'are invalid without user' do
     sauce = FactoryBot.create(:sauce)
     post "/sauces/#{sauce.id}/reviews", params: { review: { user: nil, headline: 'A headline!', body: 'Some Comment', rating: 3 } }
-    puts response
-    puts response.body
     expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 1 character)")
   end
 
@@ -60,14 +57,7 @@ RSpec.describe 'Reviews', type: :request do
     expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 2 characters)")
   end
 
-  # TODO: reimplement
-  # it 'body can be edited' do
-  #   sauce = FactoryBot.create(:sauce)
-  #   review = FactoryBot.create(:review, sauce: sauce)
-  #   put "/sauces/#{sauce.id}/reviews/#{review.id}", params: { review: { body: 'A Different Body' } }
-  #   get "/sauces/#{sauce.id}"
-  #   expect(response.body).to have_selector('#body-layout', text: 'A Different Body')
-  # end
+  it 'body can be edited'
 
   it 'name can not be edited' do
     sauce = FactoryBot.create(:sauce)
@@ -76,13 +66,7 @@ RSpec.describe 'Reviews', type: :request do
     expect(response).to redirect_to("/sauces/#{sauce.id}")
   end
 
-  # TODO: reimplement
-  # it 'can be deleted' do
-  #   review = FactoryBot.build(:review)
-  #   sauce = FactoryBot.create(:sauce, reviews: [review])
-  #   delete "/sauces/#{sauce.id}/reviews/#{review.id}"
-  #   expect(response).to redirect_to("/sauces/#{sauce.id}")
-  # end
+  it 'can be deleted'
 
   it 'deleted review is no longer displayed' do
     review = FactoryBot.build(:review)

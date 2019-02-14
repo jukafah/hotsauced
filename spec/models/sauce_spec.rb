@@ -94,28 +94,28 @@ RSpec.describe Sauce, type: :model do
     end
 
     it 'must not be less than 2 characters' do
-      pepper = 'a'*1
+      pepper = 'a' * 1
       sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a minimum of 2 characters' do
-      pepper = 'a'*2
+      pepper = 'a' * 2
       sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be true
     end
 
     it 'must not be greater than 64 characters' do
-      pepper = 'a'*65
+      pepper = 'a' * 65
       sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a maximum of 64 characters' do
-      pepper = 'a'*64
+      pepper = 'a' * 64
       sauce = FactoryBot.build(:sauce, pepper: pepper)
       result = sauce.save
       expect(result).to be true
@@ -130,28 +130,28 @@ RSpec.describe Sauce, type: :model do
     end
 
     it 'must not be less than 4 characters' do
-      ingredients = 'a'*3
+      ingredients = 'a' * 3
       sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a minimum of 4 characters' do
-      ingredients = 'a'*4
+      ingredients = 'a' * 4
       sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be true
     end
 
     it 'must not be greater than 500 characters' do
-      ingredients = 'a'*501
+      ingredients = 'a' * 501
       sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a maximum of 500 characters' do
-      ingredients = 'a'*500
+      ingredients = 'a' * 500
       sauce = FactoryBot.build(:sauce, ingredients: ingredients)
       result = sauce.save
       expect(result).to be true
@@ -166,28 +166,28 @@ RSpec.describe Sauce, type: :model do
     end
 
     it 'must not be less than 2 characters' do
-      brand = 'a'*1
+      brand = 'a' * 1
       sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a minimum of 2 characters' do
-      brand = 'a'*2
+      brand = 'a' * 2
       sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be true
     end
 
     it 'must not be greater than 64 characters' do
-      brand = 'a'*65
+      brand = 'a' * 65
       sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a maximum of 64 characters' do
-      brand = 'a'*64
+      brand = 'a' * 64
       sauce = FactoryBot.build(:sauce, brand: brand)
       result = sauce.save
       expect(result).to be true
@@ -202,28 +202,28 @@ RSpec.describe Sauce, type: :model do
     end
 
     it 'must not be less than 2 characters' do
-      origin = 'a'*1
+      origin = 'a' * 1
       sauce = FactoryBot.build(:sauce, origin: origin)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a minimum of 2 characters' do
-      origin = 'a'*2
+      origin = 'a' * 2
       sauce = FactoryBot.build(:sauce, origin: origin)
       result = sauce.save
       expect(result).to be true
     end
 
     it 'must not be greater than 64 characters' do
-      origin = 'a'*65
+      origin = 'a' * 65
       sauce = FactoryBot.build(:sauce, origin: origin)
       result = sauce.save
       expect(result).to be false
     end
 
     it 'can be a maximum of 64 characters' do
-      origin = 'a'*64
+      origin = 'a' * 64
       sauce = FactoryBot.build(:sauce, origin: origin)
       result = sauce.save
       expect(result).to be true
