@@ -18,11 +18,6 @@ class AboutController < ApplicationController
         @response = @mailer.contact_email(@contact)
         render 'modal.js.erb'
       else
-        puts "@contact.errors: #{@contact.errors.key?('name')}"
-
-        @contact.errors.each do |error|
-          puts "error: #{error}"
-        end
         render 'errors.js.erb'
       end
     end
