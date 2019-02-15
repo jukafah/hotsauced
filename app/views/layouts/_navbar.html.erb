@@ -14,9 +14,6 @@
       <li class="nav-item">
         <%= link_to "ABOUT", about_path, class: active?(about_path) %>
       </li>
-      <li class="nav-item">
-        <%= link_to "CONTACT", contact_path, class: active?(contact_path) %>
-      </li>
     </ul>
     <%= search_form_for @q, class: 'form-inline my-2 my-lg-0', id: 'search-form' do | form | %>
       <%= form.search_field :name_cont, class: 'form-control mr-sm-2', id: 'search-box' %>

@@ -1,22 +1,44 @@
-<div class="about-page container" id="about-page">
-  <div class="row justify-content-center">
-    <div class="col-2">
-      <div class="avatar">
-        <%= image_tag 'avatar-me.png', class: 'img-fluid' %>
-      </div>
+<div class="container" id="about-page">
+  <div class="row justify-content-around no-gutters">
+    <div class="col-sm-4">
+      <h4 class="text-center border-bottom pb-2 pt-5">HEAT</h4>
+      <p>
+        Fusce accumsan at nunc vitae lobortis. Vestibulum iaculis est velit, ut egestas urna sagittis non. Ut interdum venenatis velit, et semper nulla fringilla ac. Orci.
+      </p>
     </div>
+    <div class="col-sm-4">
+      <h4 class="text-center border-bottom pb-2 pt-5">FLAVOR</h4>
+      <p>
+        Aliquam a mattis leo. Sed vitae arcu eget turpis congue pulvinar ac et turpis. Vestibulum porta placerat ipsum, ac efficitur orci scelerisque id. Pellentesque nec.
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-around no-gutters">
+    <div class="col-sm-4">
+      <h4 class="text-center border-bottom pb-2 pt-5">PEPPERS</h4>
+      <p>
+        Sed ante libero, eleifend vitae magna a, fermentum suscipit est. Proin ornare dictum leo, quis luctus orci mollis non. Donec eleifend lectus convallis, aliquam orci.
+      </p>
+    </div>
+    <div class="col-sm-4">
+      <h4 class="text-center border-bottom pb-2 pt-5">SAUCE</h4>
+      <p>
+        Aenean scelerisque augue in eros luctus scelerisque. Etiam non mi accumsan, bibendum nibh at, mollis lorem. Curabitur elit velit, cursus et mi in, rhoncus convallis.
+      </p>
+    </div>
+  </div>
+  <div class="row pt-5 no-gutters justify-content-center">
     <div class="col-6">
-      <div class="about-description">
-        <h2>
-          ABOUT
-        </h2>
-        <p>
-          Hi! I am Steve Momcilovic, and this website is about hot sauce. This site originiated
-          as a blog about hot sauces that I enjoy while learning about ruby on rails, and I have
-          since decided to turn it into a type of catalog! I plan on adding new features and making this
-          site something that any hot sauce connoisseur will appreciate.
-        </p>
+      <h4 class="text-center border-bottom py-2">DEVELOPED BY</h4>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <%= image_tag 'avatar-me.png', width: '150', class: 'img-fluid pb-2', id: 'avatar' %>
+        </div>
+        <div class="col-sm-2 text-center align-self-center text-md-left" style="font-size:24px;">STEVE MOMCILOVIC</div>
       </div>
     </div>
+  </div>
+  <div class="pt-5">
+    <%= render 'contact_form' %>
   </div>
 </div>

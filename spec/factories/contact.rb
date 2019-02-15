@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :message do
+  factory :contact do
     name { "name" }
     email { "someone@somewhere.com" }
     body { "What a super great website!" }

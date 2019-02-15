@@ -1,0 +1,5 @@
+$('#contact-modal').html("<%= j render 'modal' %>");
+$('#modal-window').modal('show');
+$('#contact-modal').on('hidden.bs.modal', function() {
+  location.reload();
+});

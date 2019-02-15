@@ -1,10 +1,9 @@
 # frozen_string_literal: true
-# require
 
-class MessageMailer < ApplicationMailer
+class ContactMailer < ApplicationMailer
   require 'mailgun'
 
-  def contact(message)
+  def contact_email(message)
     @body = message.body
     mg_client = Mailgun::Client.new ENV['MAILGUN_API_KEY']
     message_params = {
@@ -13,6 +12,7 @@ class MessageMailer < ApplicationMailer
       subject: 'Contact - Hotsauced',
       text: message.body
     }
-    mg_client.send_message ENV['MAILGUN_DOMAIN'], message_params
+    result = mg_client.send_message ENV['MAILGUN_DOMAIN'], message_params
+    result
   end
 end
