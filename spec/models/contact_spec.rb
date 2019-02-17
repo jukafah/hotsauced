@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Contact', type: :model do
-
   context 'is valid when' do
     it 'all required parameters exist' do
       contact = FactoryBot.build(:contact)
@@ -11,7 +10,7 @@ RSpec.describe 'Contact', type: :model do
       expect(valid).to be true
     end
   end
-  
+
   context 'is invalid when' do
     it 'has no email' do
       contact = FactoryBot.build(:contact, email: nil)

@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Sauce', type: :model do
-
   context 'can be saved when when' do
     it 'all required parameters exist' do
       sauce = FactoryBot.build(:sauce)
@@ -13,7 +12,6 @@ RSpec.describe 'Sauce', type: :model do
   end
 
   context 'name' do
-
     context 'valid when' do
       it 'minimum of 1 characters' do
         sauce = FactoryBot.build(:sauce, name: 'A')
@@ -59,7 +57,6 @@ RSpec.describe 'Sauce', type: :model do
   end
 
   context 'description' do
-
     context 'valid when' do
       it 'minimum of 12 characters' do
         description = 'a' * 12
@@ -100,7 +97,6 @@ RSpec.describe 'Sauce', type: :model do
   end
 
   context 'pepper' do
-
     context 'valid when' do
       it 'minimum of 2 characters' do
         pepper = 'a' * 2
@@ -141,7 +137,6 @@ RSpec.describe 'Sauce', type: :model do
   end
 
   context 'ingredients' do
-
     context 'valid when' do
       it 'minimum of 4 characters' do
         ingredients = 'a' * 4
@@ -182,7 +177,6 @@ RSpec.describe 'Sauce', type: :model do
   end
 
   context 'brand' do
-
     context 'valid when' do
       it 'minimum of 2 characters' do
         brand = 'a' * 2
@@ -223,7 +217,6 @@ RSpec.describe 'Sauce', type: :model do
   end
 
   context 'origin' do
-
     context 'valid when' do
       it 'minimum of 2 characters' do
         origin = 'a' * 2

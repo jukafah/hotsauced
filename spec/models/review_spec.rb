@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Review', type: :model do
-
   context 'can be saved when' do
     it 'all required parameters exist' do
       sauce = FactoryBot.create(:sauce)
@@ -14,7 +13,6 @@ RSpec.describe 'Review', type: :model do
   end
 
   context 'headline' do
-
     context 'valid when' do
       it 'minimum of 2 characters' do
         sauce = FactoryBot.create(:sauce)
@@ -60,7 +58,6 @@ RSpec.describe 'Review', type: :model do
   end
 
   context 'user' do
-
     context 'valid when' do
       it 'maximum of 64 characters' do
         name = 'A' * 64
@@ -103,7 +100,6 @@ RSpec.describe 'Review', type: :model do
   end
 
   context 'rating' do
-
     context 'valid when' do
       it 'maximum of 5' do
         sauce = FactoryBot.create(:sauce)
@@ -144,7 +140,6 @@ RSpec.describe 'Review', type: :model do
   end
 
   context 'body' do
-
     context 'valid when' do
       it 'minimum of 2 characters' do
         sauce = FactoryBot.create(:sauce)

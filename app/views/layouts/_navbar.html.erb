@@ -1,18 +1,18 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand">[LOGO HERE]</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbarLg">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse collapse" id="collapsingNavbarLg">
+  <div class="navbar-collapse collapse" id="nav-bar">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "HOME", home_path, class: active?(home_path) %>
+        <%= link_to "HOME", home_path, id: 'nav-link-home', class: active?(home_path) %>
       </li>
       <li class="nav-item">
-        <%= link_to "SAUCES", sauces_path, class: active?(sauces_path) %>
+        <%= link_to "SAUCES", sauces_path, id: 'nav-link-sauces', class: active?(sauces_path) %>
       </li>
       <li class="nav-item">
-        <%= link_to "ABOUT", about_path, class: active?(about_path) %>
+        <%= link_to "ABOUT", about_path, id: 'nav-link-about', class: active?(about_path) %>
       </li>
     </ul>
     <%= search_form_for @q, class: 'form-inline my-2 my-lg-0', id: 'search-form' do | form | %>

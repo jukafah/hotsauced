@@ -18,7 +18,7 @@
         <div class="form-group">
           <%= contact.text_area :body, placeholder: 'YOUR MESSAGE', class:'form-control', rows: '6', id: 'body' %>
         </div>
-        <%=contact.submit 'SUBMIT', class: 'btn btn-secondary', id: 'submit', data: { target: '#modal-window', toggle: 'modal' } %>
+        <%=contact.submit 'SUBMIT', class: 'btn btn-secondary', id: 'submit-form', data: { target: '#modal-window', toggle: 'modal' } %>
         <div id="contact-modal"></div>
       <% end %>
     </div>
