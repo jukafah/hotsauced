@@ -35,8 +35,8 @@ RSpec.describe 'Sauce', type: :model do
       end
 
       it 'not unique' do
-        FactoryBot.create(:sauce)
-        sauce = FactoryBot.build(:sauce)
+        FactoryBot.create(:sauce, name: 'same name')
+        sauce = FactoryBot.build(:sauce, name: 'same name')
         result = sauce.save
         expect(result).to be false
       end
@@ -267,7 +267,7 @@ RSpec.describe 'Sauce', type: :model do
 
       it 'can submit multiple' do
         review_one = FactoryBot.build(:review)
-        review_two = FactoryBot.build(:review)
+        review_two = FactoryBot.build(:review, user: 'Different User')
         sauce = FactoryBot.build(:sauce, reviews: [review_one, review_two])
         result = sauce.save
         expect(result).to be true

@@ -1,8 +1,19 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
+  def index
+    @sauce = Sauce.find(params[:sauce_id])
+    @reviews = @sauce.reviews.all
+  end
 
   def new
     @sauce = Sauce.find(params[:sauce_id])
     @review = Review.new
+  end
+
+  def edit
+    @sauce = Sauce.find(params[:sauce_id])
+    @review = @sauce.reviews.find(params[:id])
   end
 
   def create
@@ -12,7 +23,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to sauce_path(@sauce)
     else
-      render 'new'
+      render 'new', status: 422
     end
   end
 
@@ -24,8 +35,11 @@ class ReviewsController < ApplicationController
   def update
     @sauce = Sauce.find(params[:sauce_id])
     @review = @sauce.reviews.find(params[:id])
-    @review.update(review_update_params)
-    redirect_to sauce_path(@sauce)
+    if @review.update(review_update_params)
+      redirect_to sauce_path(@sauce)
+    else
+      render 'edit', status: 422
+    end
   end
 
   def destroy

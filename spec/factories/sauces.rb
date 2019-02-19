@@ -2,7 +2,7 @@ include ActionDispatch::TestProcess
 
 FactoryBot.define do
   factory :sauce do
-    name { "Test name" }
+    sequence(:name) { |n| "Sauce #{n}"}
     description { "Test description" }
     pepper { "Test pepper" }
     brand { "Test brand" }

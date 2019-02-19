@@ -29,13 +29,13 @@
     </div>
     <div class="form-group">
       <%= review.label :body %>
-      <%= review.text_area :body, rows: 6, class: 'form-control' %>
+      <%= review.text_area :body, rows: 6, class: 'form-control', id: 'body' %>
       <% if @review.errors.key?('body') %>
         <div class="invalid-feedback">
           <%= @review.errors[:body].join(' and ').prepend('Body ').concat('.') %>
         </div>
       <% end %>
     </div>
-    <%= review.submit 'Submit', class: 'btn btn-secondary my-2', id: 'submit' %>
+    <%= review.submit 'Submit', class: 'btn btn-secondary my-2', id: 'submit-form' %>
   <% end %>
 </div>

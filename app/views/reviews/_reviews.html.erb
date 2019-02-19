@@ -36,7 +36,7 @@
       </tbody>
     </table>
     <div class="py-2">
-      <%= link_to 'Write a review', new_sauce_review_path(@sauce), class: 'btn btn-outline-dark btn-sm btn-block' %>
+      <%= link_to 'Write a review', new_sauce_review_path(@sauce), id: 'new-review', class: 'btn btn-outline-dark btn-sm btn-block' %>
     </div>
   </div>
   <div class="col-lg-8">
@@ -61,7 +61,7 @@
               <%= review.created_at.strftime("%B %d/%Y") %>
             </div>
             <div class="px-2">
-              <%= link_to 'Edit', edit_sauce_review_path(review), class: 'text-muted' %>
+              <%= link_to 'Edit', edit_sauce_review_path(@sauce, review), class: 'text-muted' %>
             </div>
             |
             <div class="px-2">

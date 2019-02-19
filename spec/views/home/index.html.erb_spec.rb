@@ -3,6 +3,30 @@
 require 'rails_helper'
 
 RSpec.describe 'home/index', type: :view do
+
+  # let!(:sauce_list) { FactoryBot.create_list(:sauce, 6) }
+  # # top sauce => 1
+  # let!(:sauce_six_rating) { FactoryBot.create(:review, rating: 5, sauce: sauce_list[5]) }
+  # # top sauce => 2
+  # let!(:sauce_four_rating) { FactoryBot.create(:review, rating: 5, sauce: sauce_list[3]) }
+  # # top sauce => 3
+  # let!(:sauce_five_rating) { FactoryBot.create(:review, rating: 4, sauce: sauce_list[4]) }
+  # # top sauce => 4
+  # let!(:sauce_one_rating) { FactoryBot.create(:review, rating: 3, sauce: sauce_list[0]) }
+  # # top sauce => 5
+  # let!(:sauce_two_rating) { FactoryBot.create(:review, rating: 2, sauce: sauce_list[1]) }
+  # # top sauce => not on list
+  # let!(:sauce_three_rating) { FactoryBot.create(:review, rating: 1, sauce: sauce_list[2]) }
+ # TODO: top sauce test
+  # it 'renders 5 top sauces as links' do
+  #   sorted_list = sauce_list.sort_by { |sauce| sauce.reviews[0].rating }.reverse!
+  #   expected_top_sauces = sorted_list.map(&:name)
+  #   visit home_path
+  #   all(:css, '#top-sauces #name').each_with_index do |element, index|
+  #     expect(element.text).to eq(expected_top_sauces[index])
+  #   end
+  # end
+
   context 'page' do
     it 'render page without sauce' do
       assign(:latest_sauce, nil)

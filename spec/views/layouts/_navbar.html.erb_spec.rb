@@ -9,6 +9,13 @@ RSpec.describe 'layouts/_navbar', type: :view do
     expect(rendered).to have_selector('.navbar.sticky-top')
   end
 
+  it 'can search for sauces by name' do
+    FactoryBot.create(:sauce)
+    sauce = FactoryBot.create(:sauce, name: 'Different Sauce')
+    get '/sauces', params: { q: { name_cont: sauce.name, commit: 'Search' } }
+    expect(response.body).to have_selector('.sauce.card', count: 1, text: sauce.name)
+  end
+
   it 'renders logo' do
     assign(:q, Sauce.ransack(params[:q]))
     render
