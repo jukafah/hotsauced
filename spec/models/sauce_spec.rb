@@ -273,5 +273,20 @@ RSpec.describe 'Sauce', type: :model do
         expect(result).to be true
       end
     end
+
+    context 'when reviews exist' do
+      it 'can get average rating of a sauce' do
+        review_list = FactoryBot.build_list(:review, 10)
+        sauce = FactoryBot.create(:sauce, reviews: review_list)
+        expected_average = sauce.reviews.average(:rating)
+        expect(sauce.average_rating).to eq(expected_average)
+      end
+      it 'can get only sauces that have been reviewed' do
+        FactoryBot.create(:sauce)
+        reviewed_sauce = FactoryBot.create(:sauce)
+        FactoryBot.create(:review, sauce: reviewed_sauce)
+        expect(Sauce.reviewed).to contain_exactly(reviewed_sauce)
+      end
+    end
   end
 end

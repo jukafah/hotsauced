@@ -10,6 +10,15 @@ RSpec.describe 'Review', type: :model do
       result = review.save
       expect(result).to be true
     end
+
+    it 'users submits review for a different sauce' do
+      sauce_one = FactoryBot.create(:sauce)
+      sauce_two = FactoryBot.create(:sauce)
+      review_one = FactoryBot.create(:review, name: 'name', sauce: sauce_one)
+      review_two = FactoryBot.build(:review, name: 'name', sauce: sauce_two)
+      result = review_two.save
+      expect(result).to be true
+    end
   end
 
   context 'headline' do
@@ -75,10 +84,18 @@ RSpec.describe 'Review', type: :model do
     end
 
     context 'invalid when' do
-      it 'name does not exist' do
+      it 'user does not exist' do
         sauce = FactoryBot.create(:sauce)
         review = FactoryBot.build(:review, user: nil, sauce: sauce)
         result = review.save
+        expect(result).to be false
+      end
+
+      it 'user attempts to submit another review' do
+        sauce_one = FactoryBot.create(:sauce)
+        review_one = FactoryBot.create(:review, name: 'name', sauce: sauce_one)
+        review_two = FactoryBot.build(:review, name: 'name', sauce: sauce_one)
+        result = review_two.save
         expect(result).to be false
       end
 

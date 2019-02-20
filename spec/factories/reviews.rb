@@ -1,9 +1,10 @@
 FactoryBot.define do
   factory :review do
-    user { "Test user" }
+    # user { "Test user" }
+    sequence(:user) { |n| "User #{n}" }
     headline { "A headline!" }
     body { "Test body" }
-    rating { 1 }
+    rating { rand(1..5) }
     sauce { nil }
   end
 end

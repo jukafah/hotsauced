@@ -64,7 +64,7 @@ RSpec.describe 'Reviews', type: :request do
       end
     end
 
-    context 'by different users' do
+    context 'by different users on same sauce' do
       it 'creates successfully' do
         sauce = FactoryBot.create(:sauce)
         review_one = FactoryBot.build_stubbed(:review)

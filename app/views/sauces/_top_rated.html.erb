@@ -1,0 +1,11 @@
+<div id="top-rated">
+  <h4 class="font-italic" id="header">Top Rated</h4>
+  <ul class="list-group" id="top-sauce-list">
+    <% top_sauces.each do |sauce| %>
+      <li class="list-group-item list-group-item-action d-flex flex-row p-2 justify-content-between align-items-center" id="top-sauce">
+        <%= link_to sauce.name, sauce_path(sauce), class:'text-dark', id:'name' %>
+        <%= image_tag('rating_0.svg', width: '75', class: 'img-fluid sauce-rating', id: 'rating') %>
+      </li>
+    <% end %>
+  </ul>
+</div>
