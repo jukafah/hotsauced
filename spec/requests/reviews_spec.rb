@@ -87,9 +87,9 @@ RSpec.describe 'Reviews', type: :request do
     context 'when submitting duplicate review by same user' do
       it 'responds with 422' do
         sauce = FactoryBot.create(:sauce)
-        review = FactoryBot.create(:review, sauce: sauce)
-        duplicate_review = FactoryBot.build_stubbed(:review)
-        post sauce_reviews_path(sauce), params: { review: duplicate_review.attributes }
+        review = FactoryBot.build_stubbed(:review, sauce: sauce)
+        post sauce_reviews_path(sauce), params: { review: review.attributes }
+        post sauce_reviews_path(sauce), params: { review: review.attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

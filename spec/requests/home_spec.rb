@@ -8,19 +8,8 @@ RSpec.describe 'Home', type: :request do
     expect(response).to redirect_to(home_path)
   end
 
-  it 'test' do
-    FactoryBot.create_list(:sauce, 6)
-    get home_path format: :json
-    puts response
-    puts response.body
+  it '/home responds with 200' do
+    get home_path
+    expect(response).to have_http_status(:ok)
   end
-
-  #TODO: needs to be here to successfully limit and also provide order
-  # it 'is limited to 5' do
-  #   sauces = FactoryBot.create_list(:sauce, 6)
-  #   assign(:top_sauces, sauces)
-  #   render
-  #   expect(rendered).to have_selector('#top-sauce-list #top-sauce', count: 5)
-  # end
-  it 'is in descending order by rating'
 end

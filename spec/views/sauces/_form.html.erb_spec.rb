@@ -32,7 +32,6 @@ RSpec.describe 'sauces/_form', type: :view do
       sauce.save
       assign(:sauce, sauce)
       render
-      puts rendered
       expect(rendered).to have_selector('#name + .invalid-feedback', text: "Name can't be blank and is too short (minimum is 1 character).")
     end
   end

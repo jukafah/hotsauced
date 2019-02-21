@@ -25,7 +25,6 @@ RSpec.describe 'sauces/_latest_sauce', type: :view do
         sauce = FactoryBot.create(:sauce)
         assign(:latest_sauce, sauce)
         render
-        puts rendered
         expect(rendered).to have_selector('#description p', count: 1)
       end
 
