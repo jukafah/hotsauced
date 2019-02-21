@@ -31,7 +31,7 @@ RSpec.describe 'sauces/_top_rated', type: :view do
         expect(rendered).to have_selector('#rating-bottle', count: 1)
       end
 
-      it 'renders numerical rating' do
+      it 'renders numerical average rating' do
         sauce = FactoryBot.create(:sauce)
         FactoryBot.create(:review, sauce: sauce)
         assign(:top_rated, sauce)

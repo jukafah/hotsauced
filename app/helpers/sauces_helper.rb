@@ -2,7 +2,11 @@
 
 module SaucesHelper
   def default_image?(sauce)
-    return 'placeholder_bottle.svg' unless sauce.image.attached?
+    if sauce.image.attached?
+      sauce.image
+    else
+      'placeholder_bottle.svg'
+    end
   end
 
   def top_sauces

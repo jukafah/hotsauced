@@ -3,45 +3,40 @@
 require 'rails_helper'
 
 RSpec.describe 'sauces/index', type: :view do
-  it 'renders page content' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce-page.container')
+  context 'template' do
+    it 'renders' do
+      sauces = FactoryBot.create_list(:sauce, 2)
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#sauces-page')
+    end
   end
 
-  it 'renders with list of sauces' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce', count: 2)
+  context 'when found' do
+    it 'renders as list' do
+      sauces = FactoryBot.create_list(:sauce, 2)
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card', count: 2)
+    end
   end
 
-  it 'renders no results' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    sauces.clear
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.no-results', count: 1)
+  context 'when not found' do
+    it 'renders no results' do
+      sauces = FactoryBot.create_list(:sauce, 2)
+      sauces.clear
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#no-results')
+    end
   end
 
-  it 'renders Add New Sauce button' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    expect(rendered).to have_selector('#add-new-sauce', count: 1)
-  end
-
-  it 'renders Add New Sauce as link' do
-    sauce = FactoryBot.create(:sauce)
-    assign(:sauces, [sauce])
-    render
-    expect(rendered).to have_selector(:link_or_button, 'ADD NEW SAUCE')
+  context 'add new button' do
+    it 'displays text' do
+      sauce = FactoryBot.create(:sauce)
+      assign(:sauces, [sauce])
+      render
+      expect(rendered).to have_selector(:link_or_button, 'ADD NEW SAUCE')
+    end
   end
 end

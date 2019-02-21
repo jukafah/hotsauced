@@ -3,24 +3,30 @@
 require 'rails_helper'
 
 RSpec.describe 'sauces/new', type: :view do
-  it 'renders page content' do
-    sauce = FactoryBot.build(:sauce)
-    assign(:sauce, sauce)
-    render
-    expect(rendered).to have_selector('.new-sauce-page.container')
+  context 'template' do
+    it 'renders' do
+      sauce = FactoryBot.create(:sauce)
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#new-sauce-page')
+    end
   end
 
-  it 'renders ADD NEW SAUCE header' do
-    sauce = FactoryBot.build(:sauce)
-    assign(:sauce, sauce)
-    render
-    expect(rendered).to have_selector('.new-sauce-page.container h3', text: 'ADD NEW SAUCE', count: 1)
+  context 'header' do
+    it 'renders text' do
+      sauce = FactoryBot.create(:sauce)
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#header', text: 'ADD NEW SAUCE')
+    end
   end
 
-  it 'renders form' do
-    sauce = FactoryBot.build(:sauce)
-    assign(:sauce, sauce)
-    render
-    expect(rendered).to have_selector('#sauce-form')
+  context 'form' do
+    it 'renders' do
+      sauce = FactoryBot.create(:sauce)
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#sauce-form')
+    end
   end
 end
