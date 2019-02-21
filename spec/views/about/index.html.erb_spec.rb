@@ -3,20 +3,33 @@
 require 'rails_helper'
 
 RSpec.describe 'about/index', type: :view do
-  it 'renders heat statement'
-  it 'renders flavor statement'
-  it 'renders peppers statement'
-  it 'renders sauce statement'
-  it 'renders avatar'
-  it 'renders DEVLOPED BY'
-  it 'renders Steve Momcilovic'
-  it 'renders page content' do
-    render
-    expect(rendered).to have_selector('#about-page')
+  context 'template' do
+    it 'renders'
   end
 
-  it 'renders avatar' do
-    render
-    expect(rendered).to have_selector('#avatar')
+  context 'heat statement' do
+    it 'renders label'
+    it 'renders description'
+  end
+
+  context 'flavor statement' do
+    it 'renders label'
+    it 'renders description'
+  end
+
+  context 'peppers statement' do
+    it 'renders label'
+    it 'renders description'
+  end
+
+  context 'sauce statement' do
+    it 'renders label'
+    it 'renders description'
+  end
+
+  context 'developed by' do
+    it 'renders avatar'
+    it 'renders header'
+    it 'renders name'
   end
 end

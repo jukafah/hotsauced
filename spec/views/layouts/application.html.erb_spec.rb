@@ -3,40 +3,71 @@
 require 'rails_helper'
 
 RSpec.describe 'layouts/application', type: :view do
-  it 'renders with footer' do
-    assign(:q, Sauce.ransack(params[:q]))
-    render
-    expect(rendered).to have_selector('.footer', count: 1)
+  context 'template' do
+    it 'renders' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+    end
+
+    it 'renders with lang' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('html[lang="en"]')
+    end
   end
 
-  it 'renders with navbar' do
-    assign(:q, Sauce.ransack(params[:q]))
-    render
-    expect(rendered).to have_selector('.navbar', count: 1)
+  context 'head' do
+    it 'renders as utf-8' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('meta[charset="utf-8"]', visible: false)
+    end
+
+    it 'renders viewport content' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('meta[name="viewport"][content="width=device-width, initial-scale=1, shrink-to-fit=no"]', visible: false)
+    end
+
+    it 'renders title' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('title', text: 'HOT SAUCED', visible: false)
+    end
   end
 
-  it 'renders with title' do
-    assign(:q, Sauce.ransack(params[:q]))
-    render
-    expect(rendered).to have_selector('title', text: 'HOT SAUCED', visible: false)
-  end
+  context 'body' do
+    it 'renders wrapper' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('wrapper')
+    end
 
-  it 'renders with lang' do
-    assign(:q, Sauce.ransack(params[:q]))
-    render
-    expect(rendered).to have_selector('[lang="en"]')
-  end
+    it 'renders navbar' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('nav')
+    end
 
-  it 'renders with viewport' do
-    assign(:q, Sauce.ransack(params[:q]))
-    render
-    expect(rendered).to have_selector('[name="viewport"]', visible: false)
-  end
+    it 'renders main' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('main')
+    end
 
-  it 'renders viewport content' do
-    assign(:q, Sauce.ransack(params[:q]))
-    render
-    expect(rendered).to have_selector('[content="width=device-width, initial-scale=1, shrink-to-fit=no"]', visible: false)
+    it 'renders footer' do
+      q = Sauce.ransack(params[:q])
+      assign(:q, q)
+      render
+      expect(rendered).to have_selector('footer')
+    end
   end
-
 end

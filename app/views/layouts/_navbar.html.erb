@@ -1,5 +1,5 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand">[LOGO HERE]</a>
+  <a class="navbar-brand" id="hotsauced-logo">[LOGO HERE]</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -17,7 +17,7 @@
     </ul>
     <%= search_form_for @q, class: 'form-inline my-2 my-lg-0', id: 'search-form' do | form | %>
       <%= form.search_field :name_cont, class: 'form-control mr-sm-2', id: 'search-box' %>
-      <%= form.submit class: 'btn btn-secondary', id: 'submit' %>
+      <%= form.submit class: 'btn btn-secondary', id: 'submit-search' %>
     <% end %>
   </div>
 </nav>
