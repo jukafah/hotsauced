@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Sending contact email', type: :feature, js: true, driver: :selenium_chrome_headless do
+RSpec.describe 'Sending contact email', type: :feature, js: true, driver: :selenium_chrome do
   context 'when valid' do
     it 'displays modal and closing refreshes form' do
       visit about_path
@@ -10,9 +10,9 @@ RSpec.describe 'Sending contact email', type: :feature, js: true, driver: :selen
       fill_in id: 'email', with: 'someone@somewhere.com'
       fill_in id: 'body', with: 'this is a message'
       click_button id: 'submit-form'
-      expect(page).to have_selector('#modal-title', text: 'Message Sent')
+      expect(page).to have_selector('#title', text: 'Message Sent')
       page.evaluate_script("$('#modal-window').modal('show')")
-      click_button id: 'close-modal-button'
+      click_button id: 'close'
       expect(page).to have_selector('#name', text: '')
       expect(page).to have_selector('#email', text: '')
       expect(page).to have_selector('#body', text: '')
@@ -23,9 +23,9 @@ RSpec.describe 'Sending contact email', type: :feature, js: true, driver: :selen
     it 'form controls display as invalid entry' do
       visit about_path
       click_button id: 'submit-form'
-      expect(page).to have_selector('#name.form-control.is-invalid')
-      expect(page).to have_selector('#email.form-control.is-invalid')
-      expect(page).to have_selector('#body.form-control.is-invalid')
+      expect(page).to have_selector('#name.is-invalid')
+      expect(page).to have_selector('#email.is-invalid')
+      expect(page).to have_selector('#body.is-invalid')
     end
   end
 end

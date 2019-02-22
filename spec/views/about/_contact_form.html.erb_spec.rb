@@ -49,7 +49,8 @@ RSpec.describe 'about/_contact_form', type: :view do
   context 'name' do
     it 'renders control' do
       render
-      expect(rendered).to have_selector('#name') & have_selector('blah')
+      puts rendered
+      expect(rendered).to have_selector('#name').and have_no_selector('.is-invalid')
     end
 
     it 'renders placeholder text' do
@@ -62,14 +63,14 @@ RSpec.describe 'about/_contact_form', type: :view do
       contact.errors.add(:name)
       assign(:contact, contact)
       render
-      expect(rendered).to have_selector('#name.is-invalid')
+      expect(rendered).to have_selector('.is-invalid', count: 1).and have_selector('#name.is-invalid')
     end
   end
 
   context 'email address' do
     it 'renders control' do
       render
-      expect(rendered).to have_selector('#email')
+      expect(rendered).to have_selector('#email').and have_no_selector('.is-invalid')
     end
 
     it 'renders placeholder text' do
@@ -82,14 +83,14 @@ RSpec.describe 'about/_contact_form', type: :view do
       contact.errors.add(:email)
       assign(:contact, contact)
       render
-      expect(rendered).to have_selector('#email.is-invalid')
+      expect(rendered).to have_selector('.is-invalid', count: 1).and have_selector('#email.is-invalid')
     end
   end
 
   context 'body' do
     it 'renders control' do
       render
-      expect(rendered).to have_selector('#body')
+      expect(rendered).to have_selector('#body').and have_no_selector('.is-invalid')
     end
 
     it 'renders placeholder text' do
@@ -102,7 +103,7 @@ RSpec.describe 'about/_contact_form', type: :view do
       contact.errors.add(:body)
       assign(:contact, contact)
       render
-      expect(rendered).to have_selector('#body.is-invalid')
+      expect(rendered).to have_selector('.is-invalid', count: 1).and have_selector('#body.is-invalid')
     end
   end
 
