@@ -62,7 +62,7 @@ RSpec.describe 'sauces/_sauces', type: :view do
 
     it 'renders default if not attached' do
       sauce = FactoryBot.create(:sauce, image: nil)
-      assign(:sauce, sauce)
+      assign(:sauces, [sauce])
       render
       expect(rendered).to have_selector('#card #image')
     end
