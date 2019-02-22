@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Submit new review', type: :feature, js: true, driver: :selenium_chrome do
+RSpec.describe 'Submit new review', skip: true, type: :feature, js: true, driver: :selenium_chrome do
   let!(:sauce) { FactoryBot.create(:sauce) }
   let!(:review) { FactoryBot.create(:review, sauce: sauce) }
 

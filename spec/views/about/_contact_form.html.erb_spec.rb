@@ -49,7 +49,6 @@ RSpec.describe 'about/_contact_form', type: :view do
   context 'name' do
     it 'renders control' do
       render
-      puts rendered
       expect(rendered).to have_selector('#name').and have_no_selector('.is-invalid')
     end
 

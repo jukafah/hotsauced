@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Submit new sauce', type: :feature, js: true, driver: :selenium_chrome do
+RSpec.describe 'Submit new sauce', skip: true, type: :feature, js: true, driver: :selenium_chrome do
   context 'when valid' do
     it 'redirects to sauce display page' do
       visit sauces_path

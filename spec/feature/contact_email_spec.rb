@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Sending contact email', type: :feature, js: true, driver: :selenium_chrome do
+RSpec.describe 'Sending contact email', skip: true, type: :feature, js: true, driver: :selenium_chrome do
   context 'when valid' do
     it 'displays modal and closing refreshes form' do
       visit about_path
