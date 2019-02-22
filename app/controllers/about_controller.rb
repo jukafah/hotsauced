@@ -15,7 +15,7 @@ class AboutController < ApplicationController
         @response = @mailer.contact_email(@contact)
         render 'modal.js.erb'
       else
-        render 'errors.js.erb'
+        render 'errors.js.erb', status: 422
       end
     end
   end

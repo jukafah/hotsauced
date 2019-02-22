@@ -109,6 +109,15 @@ RSpec.describe 'reviews/show', type: :view do
         render
         expect(rendered).to have_selector('#sauce #image')
       end
+
+      it 'renders default if not attached' do
+        sauce = FactoryBot.create(:sauce, image: nil)
+        assign(:sauce, sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        assign(:review, review)
+        render
+        expect(rendered).to have_selector('#sauce #image')
+      end
     end
 
     context 'average rating info' do

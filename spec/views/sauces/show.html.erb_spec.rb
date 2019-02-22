@@ -19,6 +19,13 @@ RSpec.describe 'sauces/show', type: :view do
       render
       expect(rendered).to have_selector('#image')
     end
+
+    it 'renders default if not attached' do
+      sauce = FactoryBot.create(:sauce, image: nil)
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#image')
+    end
   end
 
   context 'name' do

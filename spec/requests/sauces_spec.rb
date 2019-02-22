@@ -57,6 +57,12 @@ RSpec.describe 'Sauces', type: :request do
         post sauces_path, params: { sauce: sauce.attributes }
         expect(response).to redirect_to(sauce_path(id: '1'))
       end
+
+      it 'does not require an image' do
+        sauce = FactoryBot.build_stubbed(:sauce, image: nil)
+        post sauces_path, params: { sauce: sauce.attributes }
+        expect(response).to redirect_to(sauce_path(id: '1'))
+      end
     end
 
     context 'with invalid parameters' do
