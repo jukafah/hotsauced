@@ -1,74 +1,99 @@
 require 'rails_helper'
 
 RSpec.describe 'sauces/_sauces', type: :view do
-  it 'renders cards' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card', count: 2)
+  context 'sauce cards' do
+    it 'render cards' do
+      sauces = FactoryBot.create_list(:sauce, 10)
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card', count: 10)
+    end
   end
 
-  it 'renders name' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card #name', text: sauce_one.name)
+  context 'name' do
+    it 'renders text' do
+      sauces = FactoryBot.create_list(:sauce, 5)
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card #name', count: 1, text: sauces[0].name)
+    end
+
+    it 'text truncates at 64 characters' do
+      sauces = FactoryBot.create_list(:sauce, 5)
+      sauces[0].name = 'a' * 65
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card #name', text: 'a' * 61 + '...' )
+    end
+
+    it 'renders as link' do
+      sauces = FactoryBot.create_list(:sauce, 5)
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_link(sauces[0].name)
+    end
   end
 
-  it 'renders description' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card #description', text: sauce_one.description)
+  context 'description' do
+    it 'renders text' do
+      sauces = FactoryBot.create_list(:sauce, 5)
+      sauces[0].description = 'different description'
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card #description', count: 1, text: sauces[0].description)
+    end
+
+    it 'text truncates at 250 characters' do
+      sauces = FactoryBot.create_list(:sauce, 5)
+      sauces[0].description = 'a' * 251
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card #description', text: 'a' * 247 + '...')
+    end
   end
 
-  it 'renders image' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card #image', count: 2)
+  context 'image' do
+    it 'renders' do
+      sauces = FactoryBot.create_list(:sauce, 5)
+      assign(:sauces, sauces)
+      render
+      expect(rendered).to have_selector('#card #image', count: 5)
+    end
+
+    it 'renders default if not attached' do
+      sauce = FactoryBot.create(:sauce, image: nil)
+      assign(:sauces, [sauce])
+      render
+      expect(rendered).to have_selector('#card #image')
+    end
   end
 
-  it 'images render centered' do
-    sauce = FactoryBot.create(:sauce)
-    sauces = [sauce]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.col-sm-2.d-flex.align-items-center.my-3.mx-auto.d-block.justify-content-center')
-  end
+  context 'rating' do
+    context 'when exists' do
+      it 'renders numerical average rating' do
+        sauces = FactoryBot.create_list(:sauce, 1)
+        FactoryBot.create(:review, sauce: sauces[0])
+        assign(:sauces, sauces)
+        render
+        expect(rendered).to have_selector('#card #rating-info #average-rating')
+      end
 
-  it 'summary truncates at 250 characters' do
-    description = 'a' * 251
-    sauce = FactoryBot.create(:sauce, description: description)
-    sauces = [sauce]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card #description', text: 'a' * 247 + '...')
-  end
+      it 'renders bottles' do
+        sauces = FactoryBot.create_list(:sauce, 1)
+        FactoryBot.create(:review, sauce: sauces[0])
+        assign(:sauces, sauces)
+        render
+        expect(rendered).to have_selector('#card #rating-info #rating-bottle')
+      end
+    end
 
-  it 'name truncates at 64 characters' do
-    name = 'a' * 65
-    sauce = FactoryBot.create(:sauce, name: name)
-    sauces = [sauce]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card #name', text: 'a' * 61 + '...' )
-  end
-
-  it 'renders rating' do
-    sauce_one = FactoryBot.create(:sauce)
-    sauce_two = FactoryBot.create(:sauce, name: 'A Different Sauce')
-    sauces = [sauce_one, sauce_two]
-    assign(:sauces, sauces)
-    render
-    expect(rendered).to have_selector('.sauce.card #rating')
+    context 'when not exists' do
+      it 'does not render rating info' do
+        sauces = FactoryBot.create_list(:sauce, 1)
+        assign(:sauces, sauces)
+        render
+        expect(rendered).to_not have_selector('#card #rating-info')
+      end
+    end
   end
 end

@@ -27,7 +27,7 @@ class SaucesController < ApplicationController
     if @sauce.save
       redirect_to @sauce
     else
-      render 'new'
+      render 'new', status: 422
     end
   end
 
@@ -37,7 +37,7 @@ class SaucesController < ApplicationController
     if @sauce.update(sauce_params)
       redirect_to @sauce
     else
-      render 'edit'
+      render 'edit', status: 422
     end
   end
 

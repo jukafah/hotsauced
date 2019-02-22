@@ -1,12 +1,11 @@
+require 'rspec/expectations'
 require 'capybara/rspec'
 require 'simplecov'
 require 'simplecov-cobertura'
 
 SimpleCov.start 'rails' do
-  minimum_coverage 85
+  minimum_coverage 90
 end
-
-# puts "CI ENV: #{ENV['CI']}"
 
 SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new(
   [
@@ -82,7 +81,6 @@ RSpec.configure do |config|
   #   - http://www.teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/
   #   - http://rspec.info/blog/2014/05/notable-changes-in-rspec-3/#zero-monkey-patching-mode
   config.disable_monkey_patching!
-
 
   # Add capybara matchers to request
   config.include Capybara::RSpecMatchers, :type => :request

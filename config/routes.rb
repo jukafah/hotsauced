@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  match '/404', to: 'errors#not_found', via: :all
-  match '500', to: 'errors#internal_server_error', via: :all
-
-  get '/' => redirect('/home')
+  match '/404', to: 'errors#not_found', via: :all, as: 'not_found'
+  get '/', to: redirect('/home'), as: 'root'
   get 'about', to: 'about#index'
   post 'about/contact', to: 'about#create'
   get 'home', to: 'home#index'

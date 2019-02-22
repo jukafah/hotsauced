@@ -3,75 +3,166 @@
 require 'rails_helper'
 
 RSpec.describe 'Reviews', type: :request do
-  it 'can be duplicates' do
-    sauce = FactoryBot.create(:sauce)
-    FactoryBot.create(:review, sauce: sauce)
-    FactoryBot.create(:review, sauce: sauce)
-    get "/sauces/#{sauce.id}"
-    expect(response).to have_http_status(:ok)
-  end
+  context 'reviews listing' do
+    context 'when reviews for a sauce exist' do
+      it 'responds with 200' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        get sauce_reviews_path(sauce)
+        expect(response).to have_http_status(:ok)
+      end
+    end
 
-  context 'new review page' do
-    it 'renders page' do
-      sauce = FactoryBot.create(:sauce)
-      get "/sauces/#{sauce.id}/reviews/new"
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to have_selector('#new-review-page')
+    context' when reviews for a sauce do not exist' do
+      it 'responds with 200' do
+        sauce = FactoryBot.create(:sauce)
+        get sauce_reviews_path(sauce)
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 
   context 'review display page' do
-    it 'renders page' do
-      sauce = FactoryBot.create(:sauce)
-      review = FactoryBot.create(:review, sauce: sauce)
-      get "/sauces/#{sauce.id}/reviews/#{review.id}"
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to have_selector('#review-display-page')
+    context 'when resource is found' do
+      it 'responds with 200' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        get sauce_review_path(sauce, review)
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when resource is not found' do
+      it 'raises record not found' do
+        sauce = FactoryBot.create(:sauce)
+        expect { get sauce_review_path(sauce, id: '1') }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
-  context 'when valid' do
-    it 'creates successfully' do
-      sauce = FactoryBot.create(:sauce)
-      post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'Some Person', headline: 'A headline!', body: 'Some Comment', rating: 5 } }
-      expect(response).to redirect_to("/sauces/#{sauce.id}")
+  context 'submitting a new review' do
+    context 'when resource is found' do
+      it 'responds with 200' do
+        sauce = FactoryBot.create(:sauce)
+        get new_sauce_review_path(sauce)
+        expect(response).to have_http_status(:ok)
+      end
     end
 
-    it 'it displays on page after posting' do
-      sauce = FactoryBot.create(:sauce)
-      post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'Some Person', headline: 'A headline!', body: 'Some Comment', rating: 5 } }
-      get "/sauces/#{sauce.id}"
-      expect(response.body).to have_selector('#review', count: 1)
+    context 'when sauce is not found' do
+      it 'it raises record not found' do
+        expect { get new_sauce_review_path(sauce_id: '1') }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'with valid parameters' do
+      it 'review is created and redirects to sauce display page' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.build_stubbed(:review)
+        post sauce_reviews_path(sauce), params: { review: review.attributes }
+        expect(response).to redirect_to(sauce_path(sauce))
+      end
+    end
+
+    context 'by different users on same sauce' do
+      it 'creates successfully' do
+        sauce = FactoryBot.create(:sauce)
+        review_one = FactoryBot.build_stubbed(:review)
+        review_two = FactoryBot.build_stubbed(:review, user: 'different user')
+        post sauce_reviews_path(sauce), params: { review: review_one.attributes }
+        expect(response).to redirect_to(sauce_path(sauce))
+        post sauce_reviews_path(sauce), params: { review: review_two.attributes }
+        expect(response).to redirect_to(sauce_path(sauce))
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'responds with 422' do
+        sauce = FactoryBot.create(:sauce)
+        post sauce_reviews_path(sauce), params: { review: { headline: 'A' } }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'when submitting duplicate review by same user' do
+      it 'responds with 422' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.build_stubbed(:review, sauce: sauce)
+        post sauce_reviews_path(sauce), params: { review: review.attributes }
+        post sauce_reviews_path(sauce), params: { review: review.attributes }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'when review parameters are missing' do
+      it 'raises parameter missing' do
+        sauce = FactoryBot.create(:sauce)
+        expect { post sauce_reviews_path(sauce), params: {} }.to raise_error(ActionController::ParameterMissing)
+      end
     end
   end
 
-  it 'are invalid without user' do
-    sauce = FactoryBot.create(:sauce)
-    post "/sauces/#{sauce.id}/reviews", params: { review: { user: nil, headline: 'A headline!', body: 'Some Comment', rating: 3 } }
-    expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 1 character)")
+  context 'updating a review' do
+    context 'when resource is found' do
+      it 'responds with 200' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        get edit_sauce_review_path(sauce, review)
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when resource is not found' do
+      it 'raises record not found' do
+        sauce = FactoryBot.create(:sauce)
+        expect { get edit_sauce_review_path(sauce, id: '1') }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'when updated with valid parameter' do
+      it 'redirects to sauce display page' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        patch sauce_review_path(sauce, review), params: { review: { body: 'A new body' } }
+        expect(response).to redirect_to(sauce_path(sauce))
+      end
+    end
+
+    context 'when updated with invalid parameter' do
+      it 'responds with 422' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        patch sauce_review_path(sauce, review), params: { review: { body: 'A' } }
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context 'when updating name' do
+      it 'responds with 422' do
+        expect_any_instance_of(Review).not_to receive(:update).with(user: 'new')
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        patch sauce_review_path(sauce, review), params: { review: { user: 'new', rating: 1, headline: 'new', body: 'new',  } }
+      end
+    end
   end
 
-  it 'are invalid without body' do
-    sauce = FactoryBot.create(:sauce)
-    post "/sauces/#{sauce.id}/reviews", params: { review: { user: 'A great tasting sauce!', headline: 'A headline!', body: nil, rating: 5 } }
-    expect(response.body).to have_selector('.invalid-feedback', text: "can't be blank and is too short (minimum is 2 characters)")
-  end
+  context 'deleting a review' do
+    context 'when resource found' do
+      it 'deletes from database' do
+        sauce = FactoryBot.create(:sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        delete sauce_review_path(sauce, review)
+        expect(response).to redirect_to(sauce_path(sauce))
+        expect { get sauce_review_path(sauce, review) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
 
-  it 'body can be edited'
-
-  it 'name can not be edited' do
-    sauce = FactoryBot.create(:sauce)
-    review = FactoryBot.create(:review, sauce: sauce)
-    put "/sauces/#{sauce.id}/reviews/#{review.id}", params: { review: { user: 'Different Name' } }
-    expect(response).to redirect_to("/sauces/#{sauce.id}")
-  end
-
-  it 'can be deleted'
-
-  it 'deleted review is no longer displayed' do
-    review = FactoryBot.build(:review)
-    sauce = FactoryBot.create(:sauce, reviews: [review])
-    delete "/sauces/#{sauce.id}/reviews/#{review.id}"
-    expect(response).to have_no_selector('#review')
+    context 'when resource not found' do
+      it 'raises record not found' do
+        sauce = FactoryBot.create(:sauce)
+        expect { get sauce_review_path(sauce, id: '1') }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 end

@@ -5,20 +5,17 @@ class AboutController < ApplicationController
     @contact = Contact.new
   end
 
-  def new
-    @contact = Contact.new
-  end
-
   def create
     @contact = Contact.new(contact_params)
     respond_to do |format|
+      format.html
       format.js
       if @contact.valid?
         @mailer = ContactMailer.new
         @response = @mailer.contact_email(@contact)
         render 'modal.js.erb'
       else
-        render 'errors.js.erb'
+        render 'errors.js.erb', status: 422
       end
     end
   end

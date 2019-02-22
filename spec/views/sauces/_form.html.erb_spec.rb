@@ -3,131 +3,181 @@
 require 'rails_helper'
 
 RSpec.describe 'sauces/_form', type: :view do
-  context 'sauce form' do
+  context 'template' do
     it 'renders' do
-      sauce = FactoryBot.build(:sauce)
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#sauce-form')
     end
+  end
 
-    it 'renders name' do
-      sauce = FactoryBot.build(:sauce)
+  context 'name' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#name')
     end
 
-    it 'renders name error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:name, 'cannot be blank')
+    it 'renders placeholder text' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('.invalid-feedback')
+      expect(rendered).to have_selector("input[placeholder='Name']")
     end
 
-    it 'renders description' do
-      sauce = FactoryBot.build(:sauce)
+    it 'renders error' do
+      sauce = Sauce.new
+      sauce.save
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('#description')
+      expect(rendered).to have_selector('#name + .invalid-feedback', text: "Name can't be blank and is too short (minimum is 1 character).")
     end
+  end
 
-    it 'renders description error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:description, 'cannot be blank')
-      assign(:sauce, sauce)
-      render
-      expect(rendered).to have_selector('.invalid-feedback')
-    end
-
-    it 'renders description' do
-      sauce = FactoryBot.build(:sauce)
+  context 'description' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#description')
     end
 
-    it 'renders description error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:description, 'cannot be blank')
+    it 'renders placeholder text' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('.invalid-feedback')
+      expect(rendered).to have_selector("textarea[placeholder='Description']")
     end
 
-    it 'renders pepper' do
-      sauce = FactoryBot.build(:sauce)
+    it 'renders error' do
+      sauce = Sauce.new
+      sauce.save
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#description + .invalid-feedback', text: "Description can't be blank and is too short (minimum is 12 characters).")
+    end
+  end
+
+  context 'pepper' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#pepper')
     end
 
-    it 'renders pepper error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:pepper, 'cannot be blank')
+    it 'renders placeholder text' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('.invalid-feedback')
+      expect(rendered).to have_selector("input[placeholder='Pepper']")
     end
 
-    it 'renders ingredients' do
-      sauce = FactoryBot.build(:sauce)
+    it 'renders error' do
+      sauce = Sauce.new
+      sauce.save
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#pepper + .invalid-feedback', text: "Pepper can't be blank and is too short (minimum is 2 characters).")
+    end
+  end
+
+  context 'ingredients' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#ingredients')
     end
 
-    it 'renders ingredients error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:ingredients, 'cannot be blank')
+    it 'renders placeholder text' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('.invalid-feedback')
+      expect(rendered).to have_selector("textarea[placeholder='Ingredients']")
     end
 
-    it 'renders brand' do
-      sauce = FactoryBot.build(:sauce)
+    it 'renders error' do
+      sauce = Sauce.new
+      sauce.save
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#ingredients + .invalid-feedback', text: "Ingredients can't be blank and is too short (minimum is 4 characters).")
+    end
+  end
+
+  context 'brand' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#brand')
     end
 
-    it 'renders brand error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:brand, 'cannot be blank')
+    it 'renders placeholder text' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('.invalid-feedback')
+      expect(rendered).to have_selector("input[placeholder='Brand']")
     end
 
-    it 'renders origin' do
-      sauce = FactoryBot.build(:sauce)
+    it 'renders error' do
+      sauce = Sauce.new
+      sauce.save
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#brand + .invalid-feedback', text: "Brand can't be blank and is too short (minimum is 2 characters).")
+    end
+  end
+
+  context 'origin' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#origin')
     end
 
-    it 'renders origin error' do
-      sauce = FactoryBot.build(:sauce)
-      sauce.errors.add(:origin, 'cannot be blank')
+    it 'renders placeholder text' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('.invalid-feedback')
+      expect(rendered).to have_selector("input[placeholder='Origin']")
     end
 
-    it 'renders image upload' do
-      sauce = FactoryBot.build(:sauce)
+    it 'renders error' do
+      sauce = Sauce.new
+      sauce.save
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_selector('#origin + .invalid-feedback', text: "Origin can't be blank and is too short (minimum is 2 characters).")
+    end
+  end
+
+  context 'image' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
       expect(rendered).to have_selector('#image-upload')
     end
+  end
 
-    it 'renders submit button' do
-      sauce = FactoryBot.build(:sauce)
+  context 'submit' do
+    it 'renders control' do
+      sauce = Sauce.new
       assign(:sauce, sauce)
       render
-      expect(rendered).to have_selector('#submit')
+      expect(rendered).to have_selector('#submit-form')
+    end
+
+    it 'renders as button' do
+      sauce = Sauce.new
+      assign(:sauce, sauce)
+      render
+      expect(rendered).to have_button('Submit')
     end
   end
 end

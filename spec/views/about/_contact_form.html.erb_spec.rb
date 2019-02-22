@@ -1,74 +1,115 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-# TODO: reimplement tests for form
 RSpec.describe 'about/_contact_form', type: :view do
-  it 'renders header'
-  it 'renders placeholder text for name'
-  it 'renders placeholder text for email'
-  it 'renders placeholder text for body'
-  it 'renders name input'
-  it 'renders email input'
-  it 'renders body input'
-  it 'renders submit button'
-  it 'renders contact description'
-  it 'renders linkedin link'
-  it 'renders github link'
-
-  context 'when invalid' do
-    it 'renders error styling for name'
-    it 'renders error styling for email'
-    it 'renders error styling for body'
+  context 'template' do
+    it 'renders' do
+      render
+      expect(rendered).to have_selector('#contact-section')
+    end
   end
 
+  context 'header' do
+    it 'renders text' do
+      render
+      expect(rendered).to have_selector('#contact-section #header', text: 'CONTACT')
+    end
+  end
 
-  # it 'renders CONTACT header' do
-  #   message = FactoryBot.build(:message)
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.contact-form h2', text: 'CONTACT')
-  # end
+  context 'body' do
+    it 'renders text' do
+      render
+      expect(rendered).to have_selector('#contact-section #body p')
+    end
+  end
 
-  # it 'renders contact form' do
-  #   message = FactoryBot.build(:message, name: nil, email: nil, body: nil)
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.contact-form')
-  # end
+  context 'links' do
+    it 'renders github icon' do
+      render
+      expect(rendered).to have_selector('#github')
+    end
 
-  # it 'renders name' do
-  #   message = FactoryBot.build(:message)
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.contact-form #name')
-  # end
+    it 'renders github link' do
+      render
+      expect(rendered).to have_selector('a #github')
+    end
 
-  # it 'renders email' do
-  #   message = FactoryBot.build(:message)
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.contact-form #email')
-  # end
+    it 'renders linkedin icon' do
+      render
+      expect(rendered).to have_selector('#linkedin')
+    end
 
-  # it 'renders body' do
-  #   message = FactoryBot.build(:message)
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.contact-form #body')
-  # end
+    it 'renders linkedin link' do
+      render
+      expect(rendered).to have_selector('a #linkedin')
+    end
+  end
 
-  # it 'renders submit button' do
-  #   message = FactoryBot.build(:message)
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.contact-form #submit')
-  # end
+  context 'name' do
+    it 'renders control' do
+      render
+      expect(rendered).to have_selector('#name').and have_no_selector('.is-invalid')
+    end
 
-  # it 'renders errors correctly' do
-  #   message = FactoryBot.build(:message, name: nil)
-  #   message.errors.add(:name, "can't be blank")
-  #   assign(:message, message)
-  #   render
-  #   expect(rendered).to have_selector('.error-explanation', text: "Name can't be blank")
-  # end
+    it 'renders placeholder text' do
+      render
+      expect(rendered).to have_selector("input[placeholder='YOUR NAME']")
+    end
 
+    it 'renders error' do
+      contact = Contact.new
+      contact.errors.add(:name)
+      assign(:contact, contact)
+      render
+      expect(rendered).to have_selector('.is-invalid', count: 1).and have_selector('#name.is-invalid')
+    end
+  end
+
+  context 'email address' do
+    it 'renders control' do
+      render
+      expect(rendered).to have_selector('#email').and have_no_selector('.is-invalid')
+    end
+
+    it 'renders placeholder text' do
+      render
+      expect(rendered).to have_selector("input[placeholder='YOUR E-MAIL ADDRESS']")
+    end
+
+    it 'renders error' do
+      contact = Contact.new
+      contact.errors.add(:email)
+      assign(:contact, contact)
+      render
+      expect(rendered).to have_selector('.is-invalid', count: 1).and have_selector('#email.is-invalid')
+    end
+  end
+
+  context 'body' do
+    it 'renders control' do
+      render
+      expect(rendered).to have_selector('#body').and have_no_selector('.is-invalid')
+    end
+
+    it 'renders placeholder text' do
+      render
+      expect(rendered).to have_selector("textarea[placeholder='YOUR MESSAGE']")
+    end
+
+    it 'renders error' do
+      contact = Contact.new
+      contact.errors.add(:body)
+      assign(:contact, contact)
+      render
+      expect(rendered).to have_selector('.is-invalid', count: 1).and have_selector('#body.is-invalid')
+    end
+  end
+
+  context 'submit button' do
+    it 'renders' do
+      render
+      expect(rendered).to have_selector('#submit-form')
+    end
+  end
 end
