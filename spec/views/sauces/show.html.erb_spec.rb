@@ -125,7 +125,7 @@ RSpec.describe 'sauces/show', type: :view do
         FactoryBot.create(:review, sauce: sauce)
         assign(:sauce, sauce)
         render
-        expect(rendered).to have_selector('#rating-overview #rating-bottle')
+        expect(rendered).to have_selector('#rating-overview #rating-bottles')
       end
 
       it 'renders numerical average rating' do
@@ -134,6 +134,14 @@ RSpec.describe 'sauces/show', type: :view do
         assign(:sauce, sauce)
         render
         expect(rendered).to have_selector('#rating-overview #average-rating', text: sauce.average_rating)
+      end
+
+      it 'number of reviews is a link' do
+        sauce = FactoryBot.create(:sauce)
+        FactoryBot.create(:review, sauce: sauce)
+        assign(:sauce, sauce)
+        render
+        expect(rendered).to have_selector('#rating-overview a#number-of-reviews')
       end
     end
 
