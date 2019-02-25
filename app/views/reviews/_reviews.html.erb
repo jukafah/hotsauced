@@ -1,35 +1,29 @@
 <div class="row" id="reviews-section">
   <div class="col-sm" id="rating-overview">
-    <div class="d-flex justify-content-between py-2">
-      <div>
-        <%= image_tag('rating_0.svg', width: '100', class: 'img-fluid', id: 'rating-bottles') %>
-      </div>
-      <div class="text-muted" id="average-rating"><%= average_of(@sauce.reviews) %> out of 5 (<%= pluralize(@sauce.reviews.count, 'review')%>)</div>
+    <h5><%= link_to pluralize(@sauce.reviews.count, 'review'), sauce_reviews_path(@sauce), class: 'text-dark', id: 'number-of-reviews' %> </h5>
+    <div class="d-flex align-items-center py-2">
+      <%= image_tag('rating_0.svg', width: '120', class: 'img-fluid', id: 'rating-bottles') %>
+      <div class="text-muted ml-3" id="average-rating"><%= average_of(@sauce.reviews) %> out of 5</div>
     </div>
     <table class="table-borderless table-hover table-sm w-100 my-2">
       <tbody>
         <tr id="5-rating-summary">
-          <td id="number">5</td>
           <td class="align-text-center"><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid', id: 'rating-bottles') %></td>
           <td class="text-right" id="percent-of-reviews"><%= percent_of(@sauce.reviews, 5) %>%</td>
         </tr>
         <tr id="4-rating-summary">
-          <td id="number">4</td>
           <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid', id: 'rating-bottles') %></td>
           <td class="text-right" id="percent-of-reviews"><%= percent_of(@sauce.reviews, 4) %>%</td>
         </tr>
         <tr id="3-rating-summary">
-          <td id="number">3</td>
           <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid', id: 'rating-bottles') %></td>
           <td class="text-right" id="percent-of-reviews"><%= percent_of(@sauce.reviews, 3) %>%</td>
         </tr>
         <tr id="2-rating-summary">
-          <td id="number">2</td>
           <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid', id: 'rating-bottles') %></td>
           <td class="text-right" id="percent-of-reviews"><%= percent_of(@sauce.reviews, 2) %>%</td>
         </tr>
         <tr id="1-rating-summary">
-          <td id="number">1</td>
           <td><%= image_tag('rating_0.svg', width: '75', class: 'img-fluid', id: 'rating-bottles') %></td>
           <td class="text-right" id="percent-of-reviews"><%= percent_of(@sauce.reviews, 1) %>%</td>
         </tr>

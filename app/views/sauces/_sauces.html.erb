@@ -11,7 +11,7 @@
           <% if sauce.reviews.exists? %>
             <div class="align-self-end mt-auto" id="rating-info">
               <%= image_tag('rating_0.svg', size: '120x75', class: 'img-fluid', id: 'rating-bottle') %>
-              <span class="text-muted ml-1" id="average-rating">(<%= sauce.average_rating %>)</span>
+              <span class="text-muted align-bottom ml-1" id="average-rating">(<%= sauce.average_rating %>)</span>
             </div>
           <% end %>
         </div>

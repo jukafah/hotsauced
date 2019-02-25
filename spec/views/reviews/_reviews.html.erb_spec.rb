@@ -33,6 +33,15 @@ RSpec.describe 'reviews/_reviews', type: :view do
         render
         expect(rendered).to have_selector('#rating-overview #average-rating')
       end
+
+      it 'number of reviews is a link' do
+        sauce = FactoryBot.create(:sauce)
+        assign(:sauce, sauce)
+        review = FactoryBot.create(:review, sauce: sauce)
+        assign(:review, review)
+        render
+        expect(rendered).to have_selector('#rating-overview a#number-of-reviews')
+      end
     end
 
     context '5 bottle rating' do
@@ -43,15 +52,6 @@ RSpec.describe 'reviews/_reviews', type: :view do
         assign(:review, review)
         render
         expect(rendered).to have_selector('#rating-overview #5-rating-summary')
-      end
-
-      it 'renders number' do
-        sauce = FactoryBot.create(:sauce)
-        assign(:sauce, sauce)
-        review = FactoryBot.create(:review, sauce: sauce)
-        assign(:review, review)
-        render
-        expect(rendered).to have_selector('#rating-overview #5-rating-summary #number', text: '5')
       end
 
       it 'renders rating bottles' do
@@ -83,15 +83,6 @@ RSpec.describe 'reviews/_reviews', type: :view do
         expect(rendered).to have_selector('#rating-overview #4-rating-summary')
       end
 
-      it 'renders number' do
-        sauce = FactoryBot.create(:sauce)
-        assign(:sauce, sauce)
-        review = FactoryBot.create(:review, sauce: sauce)
-        assign(:review, review)
-        render
-        expect(rendered).to have_selector('#rating-overview #4-rating-summary #number', text: '4')
-      end
-
       it 'renders rating bottles' do
         sauce = FactoryBot.create(:sauce)
         assign(:sauce, sauce)
@@ -119,15 +110,6 @@ RSpec.describe 'reviews/_reviews', type: :view do
         assign(:review, review)
         render
         expect(rendered).to have_selector('#rating-overview #3-rating-summary')
-      end
-
-      it 'renders number' do
-        sauce = FactoryBot.create(:sauce)
-        assign(:sauce, sauce)
-        review = FactoryBot.create(:review, sauce: sauce)
-        assign(:review, review)
-        render
-        expect(rendered).to have_selector('#rating-overview #3-rating-summary #number', text: '3')
       end
 
       it 'renders rating bottles' do
@@ -159,15 +141,6 @@ RSpec.describe 'reviews/_reviews', type: :view do
         expect(rendered).to have_selector('#rating-overview #2-rating-summary')
       end
 
-      it 'renders number' do
-        sauce = FactoryBot.create(:sauce)
-        assign(:sauce, sauce)
-        review = FactoryBot.create(:review, sauce: sauce)
-        assign(:review, review)
-        render
-        expect(rendered).to have_selector('#rating-overview #2-rating-summary #number', text: '2')
-      end
-
       it 'renders rating bottles' do
         sauce = FactoryBot.create(:sauce)
         assign(:sauce, sauce)
@@ -195,15 +168,6 @@ RSpec.describe 'reviews/_reviews', type: :view do
         assign(:review, review)
         render
         expect(rendered).to have_selector('#rating-overview #1-rating-summary')
-      end
-
-      it 'renders number' do
-        sauce = FactoryBot.create(:sauce)
-        assign(:sauce, sauce)
-        review = FactoryBot.create(:review, sauce: sauce)
-        assign(:review, review)
-        render
-        expect(rendered).to have_selector('#rating-overview #1-rating-summary #number', text: '1')
       end
 
       it 'renders rating bottles' do

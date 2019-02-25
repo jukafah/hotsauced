@@ -1,7 +1,7 @@
 <div class="container" id="review-display-page">
   <h3 id="header">REVIEW</h3>
   <div class="row my-2">
-    <div class="col-sm-8" id="review">
+    <div class="col-md-8" id="review">
       <div class="my-2 border-bottom font-weight-bold" id="headline">
         <%= @review.headline %>
       </div>
@@ -15,7 +15,7 @@
         <%= @review.user %>
       </div>
     </div>
-    <div class="col-sm-4 d-flex flex-column" id="sauce">
+    <div class="col-md-4 d-flex flex-column" id="sauce">
       <div class="my-2 text-center font-weight-bold">
         <%= link_to @sauce.name, sauce_path(@sauce), class: 'text-dark', id: 'name' %>
       </div>
