@@ -1,5 +1,5 @@
-<div id="review-form">
-  <%= form_with(model: [@sauce, @review], local: true) do |review| %>
+
+  <%= form_with model: [@sauce, @review], local: true, id: 'review-form' do |review| %>
     <div class="form-group my-4">
       <%= review.text_field :user, placeholder: 'User', class: 'form-control', id: 'user' %>
       <% if @review.errors.key?('user') %>
@@ -34,4 +34,3 @@
     </div>
     <%= review.submit 'Submit', class: 'btn btn-secondary my-2', id: 'submit-form' %>
   <% end %>
-</div>

@@ -24,11 +24,29 @@ class SaucesController < ApplicationController
   def create
     @sauce = Sauce.new(sauce_params)
 
-    if @sauce.save
-      redirect_to @sauce
-    else
-      render 'new', status: 422
+    respond_to do |format|
+      format.html
+      format.js
+      if @sauce.save
+        redirect_to @sauce
+      else
+        # @sauce.errors.each do |error|
+        #   puts error.inspect
+
+        # end
+        # @sauce.errors.each{ |attribute, message| puts "#{attribute} - #{message}" }
+        @sauce.errors.messages.each do |key, value|
+          puts "#{key} #{value.join(' and ')}"
+        end
+        render 'errors.js.erb', status: 422
+      end
     end
+
+    # if @sauce.save
+    #   redirect_to @sauce
+    # else
+    #   render 'new', status: 422
+    # end
   end
 
   def update

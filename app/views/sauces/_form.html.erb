@@ -1,5 +1,5 @@
-<div id="sauce-form">
-  <%= form_with model: @sauce, local: true do |sauce| %>
+
+  <%= form_with model: @sauce, class: 'needs-validation', id: 'sauce-form' do |sauce| %>
     <div class="form-group my-4">
       <%= sauce.text_field :name, placeholder: 'Name', class: 'form-control', id: 'name' %>
       <% if @sauce.errors.key?('name') %>
@@ -53,4 +53,3 @@
     </div>
     <%= sauce.submit 'Submit', class: 'btn btn-secondary', id: 'submit-form' %>
   <% end %>
-</div>
