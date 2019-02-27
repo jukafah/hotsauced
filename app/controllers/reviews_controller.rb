@@ -26,7 +26,8 @@ class ReviewsController < ApplicationController
       if @review.save
         redirect_to sauce_path(@sauce)
       else
-        render 'errors.js.erb', status: 422
+        @errors = @review.errors
+        render 'errors/validation_errors.js.erb', status: 422
       end
     end
   end
@@ -53,18 +54,6 @@ class ReviewsController < ApplicationController
     redirect_to sauce_path(@sauce)
   end
 
-  def validate
-    sauce = Sauce.find(params[:sauce_id])
-    review = sauce.reviews.new(validation_params)
-    review.valid?
-    field = validation_params.keys.first.try(:to_sym)
-    is_valid = !review.errors.include?(field)
-    error_message = review.errors[field].join(' and ').prepend("#{field.to_s} ").concat('.').capitalize
-    respond_to do |format|
-      format.json { render json: { field_name: field, valid: is_valid, message: error_message} }
-    end
-  end
-
   private
 
   def review_params
@@ -73,9 +62,5 @@ class ReviewsController < ApplicationController
 
   def review_update_params
     params.require(:review).permit(:headline, :body, :rating)
-  end
-
-  def validation_params
-    params.permit(:user, :headline, :body, :rating)
   end
 end

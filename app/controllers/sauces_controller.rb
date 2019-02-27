@@ -30,7 +30,8 @@ class SaucesController < ApplicationController
       if @sauce.save
         redirect_to @sauce
       else
-        render 'errors.js.erb', status: 422
+        @errors = @sauce.errors
+        render 'errors/validation_errors.js.erb', status: 422
       end
     end
   end
@@ -53,24 +54,9 @@ class SaucesController < ApplicationController
     redirect_to sauces_path
   end
 
-  def validate
-    sauce = Sauce.new(validation_params)
-    sauce.valid?
-    field = validation_params.keys.first.try(:to_sym)
-    is_valid = !sauce.errors.include?(field)
-    error_message = sauce.errors[field].join(' and ').prepend("#{field.to_s} ").concat('.').capitalize
-    respond_to do |format|
-      format.json { render json: { field_name: field, valid: is_valid, message: error_message} }
-    end
-  end
-
   private
 
   def sauce_params
     params.require(:sauce).permit(:name, :description, :pepper, :ingredients, :brand, :origin, :image)
-  end
-
-  def validation_params
-    params.permit(:name, :description, :pepper, :ingredients, :brand, :origin)
   end
 end

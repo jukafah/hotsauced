@@ -16,7 +16,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require sauces
-//= require reviews
+//= require validations
 
 

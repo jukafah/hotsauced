@@ -8,14 +8,14 @@
       <%= link_to image_tag('icons8-github.svg', alt: 'GitHub', id: 'github', size: '64x64'), 'https://github.com/jukafah' %>
     </div>
     <div class="col-md pb-4">
-      <%= form_with model: @contact, url: '/about/contact', id: 'contact-form' do |contact| %>
-        <div class="form-group">
+      <%= form_with model: @contact, url: about_contact_path, class: 'needs-validation', id: 'contact-form', data: { validate: validate_contact_path, model: 'contact' } do |contact| %>
+        <div class="form-group position-relative">
           <%= contact.text_field :name, placeholder: 'YOUR NAME', class: 'form-control', id: 'name' %>
         </div>
-        <div class="form-group">
+        <div class="form-group position-relative">
           <%= contact.text_field :email, placeholder: 'YOUR E-MAIL ADDRESS', class: 'form-control', id: 'email' %>
         </div>
-        <div class="form-group">
+        <div class="form-group position-relative">
           <%= contact.text_area :body, placeholder: 'YOUR MESSAGE', class:'form-control', rows: '6', id: 'body' %>
         </div>
         <%=contact.submit 'SUBMIT', class: 'btn btn-secondary', id: 'submit-form', data: { target: '#modal-window', toggle: 'modal' } %>

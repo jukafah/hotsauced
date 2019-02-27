@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   get 'home', to: 'home#index'
 
   resources :sauces do
-    resources :reviews do
-      collection { post :validate }
-    end
-    collection { post :validate }
+    resources :reviews
   end
+
+  post 'validate/sauce', to: 'errors#validate_sauce'
+  post 'validate/review', to: 'errors#validate_review'
+  post 'validate/contact', to: 'errors#validate_contact'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
