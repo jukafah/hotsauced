@@ -1,5 +1,5 @@
 <% @sauce.errors.messages.each do | key, value | %>
- //$('<div class="invalid-tooltip"><%= value %></div>').insertAfter('#sauce-form #<%= key %>').show()
+ $('#sauce-form #<%= key %>').after(`<div class="invalid-tooltip"><%= value.join(' and ').prepend("#{key} ").concat('.').capitalize %></div>`);
  $('#sauce-form #<%= key %>').addClass('is-invalid');
 <% end %>
 
