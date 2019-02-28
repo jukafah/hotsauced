@@ -1,4 +1,4 @@
-$(function () {
+$(document).on("turbolinks:load", function() {
 
   $('.form-control').change(function (event) {
     let form = $('.needs-validation');
