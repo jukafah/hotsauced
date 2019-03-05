@@ -54,6 +54,11 @@ class SaucesController < ApplicationController
     redirect_to sauces_path
   end
 
+  def validate
+    sauce = Sauce.new(sauce_params)
+    format_validation(sauce, sauce_params)
+  end
+
   private
 
   def sauce_params

@@ -1,5 +1,5 @@
 
-  <%= form_with model: [@sauce, @review], class: 'needs-validation', id: 'review-form', data: { validate: validate_review_path, model: 'review' } do |review| %>
+  <%= form_with model: [@sauce, @review], class: 'needs-validation', id: 'review-form', data: { validate: reviews_validate_path, model: 'review' } do |review| %>
     <div class="form-group pt-3 position-relative">
       <%= review.text_field :user, placeholder: 'User', class: 'form-control', id: 'user' %>
     </div>

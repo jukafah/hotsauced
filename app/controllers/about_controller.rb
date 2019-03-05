@@ -21,6 +21,11 @@ class AboutController < ApplicationController
     end
   end
 
+  def validate
+    contact = Contact.new(contact_params)
+    format_validation(contact, contact_params)
+  end
+
   private
 
   def contact_params

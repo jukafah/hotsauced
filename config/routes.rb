@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  post 'validate/sauce', to: 'errors#validate_sauce'
-  post 'validate/review', to: 'errors#validate_review'
-  post 'validate/contact', to: 'errors#validate_contact'
+  post 'sauces/validate', to: 'sauces#validate'
+  post 'reviews/validate', to: 'reviews#validate'
+  post 'about/contact/validate', to: 'about#validate'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

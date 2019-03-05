@@ -54,6 +54,11 @@ class ReviewsController < ApplicationController
     redirect_to sauce_path(@sauce)
   end
 
+  def validate
+    review = Review.new(review_params)
+    format_validation(review, review_params)
+  end
+
   private
 
   def review_params

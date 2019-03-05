@@ -8,7 +8,7 @@
       <%= link_to image_tag('icons8-github.svg', alt: 'GitHub', id: 'github', size: '64x64'), 'https://github.com/jukafah' %>
     </div>
     <div class="col-md pb-4">
-      <%= form_with model: @contact, url: about_contact_path, class: 'needs-validation', id: 'contact-form', data: { validate: validate_contact_path, model: 'contact' } do |contact| %>
+      <%= form_with model: @contact, url: about_contact_path, class: 'needs-validation', id: 'contact-form', data: { validate: about_contact_validate_path, model: 'contact' } do |contact| %>
         <div class="form-group position-relative">
           <%= contact.text_field :name, placeholder: 'YOUR NAME', class: 'form-control', id: 'name' %>
         </div>

@@ -32,16 +32,6 @@ RSpec.describe 'reviews/_form', type: :view do
       render
       expect(rendered).to have_selector("input[placeholder='User']")
     end
-
-    it 'renders error' do
-      sauce = FactoryBot.create(:sauce)
-      assign(:sauce, sauce)
-      review = Review.new
-      review.save
-      assign(:review, review)
-      render
-      expect(rendered).to have_selector('#user + .invalid-feedback', text: "User can't be blank and is too short (minimum is 1 character).")
-    end
   end
 
   context 'rating' do
@@ -61,16 +51,6 @@ RSpec.describe 'reviews/_form', type: :view do
       assign(:review, review)
       render
       expect(rendered).to have_selector("input[placeholder='Rating']")
-    end
-
-    it 'renders error' do
-      sauce = FactoryBot.create(:sauce)
-      assign(:sauce, sauce)
-      review = Review.new
-      review.save
-      assign(:review, review)
-      render
-      expect(rendered).to have_selector('#rating + .invalid-feedback', text: "Rating can't be blank and is not a number.")
     end
   end
 
@@ -92,16 +72,6 @@ RSpec.describe 'reviews/_form', type: :view do
       render
       expect(rendered).to have_selector("input[placeholder='Headline']")
     end
-
-    it 'renders error' do
-      sauce = FactoryBot.create(:sauce)
-      assign(:sauce, sauce)
-      review = Review.new
-      review.save
-      assign(:review, review)
-      render
-      expect(rendered).to have_selector('#headline + .invalid-feedback', text: "Headline can't be blank and is too short (minimum is 2 characters).")
-    end
   end
 
   context 'body' do
@@ -121,16 +91,6 @@ RSpec.describe 'reviews/_form', type: :view do
       assign(:review, review)
       render
       expect(rendered).to have_selector("textarea[placeholder='Tell us what you think...']")
-    end
-
-    it 'renders error' do
-      sauce = FactoryBot.create(:sauce)
-      assign(:sauce, sauce)
-      review = Review.new
-      review.save
-      assign(:review, review)
-      render
-      expect(rendered).to have_selector('#body + .invalid-feedback', text: "Body can't be blank and is too short (minimum is 2 characters).")
     end
   end
 
