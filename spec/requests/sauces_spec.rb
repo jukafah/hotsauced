@@ -137,4 +137,137 @@ RSpec.describe 'Sauces', type: :request do
       expect(response).to redirect_to(sauce_path(id: '1'))
     end
   end
+
+  context 'object validation' do
+    context 'name' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { name: 'Name' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('name')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { name: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('name')
+        end
+      end
+    end
+
+    context 'description' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { description: 'A valid description' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('description')
+        end
+      end
+      context 'when invalid' do
+        it 'fails form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { description: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('description')
+        end
+      end
+    end
+
+    context 'pepper' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { pepper: 'Pepper' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('pepper')
+        end
+      end
+      context 'when invalid' do
+        it 'fails form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { pepper: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('pepper')
+        end
+      end
+    end
+
+    context 'ingredients' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { ingredients: 'Ingredients' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('ingredients')
+        end
+      end
+      context 'when invalid' do
+        it 'fails form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { ingredients: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('ingredients')
+        end
+      end
+    end
+
+    context 'brand' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { brand: 'Brand' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('brand')
+        end
+      end
+      context 'when invalid' do
+        it 'fails form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { brand: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('brand')
+        end
+      end
+    end
+
+    context 'origin' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { origin: 'Origin' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('origin')
+        end
+      end
+      context 'when invalid' do
+        it 'fails form validation' do
+          post sauces_validate_path, params: { format: 'json', sauce: { origin: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('origin')
+        end
+      end
+    end
+
+    def response_body
+      JSON.parse(response.body)
+    end
+  end
 end

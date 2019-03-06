@@ -165,4 +165,98 @@ RSpec.describe 'Reviews', type: :request do
       end
     end
   end
+
+  context 'object validation' do
+    context 'user' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { user: 'Name' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('user')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { user: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('user')
+        end
+      end
+    end
+
+    context 'rating' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { rating: 3 } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('rating')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { rating: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('rating')
+        end
+      end
+    end
+
+    context 'headline' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { headline: 'A headline' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('headline')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { headline: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('headline')
+        end
+      end
+    end
+
+    context 'body' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { body: 'Body' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('body')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post reviews_validate_path, params: { format: 'json', review: { body: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('body')
+        end
+      end
+    end
+
+    def response_body
+      JSON.parse(response.body)
+    end
+  end
 end

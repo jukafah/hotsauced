@@ -20,10 +20,15 @@ class ReviewsController < ApplicationController
     @sauce = Sauce.find(params[:sauce_id])
     @review = @sauce.reviews.new(review_params)
 
-    if @review.save
-      redirect_to sauce_path(@sauce)
-    else
-      render 'new', status: 422
+    respond_to do |format|
+      format.html
+      format.js
+      if @review.save
+        redirect_to sauce_path(@sauce)
+      else
+        @errors = @review.errors
+        render 'errors/validation_errors.js.erb', status: 422
+      end
     end
   end
 
@@ -47,6 +52,11 @@ class ReviewsController < ApplicationController
     @review = @sauce.reviews.find(params[:id])
     @review.delete
     redirect_to sauce_path(@sauce)
+  end
+
+  def validate
+    review = Review.new(review_params)
+    format_validation(review, review_params)
   end
 
   private

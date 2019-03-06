@@ -1,37 +1,16 @@
-<div id="review-form">
-  <%= form_with(model: [@sauce, @review], local: true) do |review| %>
-    <div class="form-group my-4">
+
+  <%= form_with model: [@sauce, @review], class: 'needs-validation', id: 'review-form', data: { validate: reviews_validate_path, model: 'review' } do |review| %>
+    <div class="form-group pt-3 position-relative">
       <%= review.text_field :user, placeholder: 'User', class: 'form-control', id: 'user' %>
-      <% if @review.errors.key?('user') %>
-        <div class="invalid-feedback">
-          <%= @review.errors[:user].join(' and ').prepend('User ').concat('.') %>
-        </div>
-      <% end %>
     </div>
-    <div class="form-group my-4">
+    <div class="form-group pt-3 position-relative">
       <%= review.number_field :rating, placeholder: 'Rating', class: 'form-control', id: 'rating' %>
-      <% if @review.errors.key?('rating') %>
-        <div class="invalid-feedback">
-          <%= @review.errors[:rating].join(' and ').prepend('Rating ').concat('.') %>
-        </div>
-      <% end %>
     </div>
-    <div class="form-group my-4">
+    <div class="form-group pt-3 position-relative">
       <%= review.text_field :headline, placeholder: 'Headline', class: 'form-control', id: 'headline' %>
-      <% if @review.errors.key?('headline') %>
-        <div class="invalid-feedback">
-          <%= @review.errors[:headline].join(' and ').prepend('Headline ').concat('.') %>
-        </div>
-      <% end %>
     </div>
-    <div class="form-group my-4">
+    <div class="form-group pt-3 position-relative">
       <%= review.text_area :body, placeholder: 'Tell us what you think...', rows: 6, class: 'form-control', id: 'body' %>
-      <% if @review.errors.key?('body') %>
-        <div class="invalid-feedback">
-          <%= @review.errors[:body].join(' and ').prepend('Body ').concat('.') %>
-        </div>
-      <% end %>
     </div>
-    <%= review.submit 'Submit', class: 'btn btn-secondary my-2', id: 'submit-form' %>
+    <%= review.submit 'Submit', class: 'btn btn-secondary mt-3', id: 'submit-form' %>
   <% end %>
-</div>

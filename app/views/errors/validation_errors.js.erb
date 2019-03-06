@@ -1,0 +1,4 @@
+<% @errors.messages.each do | key, value | %>
+ $('.needs-validation #<%= key %>').after(`<div class="invalid-tooltip"><%= value.join(' and ').prepend("#{key} ").concat('.').capitalize %></div>`);
+ $('.needs-validation #<%= key %>').addClass('is-invalid');
+<% end %>

@@ -24,10 +24,15 @@ class SaucesController < ApplicationController
   def create
     @sauce = Sauce.new(sauce_params)
 
-    if @sauce.save
-      redirect_to @sauce
-    else
-      render 'new', status: 422
+    respond_to do |format|
+      format.html
+      format.js
+      if @sauce.save
+        redirect_to @sauce
+      else
+        @errors = @sauce.errors
+        render 'errors/validation_errors.js.erb', status: 422
+      end
     end
   end
 
@@ -47,6 +52,11 @@ class SaucesController < ApplicationController
     @sauce.destroy
 
     redirect_to sauces_path
+  end
+
+  def validate
+    sauce = Sauce.new(sauce_params)
+    format_validation(sauce, sauce_params)
   end
 
   private
