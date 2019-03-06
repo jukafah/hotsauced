@@ -142,7 +142,6 @@ RSpec.describe 'Sauces', type: :request do
     context 'name' do
       context 'when valid' do
         it 'passes form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce)
           post sauces_validate_path, params: { format: 'json', sauce: { name: 'Name' } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -153,7 +152,6 @@ RSpec.describe 'Sauces', type: :request do
 
       context 'when invalid' do
         it 'fails form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce, name: nil)
           post sauces_validate_path, params: { format: 'json', sauce: { name: nil } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -166,7 +164,6 @@ RSpec.describe 'Sauces', type: :request do
     context 'description' do
       context 'when valid' do
         it 'passes form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce)
           post sauces_validate_path, params: { format: 'json', sauce: { description: 'A valid description' } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -176,7 +173,6 @@ RSpec.describe 'Sauces', type: :request do
       end
       context 'when invalid' do
         it 'fails form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce, description: nil)
           post sauces_validate_path, params: { format: 'json', sauce: { description: nil } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -189,7 +185,6 @@ RSpec.describe 'Sauces', type: :request do
     context 'pepper' do
       context 'when valid' do
         it 'passes form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce)
           post sauces_validate_path, params: { format: 'json', sauce: { pepper: 'Pepper' } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -199,7 +194,6 @@ RSpec.describe 'Sauces', type: :request do
       end
       context 'when invalid' do
         it 'fails form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce, pepper: nil)
           post sauces_validate_path, params: { format: 'json', sauce: { pepper: nil } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -212,7 +206,6 @@ RSpec.describe 'Sauces', type: :request do
     context 'ingredients' do
       context 'when valid' do
         it 'passes form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce)
           post sauces_validate_path, params: { format: 'json', sauce: { ingredients: 'Ingredients' } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -222,7 +215,6 @@ RSpec.describe 'Sauces', type: :request do
       end
       context 'when invalid' do
         it 'fails form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce, ingredients: nil)
           post sauces_validate_path, params: { format: 'json', sauce: { ingredients: nil } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -235,7 +227,6 @@ RSpec.describe 'Sauces', type: :request do
     context 'brand' do
       context 'when valid' do
         it 'passes form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce)
           post sauces_validate_path, params: { format: 'json', sauce: { brand: 'Brand' } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -245,7 +236,6 @@ RSpec.describe 'Sauces', type: :request do
       end
       context 'when invalid' do
         it 'fails form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce, brand: nil)
           post sauces_validate_path, params: { format: 'json', sauce: { brand: nil } }
           valid = response_body['valid']
           field = response_body['field_name']
@@ -267,7 +257,6 @@ RSpec.describe 'Sauces', type: :request do
       end
       context 'when invalid' do
         it 'fails form validation' do
-          sauce = FactoryBot.build_stubbed(:sauce, origin: nil)
           post sauces_validate_path, params: { format: 'json', sauce: { origin: nil } }
           valid = response_body['valid']
           field = response_body['field_name']

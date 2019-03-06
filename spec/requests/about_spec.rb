@@ -24,4 +24,76 @@ RSpec.describe 'about', type: :request do
       end
     end
   end
+
+  context 'object validation' do
+    context 'name' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post about_contact_validate_path, params: { format: 'json', contact: { name: 'Name' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('name')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post about_contact_validate_path, params: { format: 'json', contact: { name: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('name')
+        end
+      end
+    end
+
+    context 'email' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post about_contact_validate_path, params: { format: 'json', contact: { email: 'Email' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('email')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post about_contact_validate_path, params: { format: 'json', contact: { email: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('email')
+        end
+      end
+    end
+
+    context 'body' do
+      context 'when valid' do
+        it 'passes form validation' do
+          post about_contact_validate_path, params: { format: 'json', contact: { body: 'Body' } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(true)
+          expect(field).to eq('body')
+        end
+      end
+
+      context 'when invalid' do
+        it 'fails form validation' do
+          post about_contact_validate_path, params: { format: 'json', contact: { body: nil } }
+          valid = response_body['valid']
+          field = response_body['field_name']
+          expect(valid).to be(false)
+          expect(field).to eq('body')
+        end
+      end
+    end
+
+    def response_body
+      JSON.parse(response.body)
+    end
+  end
 end
