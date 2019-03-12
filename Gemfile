@@ -28,6 +28,8 @@ gem 'jquery-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "google-cloud-storage", require: false
 gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+# ActiveRecord has_secure_password
+gem 'bcrypt'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

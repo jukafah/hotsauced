@@ -15,18 +15,9 @@
         <%= link_to "ABOUT", about_path, id: 'nav-link-about', class: active?(about_path) %>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <%= image_tag('icons8-contacts.svg', alt: 'Account', id: 'account') %>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right text-center px-3">
-          <%= link_to 'Sign In', signin_path, id:'login', class: 'btn btn-outline-dark btn-sm btn-block' %>
-          <div class="dropdown-divider"></div>
-          <span>New User?</span>
-          <%= link_to 'Create Account', new_user_path, class: 'text-dark text-center' %>
-        </div>
-      </li>
-    </ul>
+    <%= search_form_for @q, class: 'form-inline my-2 my-lg-0', id: 'search-form' do | form | %>
+      <%= form.search_field :name_cont, class: 'form-control mr-sm-2', id: 'search-box' %>
+      <%= form.submit class: 'btn btn-secondary', id: 'submit-search' %>
+    <% end %>
   </div>
 </nav>

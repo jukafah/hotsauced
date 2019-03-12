@@ -35,3 +35,15 @@ main {
   max-width: 100%;
   word-wrap: break-word;
 }
+
+.test {
+  fill: #9A9DA0;
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.test:hover {
+  fill: #CCCECF;
+}
