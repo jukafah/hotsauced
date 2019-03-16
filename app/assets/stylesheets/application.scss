@@ -36,14 +36,17 @@ main {
   word-wrap: break-word;
 }
 
-.test {
-  fill: #9A9DA0;
-  -moz-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
+// #svg-icon {
+//   fill: #9A9DA0;
+// }
 
-.test:hover {
-  fill: #CCCECF;
-}
+// svg #svg-icon:hover {
+//   fill: #CCCECF
+// }
+// svg path {
+//   display: block;
+//   margin: 0 auto;
+//   fill: #3498db;
+//   width: 5em;
+//   height: 5em;
+// }
