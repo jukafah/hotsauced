@@ -1,23 +1,40 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" id="hotsauced-logo">[LOGO HERE]</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
+  <a class="navbar-brand" id="hotsauced-logo">[LOGO]</a>
+  <button class="navbar-toggler mr-auto" type="button" data-toggle="offcanvas">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse collapse" id="nav-bar">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "HOME", home_path, id: 'nav-link-home', class: active?(home_path) %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "SAUCES", sauces_path, id: 'nav-link-sauces', class: active?(sauces_path) %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ABOUT", about_path, id: 'nav-link-about', class: active?(about_path) %>
-      </li>
-    </ul>
-    <%= search_form_for @q, class: 'form-inline my-2 my-lg-0', id: 'search-form' do | form | %>
-      <%= form.search_field :name_cont, class: 'form-control mr-sm-2', id: 'search-box' %>
-      <%= form.submit class: 'btn btn-secondary', id: 'submit-search' %>
+  <div class="navbar-collapse offcanvas-collapse" id="collapsing-nav-bar">
+    <div class="navbar-nav mr-auto">
+      <%= link_to "HOME", home_path, id: 'nav-link-home', class: "p-2 nav-item #{active?(home_path)}" %>
+      <%= link_to "SAUCES", sauces_path, id: 'nav-link-sauces', class: "p-2 nav-item #{active?(sauces_path)}" %>
+      <%= link_to "PEPPERS", "#", id: 'nav-link-about', class: 'p-2 nav-item nav-link disabled' %>
+      <%= link_to "ABOUT", about_path, id: 'nav-link-about', class: "p-2 nav-item #{active?(about_path)}" %>
+    </div>
+  </div>
+  <div class="navbar-secondary d-flex">
+    <%= search_form_for @q, class: 'form-inline mr-3', id: 'search-form' do | form | %>
+      <div class="input-group">
+        <%= form.search_field :name_cont, class: 'form-control border-0', id: 'search-box' %>
+        <div class="input-group-append">
+          <%= button_tag svg('icons8-search.svg'), class: 'btn btn-light p-0 px-1', id: 'search-icon' %>
+        </div>
+      </div>
     <% end %>
+    <div class="nav-item dropdown">
+      <%= link_to svg('icons8-contacts.svg'), '#', data: { toggle: 'dropdown' }, class: "p-1 #{active?(user_path(current_user))}", id: 'nav-link-account-dropdown', aria: {haspopup: 'true', expanded: 'false'}, role: 'button' %>
+      <div class="dropdown-menu dropdown-menu-right text-center px-3">
+        <% if current_user %>
+          <span>Hi, <%= current_user.username %></span>
+          <div class="dropdown-divider"></div>
+          <%= link_to 'Profile', user_path(current_user), class: 'dropdown-item text-dark' %>
+          <%= link_to 'Sign Out', signout_path, class: 'dropdown-item text-dark' %>
+        <% else %>
+          <%= link_to 'Sign In', signin_path, id:'login', class: 'btn btn-outline-dark btn-sm btn-block' %>
+          <div class="dropdown-divider"></div>
+          <span>New User?</span>
+          <%= link_to 'Create Account', new_user_path, class: 'text-dark text-center' %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </nav>

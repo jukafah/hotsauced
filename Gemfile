@@ -30,8 +30,6 @@ gem "google-cloud-storage", require: false
 gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 # ActiveRecord has_secure_password
 gem 'bcrypt'
-# adds helper for dealing with svgs
-gem 'inline_svg'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

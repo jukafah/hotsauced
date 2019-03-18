@@ -17,5 +17,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require validations
+//= require offcanvas
 
 
