@@ -53,6 +53,10 @@ main {
   color: #FFFFFF;
 }
 
+.dropdown-item.nav-link:active {
+  background-color: #9A9DA0;
+}
+
 #search-icon svg {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);

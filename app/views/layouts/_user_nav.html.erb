@@ -1,0 +1,16 @@
+<div class="nav-item dropdown pl-3">
+  <%= link_to svg('icons8-contacts.svg'), '#', data: { toggle: 'dropdown' }, class: "p-1 #{active?(users_path)}", id: 'nav-link-account-dropdown', aria: {haspopup: 'true', expanded: 'false'}, role: 'button' %>
+  <div class="dropdown-menu dropdown-menu-right text-center px-3">
+    <% if current_user %>
+      <span>Hi, <%= current_user.username %></span>
+      <div class="dropdown-divider"></div>
+      <%= link_to 'Profile', user_path(current_user), class: 'btn btn-outline-dark btn-block border-0' %>
+      <%= link_to 'Sign Out', signout_path, class: 'btn btn-outline-dark btn-block border-0' %>
+    <% else %>
+      <%= link_to 'Sign In', signin_path, id:'login', class: 'btn btn-outline-dark btn-block' %>
+      <div class="dropdown-divider"></div>
+      <span>New User?</span>
+      <%= link_to 'Create Account', new_user_path, class: 'text-dark text-center' %>
+    <% end %>
+  </div>
+</div>

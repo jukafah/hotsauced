@@ -32,6 +32,7 @@ gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 gem 'bcrypt'
 
 group :development do
+  gem 'solargraph'
   gem 'web-console', '>= 3.3.0'
 end
 

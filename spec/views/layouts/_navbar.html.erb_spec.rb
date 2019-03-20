@@ -3,6 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe 'layouts/_navbar', type: :view do
+  # let(:current_user) { FactoryBot.create(:user) }
+  before do
+    current_user = FactoryBot.create(:user)
+    assign(:current_user, current_user)
+    allow(view).to receive(:current_user) { current_user }
+  end
+
+  # before do
+  #   current_user = FactoryBot.create(:user)
+  #   assign(:current_user, current_user)
+  # end
+
   context 'template' do
     it 'renders navbar' do
       q = Sauce.ransack(params[:q])

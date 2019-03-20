@@ -8,7 +8,7 @@
       <%= password_field_tag :password, nil, placeholder: 'Password', class: 'form-control', id: 'password', size: 5 %>
     </div>
     <div class="form-check my-4">
-      <%= check_box_tag :remember_me, 'Remember Me', false, class: 'form-check-input', id: 'remember-me' %>
+      <%= check_box_tag :remember_me, 'Remember Me', false, class: 'form-check-input disabled', id: 'remember-me' %>
       <%= label_tag :remember_me %>
     </div>
     <%= submit_tag "Sign In", class: 'btn btn-outline-dark btn-sm btn-block my-4', id: 'sign-in' %>

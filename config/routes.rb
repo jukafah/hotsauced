@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+  # get 'sessions/new'
+  # get 'sessions/create'
+  # get 'sessions/destroy'
   resources :users
   match '/404', to: 'errors#not_found', via: :all, as: 'not_found'
   get '/', to: redirect('/home'), as: 'root'
@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: %i[new create destroy]
 
-  # get 'user/create', to: 'users#new', as: 'create_account'
   get 'signin', to: 'sessions#new', as: 'signin'
   get 'signout', to: 'sessions#destroy', as: 'signout'
 

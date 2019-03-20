@@ -1,0 +1,15 @@
+<h3 id="header">ACCOUNT</h3>
+<div class="row py-4">
+  <div class="col">
+    <%= image_tag 'icons8-contacts', width: '200' %>
+    <div class="py-2" id="username">
+      <%= @user.username %>
+    </div>
+  </div>
+  <div class="col d-flex align-items-center">
+    <div class="btn-group-vertical mr-auto">
+      <%= link_to 'Upload Avatar', nil, class: 'btn btn-outline-dark my-2 rounded disabled' %>
+      <%= link_to 'Delete Avatar', nil, class: 'btn btn-secondary my-2 rounded disabled' %>
+    </div>
+  </div>
+</div>
