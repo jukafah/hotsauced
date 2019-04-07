@@ -5,6 +5,12 @@ module ApplicationHelper
     return 'nav-link active' if request.fullpath.start_with?(path) else 'nav-link'
   end
 
+  def svg(name)
+    file_path = "#{Rails.root}/app/assets/images/#{name}"
+    return File.read(file_path).html_safe if File.exist?(file_path)
+    '(not found)'
+  end
+
   def page_title
     'HOT SAUCED'
   end

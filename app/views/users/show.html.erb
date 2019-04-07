@@ -1,0 +1,23 @@
+<div class="container" id="user-profile-page">
+  <div class="row my-2">
+    <div class="col-md-3 m-2">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-action disabled">
+          <%= link_to 'Account', '#', class: 'text-dark' %>
+        </li>
+        <li class="list-group-item list-group-item-action disabled">
+          <%= link_to 'Favorites', '#', class: 'text-dark' %>
+        </li>
+        <li class="list-group-item list-group-item-action disabled">
+          <%= link_to 'Reviews', '#', class: 'text-dark' %>
+        </li>
+        <li class="list-group-item list-group-item-action disabled">
+          <%= link_to 'Security', '#', class: 'text-dark' %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-8 m-2 text-center bg-light">
+      <%= render 'account' %>
+    </div>
+  </div>
+</div>

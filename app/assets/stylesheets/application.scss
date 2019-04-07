@@ -35,3 +35,55 @@ main {
   max-width: 100%;
   word-wrap: break-word;
 }
+
+// for navbar dropdown
+.navbar-dark .navbar-secondary .nav-item.dropdown .nav-link {
+  color: #9A9DA0;
+}
+
+.navbar-dark .navbar-secondary .nav-item.dropdown.show .nav-link {
+  color: #CCCECF;
+}
+
+.navbar-dark .navbar-secondary .nav-item.dropdown .nav-link:hover {
+  color: #CCCECF;
+}
+
+.navbar-dark .navbar-secondary .nav-item.dropdown .nav-link.active {
+  color: #FFFFFF;
+}
+
+.dropdown-item.nav-link:active {
+  background-color: #9A9DA0;
+}
+
+#search-icon svg {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+  color: #9A9DA0;
+}
+
+@media (max-width: 992px) {
+  .offcanvas-collapse {
+    position: fixed;
+    top: 56px; /* Height of navbar */
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: #343a40;
+    transition-timing-function: ease-in-out;
+    transition-duration: .3s;
+    transition-property: left, visibility;
+    left: -12rem;
+    width: 12rem;
+  }
+  .offcanvas-collapse.open {
+    left: 0;
+    visibility: visible;
+  }
+}

@@ -1,23 +1,25 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" id="hotsauced-logo">[LOGO HERE]</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
+  <a class="navbar-brand text-muted" id="hotsauced-logo">[*]</a>
+  <button class="navbar-toggler mr-auto" type="button" data-toggle="offcanvas">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="navbar-collapse collapse" id="nav-bar">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "HOME", home_path, id: 'nav-link-home', class: active?(home_path) %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "SAUCES", sauces_path, id: 'nav-link-sauces', class: active?(sauces_path) %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "ABOUT", about_path, id: 'nav-link-about', class: active?(about_path) %>
-      </li>
-    </ul>
-    <%= search_form_for @q, class: 'form-inline my-2 my-lg-0', id: 'search-form' do | form | %>
-      <%= form.search_field :name_cont, class: 'form-control mr-sm-2', id: 'search-box' %>
-      <%= form.submit class: 'btn btn-secondary', id: 'submit-search' %>
+  <div class="navbar-collapse offcanvas-collapse" id="collapsing-nav-bar">
+    <div class="navbar-nav">
+      <%= link_to "HOME", home_path, id: 'nav-link-home', class: "p-2 nav-item #{active?(home_path)}" %>
+      <%= link_to "SAUCES", sauces_path, id: 'nav-link-sauces', class: "p-2 nav-item #{active?(sauces_path)}" %>
+      <%= link_to "PEPPERS", "#", id: 'nav-link-about', class: 'p-2 nav-item nav-link disabled' %>
+      <%= link_to "ABOUT", about_path, id: 'nav-link-about', class: "p-2 nav-item #{active?(about_path)}" %>
+    </div>
+  </div>
+  <div class="navbar-secondary d-flex col-8 p-0">
+    <%= search_form_for @q, class: 'form-inline ml-auto', id: 'search-form' do | form | %>
+      <div class="input-group">
+        <%= form.search_field :name_cont, class: 'form-control border-0', id: 'search-box' %>
+        <div class="input-group-append">
+          <%= button_tag svg('icons8-search.svg'), class: 'btn btn-light p-0 px-1', id: 'search-icon' %>
+        </div>
+      </div>
     <% end %>
+    <%= render 'layouts/user_nav' %>
   </div>
 </nav>

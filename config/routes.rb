@@ -14,6 +14,14 @@ Rails.application.routes.draw do
   post 'sauces/validate', to: 'sauces#validate'
   post 'reviews/validate', to: 'reviews#validate'
   post 'about/contact/validate', to: 'about#validate'
+  post 'users/validate', to: 'users#validate'
+  post 'sessions/validate', to: 'sessions#validate'
+
+  resources :users, only: %i[new create show]
+
+  get 'signin', to: 'sessions#new'
+  post 'signin', to: 'sessions#create'
+  get 'signout', to: 'sessions#destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

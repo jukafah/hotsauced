@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include SessionsHelper
   before_action :set_search
 
   def set_search

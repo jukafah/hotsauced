@@ -38,3 +38,5 @@ results/
 
 # Secrets
 secrets/
+
+.DS_Store

@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'layouts/_navbar', type: :view do
+  before do
+    current_user = FactoryBot.create(:user)
+    assign(:current_user, current_user)
+    allow(view).to receive(:current_user) { current_user }
+  end
+
   context 'template' do
     it 'renders navbar' do
       q = Sauce.ransack(params[:q])
@@ -101,7 +107,7 @@ RSpec.describe 'layouts/_navbar', type: :view do
       assign(:q, q)
       allow(view).to receive(:current_page?) { false }
       render
-      expect(rendered).to have_selector('#search-box')
+      expect(rendered).to have_selector('#search-form #search-box')
     end
 
     it 'renders button' do
@@ -109,7 +115,7 @@ RSpec.describe 'layouts/_navbar', type: :view do
       assign(:q, q)
       allow(view).to receive(:current_page?) { false }
       render
-      expect(rendered).to have_button('Search')
+      expect(rendered).to have_selector("#search-form button[type='submit']")
     end
   end
 end

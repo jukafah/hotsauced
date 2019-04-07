@@ -1,0 +1,24 @@
+<div class="container" style="width: 350px;" id="sign-in-page">
+  <h3 id="header">SIGN IN</h3>
+  <% if @errors %>
+    <div class="text-danger" id="sign-in-error">
+      <%= @errors[:invalid][0] %>
+    </div>
+  <% end %>
+  <%= form_tag signin_path, id:'sign-in-form' do |form| %>
+    <div class="form-group my-4">
+      <%= email_field_tag :email, nil, placeholder: 'Email', class: 'form-control', id: 'email' %>
+    </div>
+    <div class="form-group my-4">
+      <%= password_field_tag :password, nil, placeholder: 'Password', class: 'form-control', id: 'password' %>
+    </div>
+    <div class="form-check my-4">
+      <%= check_box_tag :remember_me, true, false, class: 'form-check-input', id: 'remember-me' %>
+      <%= label_tag :remember_me %>
+    </div>
+    <%= submit_tag "Sign In", class: 'btn btn-outline-dark btn-sm btn-block my-4', id: 'sign-in' %>
+  <% end %>
+  <div class="border-bottom my-4"></div>
+  <span class="text-muted">No account?</span>
+  <%= link_to 'Create Account', new_user_path, class: 'text-dark' %>
+</div>

@@ -1,6 +1,6 @@
 $(document).on("turbolinks:load", function() {
 
-  $('.form-control').change(function (event) {
+  $('.needs-validation .form-control').change(function (event) {
     let form = $('.needs-validation');
     let url = form.data('validate');
     let model = form.data('model');

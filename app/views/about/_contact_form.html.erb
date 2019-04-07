@@ -4,8 +4,10 @@
     <div class="col-md pb-4" id="body">
       <p>If you have any feature requests, ideas, general thoughts, or are experiencing any issues, please contact me.</p>
       <p>You can also find me on LinkedIn and GitHub.</p>
-      <%= link_to image_tag('icons8-linkedin.svg', class: 'ml-n2', alt: 'LinkedIn', id: 'linkedin', size: '64x64'), 'https://www.linkedin.com/in/stevemomcilovic/'  %>
-      <%= link_to image_tag('icons8-github.svg', alt: 'GitHub', id: 'github', size: '64x64'), 'https://github.com/jukafah' %>
+      <div class="d-flex justify-content-start" id="contact-links">
+        <%= link_to svg('icons8-linkedin.svg'), 'https://www.linkedin.com/in/stevemomcilovic/', class: 'p-0 nav-item nav-link text-secondary', alt: 'LinkedIn', id: 'nav-link-linkedin' %>
+        <%= link_to svg('icons8-github.svg'), 'https://github.com/jukafah', class: 'p-0 ml-3 nav-item nav-link text-secondary', alt: 'GitHub', id: 'nav-link-github' %>
+      </div>
     </div>
     <div class="col-md pb-4">
       <%= form_with model: @contact, url: about_contact_path, class: 'needs-validation', id: 'contact-form', data: { validate: about_contact_validate_path, model: 'contact' } do |contact| %>

@@ -1,0 +1,22 @@
+// Basic settings: turn linter(s) on
+{
+  "ruby.lint": {
+    "rubocop": true,
+  },
+  // Time (ms) to wait after keypress before running enabled linters. Ensures
+  // linters are only run when typing has finished and not for every keypress
+  "ruby.lintDebounceTime": 500,
+  //advanced: set command line options for some linters:
+  "rubocop": {
+    "only": [
+      "SpaceInsideBlockBraces",
+      "LeadingCommentSpace"
+    ],
+    "lint": true,
+    "rails": true
+  },
+  "ruby.rubocop.onSave": true,
+  "files.associations": {
+    "*.erb": "erb"
+  }
+}

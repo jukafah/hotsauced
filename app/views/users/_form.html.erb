@@ -1,0 +1,18 @@
+<%= form_with model: user, class: 'needs-validation', id: 'create-account-form', data: { validate: users_validate_path, model: 'user' } do |user| %>
+  <div class="form-group my-4 position-relative">
+    <%= user.text_field :username, placeholder: 'Username', class: 'form-control', id: 'username' %>
+  </div>
+  <div class="form-group my-4 position-relative">
+    <%= user.email_field :email, placeholder: 'Email', class: 'form-control', id: 'email' %>
+  </div>
+  <div class="form-group my-4 position-relative">
+    <%= user.password_field :password, placeholder: 'Password', class: 'form-control', id: 'password' %>
+  </div>
+  <div class="form-group my-4 position-relative">
+    <%= user.password_field :password_confirmation, placeholder: 'Confirm Password', class: 'form-control', id: 'confirm-password' %>
+  </div>
+  <%= user.submit 'Create Account', class: 'btn btn-outline-dark btn-sm btn-block my-4', id: 'create' %>
+  <div class="border-bottom my-4"></div>
+  <span class="text-muted">Already have an account?</span>
+  <%= link_to 'Sign In', signin_path, class: 'text-dark' %>
+<% end %>
