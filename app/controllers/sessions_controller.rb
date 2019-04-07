@@ -4,13 +4,15 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by_email(params[:email])
-    if user&.authenticate(params[:password])
-      sign_in user
-      params[:remember_me] == 'true' ? remember(user) : forget(user)
-      redirect_to root_url
+    @user = User.authenticate(params[:email], params[:password])
+
+    if !@user.errors.key?(:invalid)
+      sign_in(@user)
+      params[:remember_me] == 'true' ? remember(@user) : forget(@user)
+      redirect_to(root_url)
     else
-      render 'new'
+      @errors = @user.errors
+      render 'new', status: 401
     end
   end
 

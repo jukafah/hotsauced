@@ -1,4 +1,4 @@
-<%= form_with model: user, class: 'needs-validation', id: 'create-account-form' do |user| %>
+<%= form_with model: user, class: 'needs-validation', id: 'create-account-form', data: { validate: users_validate_path, model: 'user' } do |user| %>
   <div class="form-group my-4 position-relative">
     <%= user.text_field :username, placeholder: 'Username', class: 'form-control', id: 'username' %>
   </div>

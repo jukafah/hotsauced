@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'layouts/application', type: :view do
+  before do
+    current_user = FactoryBot.create(:user)
+    assign(:current_user, current_user)
+    allow(view).to receive(:current_user) { current_user }
+  end
+
   context 'template' do
     it 'renders' do
       q = Sauce.ransack(params[:q])

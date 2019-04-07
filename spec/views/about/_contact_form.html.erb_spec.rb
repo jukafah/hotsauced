@@ -25,24 +25,24 @@ RSpec.describe 'about/_contact_form', type: :view do
   end
 
   context 'links' do
-    it 'renders github icon' do
+    it 'renders github svg icon' do
       render
-      expect(rendered).to have_selector('#github')
+      expect(rendered).to have_selector('a#nav-link-github svg')
     end
 
     it 'renders github link' do
       render
-      expect(rendered).to have_selector('a #github')
+      expect(rendered).to have_selector('a#nav-link-github')
     end
 
-    it 'renders linkedin icon' do
+    it 'renders linkedin svg icon' do
       render
-      expect(rendered).to have_selector('#linkedin')
+      expect(rendered).to have_selector('a#nav-link-linkedin svg')
     end
 
     it 'renders linkedin link' do
       render
-      expect(rendered).to have_selector('a #linkedin')
+      expect(rendered).to have_selector('a#nav-link-linkedin')
     end
   end
 
