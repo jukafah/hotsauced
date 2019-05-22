@@ -67,6 +67,11 @@ main {
   color: #9A9DA0;
 }
 
+#avatar svg {
+  width: 128px;
+  height: 128px;
+}
+
 @media (max-width: 992px) {
   .offcanvas-collapse {
     position: fixed;
