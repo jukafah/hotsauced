@@ -1,7 +1,9 @@
 <h3 id="header">ACCOUNT</h3>
 <div class="row py-4">
   <div class="col">
-    <%= image_tag 'icons8-contacts', width: '200' %>
+    <div id="avatar">
+      <%= svg('icons8-contacts.svg') %>
+    </div>
     <div class="py-2" id="username">
       <%= @user.username %>
     </div>
