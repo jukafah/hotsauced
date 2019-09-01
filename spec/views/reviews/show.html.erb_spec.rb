@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frozen_string_litera: true
 
 require 'rails_helper'
@@ -136,7 +138,7 @@ RSpec.describe 'reviews/show', type: :view do
         review = FactoryBot.create(:review, sauce: sauce)
         assign(:review, review)
         render
-        expect(rendered).to have_selector('#sauce #rating-info #average-rating', text: "#{sauce.average_rating} out of 5" )
+        expect(rendered).to have_selector('#sauce #rating-info #average-rating', text: "#{sauce.average_rating} out of 5")
       end
 
       it 'renders singular text with one review' do
@@ -151,7 +153,7 @@ RSpec.describe 'reviews/show', type: :view do
       it 'renders plural text with one review' do
         sauce = FactoryBot.create(:sauce)
         assign(:sauce, sauce)
-        FactoryBot.create(:review, sauce:sauce)
+        FactoryBot.create(:review, sauce: sauce)
         review = FactoryBot.create(:review, sauce: sauce)
         assign(:review, review)
         render

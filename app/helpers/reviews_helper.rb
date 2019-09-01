@@ -1,5 +1,6 @@
-module ReviewsHelper
+# frozen_string_literal: true
 
+module ReviewsHelper
   def average_of(reviews)
     reviews.average(:rating).round(1)
   end

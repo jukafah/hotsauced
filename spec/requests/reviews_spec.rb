@@ -13,7 +13,7 @@ RSpec.describe 'Reviews', type: :request do
       end
     end
 
-    context' when reviews for a sauce do not exist' do
+    context ' when reviews for a sauce do not exist' do
       it 'responds with 200' do
         sauce = FactoryBot.create(:sauce)
         get sauce_reviews_path(sauce)
@@ -142,7 +142,7 @@ RSpec.describe 'Reviews', type: :request do
         expect_any_instance_of(Review).not_to receive(:update).with(user: 'new')
         sauce = FactoryBot.create(:sauce)
         review = FactoryBot.create(:review, sauce: sauce)
-        patch sauce_review_path(sauce, review), params: { review: { user: 'new', rating: 1, headline: 'new', body: 'new',  } }
+        patch sauce_review_path(sauce, review), params: { review: { user: 'new', rating: 1, headline: 'new', body: 'new' } }
       end
     end
   end

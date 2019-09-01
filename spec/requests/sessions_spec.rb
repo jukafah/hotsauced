@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Sessions", type: :request do
+RSpec.describe 'Sessions', type: :request do
   context 'creating new sessions' do
     context 'when resource is found' do
       it 'responds with 200' do

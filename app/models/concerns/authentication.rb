@@ -22,8 +22,12 @@ module Authentication
     def authenticate(email, password)
       user = find_by_email(email)
       return user if user&.authenticate(password)
+
       user = User.new
-      user.errors.add(:invalid, 'Sign in failed. Your email and password do not match')
+      user.errors.add(
+        :invalid,
+        'Sign in failed. Your email and password do not match'
+      )
       user
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'sauces/_sauces', type: :view do
@@ -23,7 +25,7 @@ RSpec.describe 'sauces/_sauces', type: :view do
       sauces[0].name = 'a' * 65
       assign(:sauces, sauces)
       render
-      expect(rendered).to have_selector('#card #name', text: 'a' * 61 + '...' )
+      expect(rendered).to have_selector('#card #name', text: 'a' * 61 + '...')
     end
 
     it 'renders as link' do

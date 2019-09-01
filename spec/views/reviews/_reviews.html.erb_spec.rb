@@ -284,7 +284,7 @@ RSpec.describe 'reviews/_reviews', type: :view do
         review = FactoryBot.create(:review, sauce: sauce)
         assign(:review, review)
         render
-        expect(rendered).to have_selector('#review #date', text: review.created_at.strftime("%B %d/%Y"))
+        expect(rendered).to have_selector('#review #date', text: review.created_at.strftime('%B %d/%Y'))
       end
 
       it 'renders edit link' do

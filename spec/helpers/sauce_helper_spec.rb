@@ -25,9 +25,10 @@ RSpec.describe SaucesHelper, type: :helper do
       FactoryBot.create(:sauce, reviews: review_list_two)
       FactoryBot.create(:sauce, reviews: review_list_three)
       top_sauces = helper.top_sauces
-      top_sauces_sorted = top_sauces.sort_by { |sauce| sauce.reviews.average(:rating).round(1) }.reverse!
+      top_sauces_sorted = top_sauces.sort_by { |sauce|
+        sauce.reviews.average(:rating).round(1)
+      }.reverse!
       expect(top_sauces).to eq(top_sauces_sorted)
     end
   end
 end
-

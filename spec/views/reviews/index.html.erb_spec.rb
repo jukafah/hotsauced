@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 # frozen string literal: true
 
 require 'rails_helper'
 
 RSpec.describe 'reviews/index', type: :view do
-
   context 'template' do
     it 'renders' do
       sauce = FactoryBot.create(:sauce)
